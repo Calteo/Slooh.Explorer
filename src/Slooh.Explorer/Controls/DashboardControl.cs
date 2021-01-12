@@ -268,8 +268,20 @@ namespace Slooh.Explorer.Controls
             var missionPattern = PatternReplacments.Replace(textBoxPatternMission.Text, m => ReplacePatterns(m, mission));
             var missionFolder = Path.Combine(Setting.Folder, missionPattern);
 
-            Path.GetInvalidFileNameChars().ForEach(c => missionFolder = missionFolder.Replace(c, '_'));
+            var invalid = Path.GetInvalidPathChars().ToHashSet();
+            var buffer = new StringBuilder(missionFolder);
+            var start = Path.IsPathRooted(missionFolder) ? Path.GetPathRoot(missionFolder).Length : 0;
 
+            for (var i = start; i < buffer.Length; i++)
+            {
+                if (invalid.Contains(buffer[i]))
+                    buffer[i] = '_';
+                else if (buffer[i] == ':')
+                    buffer[i] = '.';
+            }
+
+            missionFolder = buffer.ToString();
+            
             if (!Directory.Exists(missionFolder))
                 Directory.CreateDirectory(missionFolder);
 

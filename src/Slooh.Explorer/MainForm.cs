@@ -1,13 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Toolbox.Xml.Settings;
 
@@ -28,15 +20,10 @@ namespace Slooh.Explorer
 
         private void MainFromShown(object sender, EventArgs e)
         {
-            logonControl.Setting = dashboardControl.Setting =
-                Setting = UserSettings.Get<SloohUserSetting>();
-
-            /*
-            var site = new SloohSite();
-            await site.GetSessionToken();
-            await site.Logon();
-            await site.GetGravityStatus();
-            */
+            logonControl.Setting 
+                = dashboardControl.Setting 
+                = Setting 
+                = UserSettings.Get<SloohUserSetting>();
         }
 
         private void LogonControlLoggedOn(object sender, EventArgs e)
