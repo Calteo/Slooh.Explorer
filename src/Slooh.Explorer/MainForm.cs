@@ -20,10 +20,15 @@ namespace Slooh.Explorer
 
         private void MainFromShown(object sender, EventArgs e)
         {
+#if DEBUG
+            var name = "DEBUG";
+#else
+            string name = null;
+#endif
             logonControl.Setting 
                 = dashboardControl.Setting 
                 = Setting 
-                = UserSettings.Get<SloohUserSetting>();
+                = UserSettings.Get<SloohUserSetting>(name);
         }
 
         private void LogonControlLoggedOn(object sender, EventArgs e)

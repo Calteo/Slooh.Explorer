@@ -13,6 +13,19 @@ namespace Slooh.Explorer
         [JsonPropertyName("imageTitle")]
         public string Title { get; set; }
 
+        #region PicturesState
+        private MissionPictures _picturesState;
+        public MissionPictures PicturesState
+        {
+            get => _picturesState;
+            set
+            {
+                if (value == _picturesState) return;
+                _picturesState = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
 
         #region State
         private MissionState _state;
@@ -79,5 +92,14 @@ namespace Slooh.Explorer
         FindFITS,
         Downloading,
         Finished,
+    }
+
+    enum MissionPictures
+    {
+        Unknown,
+        Fetching,
+        None,
+        Incomplete,
+        Exists
     }
 }

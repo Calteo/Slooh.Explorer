@@ -16,7 +16,6 @@ namespace Slooh.Explorer
         [JsonPropertyName("scheduledMissionId")]
         public int MissionId { get; set; }
 
-
         [JsonPropertyName("displayDate")]
         public string DisplayDate { get; set; }
         [JsonPropertyName("displayTime")]

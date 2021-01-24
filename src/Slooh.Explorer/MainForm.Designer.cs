@@ -50,7 +50,7 @@ namespace Slooh.Explorer
             this.logonControl.Location = new System.Drawing.Point(0, 24);
             this.logonControl.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.logonControl.Name = "logonControl";
-            this.logonControl.Size = new System.Drawing.Size(962, 482);
+            this.logonControl.Size = new System.Drawing.Size(1456, 803);
             this.logonControl.TabIndex = 0;
             this.logonControl.LoggedOn += new System.EventHandler(this.LogonControlLoggedOn);
             // 
@@ -63,7 +63,7 @@ namespace Slooh.Explorer
             this.dashboardControl.Location = new System.Drawing.Point(0, 24);
             this.dashboardControl.Margin = new System.Windows.Forms.Padding(4);
             this.dashboardControl.Name = "dashboardControl";
-            this.dashboardControl.Size = new System.Drawing.Size(962, 482);
+            this.dashboardControl.Size = new System.Drawing.Size(1456, 803);
             this.dashboardControl.TabIndex = 1;
             this.dashboardControl.Visible = false;
             // 
@@ -73,7 +73,7 @@ namespace Slooh.Explorer
             this.menuItemMain});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(962, 24);
+            this.menuStrip.Size = new System.Drawing.Size(1456, 24);
             this.menuStrip.TabIndex = 2;
             this.menuStrip.Text = "menuStrip";
             // 
@@ -115,7 +115,7 @@ namespace Slooh.Explorer
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(70)))), ((int)(((byte)(94)))));
-            this.ClientSize = new System.Drawing.Size(962, 506);
+            this.ClientSize = new System.Drawing.Size(1456, 827);
             this.Controls.Add(this.logonControl);
             this.Controls.Add(this.dashboardControl);
             this.Controls.Add(this.menuStrip);

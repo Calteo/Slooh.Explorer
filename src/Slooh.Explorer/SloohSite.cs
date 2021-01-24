@@ -4,6 +4,7 @@ using System.IO;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+using Toolbox;
 
 namespace Slooh.Explorer
 {
@@ -122,6 +123,8 @@ namespace Slooh.Explorer
                 var clock = DateTime.Parse(picture.DisplayTime.Replace(" UTC", ""));
                 timestamp = timestamp.AddHours(clock.Hour).AddMinutes(clock.Minute).AddSeconds(clock.Second);
                 picture.Timestamp = DateTime.SpecifyKind(timestamp, DateTimeKind.Utc);
+                if (picture.Telescope.IsEmpty()) picture.Telescope = "Unknown";
+                if (picture.Instrument.IsEmpty()) picture.Instrument = "Unknown";
             }
 
             return picturesResponse;
