@@ -503,6 +503,18 @@ namespace Slooh.Explorer.Controls
             File.SetCreationTimeUtc(filename, picture.Timestamp);
         }
 
+        private string Normalize(string text)
+        {
+            var builder = new StringBuilder(text);
+
+            builder.Replace(':', '#');
+
+            Path.GetInvalidPathChars().ForEach(c => builder.Replace(c, '_'));
+            Path.GetInvalidFileNameChars().ForEach(c => builder.Replace(c, '_'));
+
+            return builder.ToString();
+        }
+
         private string ReplacePatterns(Match match, Mission mission)
         {
             var name = match.Groups["name"].Value;
@@ -511,7 +523,7 @@ namespace Slooh.Explorer.Controls
             {
                 case "title":
                     {
-                        return mission.Title;
+                        return Normalize(mission.Title);
                     }
                 case "date":
                     {
@@ -545,7 +557,7 @@ namespace Slooh.Explorer.Controls
                     }
                 case "title":
                     {
-                        return picture.Title;
+                        return Normalize(picture.Title);
                     }
                 case "date":
                     {
