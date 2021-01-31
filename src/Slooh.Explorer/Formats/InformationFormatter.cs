@@ -14,11 +14,6 @@ namespace Slooh.Explorer.Formats
 
         public string Extension { get; }
 
-        protected string GetFilename(string missionFolder)
-        {
-            return Path.Combine(missionFolder, $"information.{Extension}");
-        }
-
         public abstract void Save(string missionFolder, Mission mission);
     }
 }

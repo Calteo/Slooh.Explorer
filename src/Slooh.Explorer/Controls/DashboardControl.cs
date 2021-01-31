@@ -36,7 +36,6 @@ namespace Slooh.Explorer.Controls
 
         private InformationFormatter[] Formatter { get; } = new InformationFormatter[]
             {
-                new InformationFormatterNone(),
                 new InformationFormatterXml()
             };
 
@@ -93,11 +92,14 @@ namespace Slooh.Explorer.Controls
                 textBoxPatternJpeg.Text = "";
                 textBoxPatternFits.Text = "";
 
-                checkBoxFits.Checked
-                    = checkBoxJpeg.Checked
-                    = checkBoxOverwriteFits.Checked
+                checkBoxInformation.Checked
+                    = checkBoxOverwriteInformation.Checked
+                    = checkBoxPictures.Checked
                     = checkBoxOverwritePictures.Checked
+                    = checkBoxJpeg.Checked
                     = checkBoxOverwriteJpeg.Checked
+                    = checkBoxFits.Checked
+                    = checkBoxOverwriteFits.Checked
                     = false;
 
                 comboBoxInformationFormat.SelectedIndex = 0;
@@ -105,16 +107,23 @@ namespace Slooh.Explorer.Controls
             else
             {
                 textBoxFolder.Text = Setting.Folder;
+
                 textBoxPatternMission.Text = Setting.PatternMission;
-                textBoxPatternPicture.Text = Setting.PatternPicture;
-                textBoxPatternJpeg.Text = Setting.PatternJpeg;
-                textBoxPatternFits.Text = Setting.PatternFits;
-                checkBoxJpeg.Checked = Setting.DownloadJpeg;
-                checkBoxFits.Checked = Setting.DownloadFits;
 
-                var formatter = Formatter.FirstOrDefault(f => f.Name == Setting.Formatter) ?? Formatter[0];
+                checkBoxInformation.Checked = Setting.DownloadInformation;
+                textBoxPatternInformation.Text = Setting.PatternInformation;
+                var formatter = Formatter.FirstOrDefault(f => f.Name == Setting.InformationFormatter) ?? Formatter[0];
                 comboBoxInformationFormat.SelectedItem = formatter;
-
+                
+                checkBoxPictures.Checked = Setting.DownloadPictures;
+                textBoxPatternPicture.Text = Setting.PatternPicture;
+                
+                checkBoxJpeg.Checked = Setting.DownloadJpeg;
+                textBoxPatternJpeg.Text = Setting.PatternJpeg;
+                
+                checkBoxFits.Checked = Setting.DownloadFits;
+                textBoxPatternFits.Text = Setting.PatternFits;
+                                             
                 gridMissions.Sort(ColumnTimestamp, ListSortDirection.Descending);
 
                 TokenSource = new CancellationTokenSource();
@@ -124,7 +133,6 @@ namespace Slooh.Explorer.Controls
                 Task.Run(GetPhotosNotInMission, TokenSource.Token);
             }
         }
-
 
         private void FetchPictures(Mission mission)
         {
@@ -150,7 +158,7 @@ namespace Slooh.Explorer.Controls
 
         private void FetchFits(Mission mission)
         {
-            if (checkBoxFits.Checked && mission.HasFits && mission.FitsPictures.Count == 0)
+            if ((checkBoxFits.Checked||checkBoxInformation.Checked) && mission.HasFits && mission.FitsPictures.Count == 0)
             {
                 mission.State = MissionState.FindFITS;
 
@@ -392,8 +400,18 @@ namespace Slooh.Explorer.Controls
             
             if (!Directory.Exists(missionFolder))
                 Directory.CreateDirectory(missionFolder);
-            
-            formatter.Save(missionFolder, mission);
+
+            if (checkBoxInformation.Checked)
+            {
+                var filename = PatternReplacments.Replace(textBoxPatternInformation.Text, m => ReplacePatterns(m, mission));
+                if (!Path.IsPathRooted(filename))
+                    filename = Path.Combine(missionFolder, filename);
+
+                filename = Path.ChangeExtension(filename, formatter.Extension);
+
+                if (checkBoxOverwriteInformation.Checked || !File.Exists(filename))                
+                    formatter.Save(filename, mission);
+            }
 
             mission.State = MissionState.Downloading;
             foreach (var picture in mission.Pictures)
@@ -635,12 +653,34 @@ namespace Slooh.Explorer.Controls
 
             if (comboBoxInformationFormat.SelectedIndex >= 0)
             {
-                Setting.Formatter = Formatter[comboBoxInformationFormat.SelectedIndex].Name;
+                Setting.InformationFormatter = Formatter[comboBoxInformationFormat.SelectedIndex].Name;
             }
             else
             {
-                Setting.Formatter = null;
+                Setting.InformationFormatter = null;
             }
+        }
+
+        private void CheckBoxInformationCheckedChanged(object sender, EventArgs e)
+        {
+            Setting.DownloadInformation
+                = textBoxPatternInformation.Enabled
+                = checkBoxOverwriteInformation.Enabled
+                = comboBoxInformationFormat.Enabled
+                = checkBoxInformation.Checked;
+        }
+
+        private void TextBoxPatternInformationTextChanged(object sender, EventArgs e)
+        {
+            Setting.PatternInformation = textBoxPatternInformation.Text;
+        }
+
+        private void CheckBoxPicturesCheckedChanged(object sender, EventArgs e)
+        {
+            Setting.DownloadPictures
+                = textBoxPatternPicture.Enabled
+                = checkBoxOverwritePictures.Enabled
+                = checkBoxPictures.Checked;
         }
     }
 }

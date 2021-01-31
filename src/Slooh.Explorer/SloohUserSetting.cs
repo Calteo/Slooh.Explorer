@@ -22,6 +22,16 @@ namespace Slooh.Explorer
         [DefaultValue(@"${title}\${date:yyyy-MM-dd}\${date:HH-mm-ss}")]
         public string PatternMission { get; set; }
 
+        [DefaultValue(true)]
+        public bool DownloadInformation { get; set; }
+        [DefaultValue(@"${telescope}-mission")]
+        public string PatternInformation { get; set; }
+        [DefaultValue(null)]
+        public string InformationFormatter { get; set; }
+
+        [DefaultValue(true)]
+        public bool DownloadPictures { get; set; }
+
         [DefaultValue(@"${instrument}\${filename}")]
         public string PatternPicture { get; set; }
 
@@ -34,9 +44,6 @@ namespace Slooh.Explorer
         public bool DownloadFits { get; set; }
         [DefaultValue(@"FITS\${instrument}\${filename}")]
         public string PatternFits { get; set; }
-
-        [DefaultValue(null)]
-        public string Formatter { get; set; }
                 
         public Point Location { get; set; }
         public Size Size { get; set; }       

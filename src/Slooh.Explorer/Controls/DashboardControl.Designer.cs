@@ -59,14 +59,16 @@ namespace Slooh.Explorer.Controls
             this.textBoxPatternMission = new System.Windows.Forms.TextBox();
             this.buttonDownload = new Slooh.Explorer.Controls.SloohButton();
             this.progressBarDownload = new Slooh.Explorer.Controls.SloohProgressBar();
-            this.labelPicture = new System.Windows.Forms.Label();
             this.checkBoxFits = new System.Windows.Forms.CheckBox();
             this.checkBoxOverwritePictures = new System.Windows.Forms.CheckBox();
             this.checkBoxOverwriteFits = new System.Windows.Forms.CheckBox();
             this.comboBoxInformationFormat = new System.Windows.Forms.ComboBox();
-            this.labelInformation = new System.Windows.Forms.Label();
             this.checkBoxJpeg = new System.Windows.Forms.CheckBox();
             this.textBoxPatternJpeg = new System.Windows.Forms.TextBox();
+            this.textBoxPatternInformation = new System.Windows.Forms.TextBox();
+            this.checkBoxOverwriteInformation = new System.Windows.Forms.CheckBox();
+            this.checkBoxInformation = new System.Windows.Forms.CheckBox();
+            this.checkBoxPictures = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanelRight = new System.Windows.Forms.TableLayoutPanel();
             this.labelName = new System.Windows.Forms.Label();
             this.labelMemberSince = new System.Windows.Forms.Label();
@@ -144,7 +146,7 @@ namespace Slooh.Explorer.Controls
             this.gridMissions.DefaultCellStyle = dataGridViewCellStyle3;
             this.gridMissions.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridMissions.EnableHeadersVisualStyles = false;
-            this.gridMissions.Location = new System.Drawing.Point(0, 247);
+            this.gridMissions.Location = new System.Drawing.Point(0, 298);
             this.gridMissions.Name = "gridMissions";
             this.gridMissions.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -160,7 +162,7 @@ namespace Slooh.Explorer.Controls
             this.gridMissions.RowTemplate.Height = 25;
             this.gridMissions.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridMissions.ShowEditingIcon = false;
-            this.gridMissions.Size = new System.Drawing.Size(906, 448);
+            this.gridMissions.Size = new System.Drawing.Size(906, 397);
             this.gridMissions.TabIndex = 0;
             this.gridMissions.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GridMissionsCellFormatting);
             this.gridMissions.SelectionChanged += new System.EventHandler(this.GridMissionsSelectionChanged);
@@ -271,28 +273,31 @@ namespace Slooh.Explorer.Controls
             this.tableLayoutPanelHeader.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanelHeader.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 125F));
             this.tableLayoutPanelHeader.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 125F));
-            this.tableLayoutPanelHeader.Controls.Add(this.checkBoxOverwriteJpeg, 2, 3);
-            this.tableLayoutPanelHeader.Controls.Add(this.textBoxPatternFits, 1, 4);
-            this.tableLayoutPanelHeader.Controls.Add(this.textBoxPatternPicture, 1, 2);
+            this.tableLayoutPanelHeader.Controls.Add(this.checkBoxOverwriteJpeg, 2, 4);
+            this.tableLayoutPanelHeader.Controls.Add(this.textBoxPatternFits, 1, 5);
+            this.tableLayoutPanelHeader.Controls.Add(this.textBoxPatternPicture, 1, 3);
             this.tableLayoutPanelHeader.Controls.Add(this.labelFolder, 0, 0);
             this.tableLayoutPanelHeader.Controls.Add(this.textBoxFolder, 1, 0);
             this.tableLayoutPanelHeader.Controls.Add(this.buttonSelectFolder, 2, 0);
             this.tableLayoutPanelHeader.Controls.Add(this.labelPatternMission, 0, 1);
             this.tableLayoutPanelHeader.Controls.Add(this.textBoxPatternMission, 1, 1);
-            this.tableLayoutPanelHeader.Controls.Add(this.buttonDownload, 3, 5);
-            this.tableLayoutPanelHeader.Controls.Add(this.progressBarDownload, 0, 6);
-            this.tableLayoutPanelHeader.Controls.Add(this.labelPicture, 0, 2);
-            this.tableLayoutPanelHeader.Controls.Add(this.checkBoxFits, 0, 4);
-            this.tableLayoutPanelHeader.Controls.Add(this.checkBoxOverwritePictures, 2, 2);
-            this.tableLayoutPanelHeader.Controls.Add(this.checkBoxOverwriteFits, 2, 4);
-            this.tableLayoutPanelHeader.Controls.Add(this.comboBoxInformationFormat, 3, 1);
-            this.tableLayoutPanelHeader.Controls.Add(this.labelInformation, 2, 1);
-            this.tableLayoutPanelHeader.Controls.Add(this.checkBoxJpeg, 0, 3);
-            this.tableLayoutPanelHeader.Controls.Add(this.textBoxPatternJpeg, 1, 3);
+            this.tableLayoutPanelHeader.Controls.Add(this.buttonDownload, 3, 6);
+            this.tableLayoutPanelHeader.Controls.Add(this.progressBarDownload, 0, 7);
+            this.tableLayoutPanelHeader.Controls.Add(this.checkBoxFits, 0, 5);
+            this.tableLayoutPanelHeader.Controls.Add(this.checkBoxOverwritePictures, 2, 3);
+            this.tableLayoutPanelHeader.Controls.Add(this.checkBoxOverwriteFits, 2, 5);
+            this.tableLayoutPanelHeader.Controls.Add(this.comboBoxInformationFormat, 3, 2);
+            this.tableLayoutPanelHeader.Controls.Add(this.checkBoxJpeg, 0, 4);
+            this.tableLayoutPanelHeader.Controls.Add(this.textBoxPatternJpeg, 1, 4);
+            this.tableLayoutPanelHeader.Controls.Add(this.textBoxPatternInformation, 1, 2);
+            this.tableLayoutPanelHeader.Controls.Add(this.checkBoxOverwriteInformation, 2, 2);
+            this.tableLayoutPanelHeader.Controls.Add(this.checkBoxInformation, 0, 2);
+            this.tableLayoutPanelHeader.Controls.Add(this.checkBoxPictures, 0, 3);
             this.tableLayoutPanelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanelHeader.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanelHeader.Name = "tableLayoutPanelHeader";
-            this.tableLayoutPanelHeader.RowCount = 8;
+            this.tableLayoutPanelHeader.RowCount = 9;
+            this.tableLayoutPanelHeader.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
             this.tableLayoutPanelHeader.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
             this.tableLayoutPanelHeader.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
             this.tableLayoutPanelHeader.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
@@ -301,14 +306,14 @@ namespace Slooh.Explorer.Controls
             this.tableLayoutPanelHeader.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
             this.tableLayoutPanelHeader.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
             this.tableLayoutPanelHeader.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelHeader.Size = new System.Drawing.Size(906, 247);
+            this.tableLayoutPanelHeader.Size = new System.Drawing.Size(906, 298);
             this.tableLayoutPanelHeader.TabIndex = 1;
             // 
             // checkBoxOverwriteJpeg
             // 
             this.checkBoxOverwriteJpeg.Dock = System.Windows.Forms.DockStyle.Fill;
             this.checkBoxOverwriteJpeg.Enabled = false;
-            this.checkBoxOverwriteJpeg.Location = new System.Drawing.Point(659, 105);
+            this.checkBoxOverwriteJpeg.Location = new System.Drawing.Point(659, 139);
             this.checkBoxOverwriteJpeg.Name = "checkBoxOverwriteJpeg";
             this.checkBoxOverwriteJpeg.Size = new System.Drawing.Size(119, 28);
             this.checkBoxOverwriteJpeg.TabIndex = 20;
@@ -319,7 +324,7 @@ namespace Slooh.Explorer.Controls
             // 
             this.textBoxPatternFits.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxPatternFits.Enabled = false;
-            this.textBoxPatternFits.Location = new System.Drawing.Point(123, 139);
+            this.textBoxPatternFits.Location = new System.Drawing.Point(123, 173);
             this.textBoxPatternFits.Name = "textBoxPatternFits";
             this.textBoxPatternFits.Size = new System.Drawing.Size(530, 29);
             this.textBoxPatternFits.TabIndex = 10;
@@ -328,7 +333,7 @@ namespace Slooh.Explorer.Controls
             // textBoxPatternPicture
             // 
             this.textBoxPatternPicture.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxPatternPicture.Location = new System.Drawing.Point(123, 71);
+            this.textBoxPatternPicture.Location = new System.Drawing.Point(123, 105);
             this.textBoxPatternPicture.Name = "textBoxPatternPicture";
             this.textBoxPatternPicture.Size = new System.Drawing.Size(530, 29);
             this.textBoxPatternPicture.TabIndex = 8;
@@ -397,7 +402,7 @@ namespace Slooh.Explorer.Controls
             this.buttonDownload.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(160)))), ((int)(((byte)(104)))));
             this.buttonDownload.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(52)))), ((int)(((byte)(70)))));
             this.buttonDownload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonDownload.Location = new System.Drawing.Point(784, 173);
+            this.buttonDownload.Location = new System.Drawing.Point(784, 207);
             this.buttonDownload.Name = "buttonDownload";
             this.buttonDownload.Size = new System.Drawing.Size(119, 28);
             this.buttonDownload.TabIndex = 5;
@@ -409,27 +414,17 @@ namespace Slooh.Explorer.Controls
             // 
             this.tableLayoutPanelHeader.SetColumnSpan(this.progressBarDownload, 4);
             this.progressBarDownload.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.progressBarDownload.Location = new System.Drawing.Point(3, 207);
+            this.progressBarDownload.Location = new System.Drawing.Point(3, 241);
             this.progressBarDownload.Name = "progressBarDownload";
             this.progressBarDownload.Size = new System.Drawing.Size(900, 28);
             this.progressBarDownload.TabIndex = 11;
             this.progressBarDownload.Visible = false;
             // 
-            // labelPicture
-            // 
-            this.labelPicture.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelPicture.Location = new System.Drawing.Point(3, 68);
-            this.labelPicture.Name = "labelPicture";
-            this.labelPicture.Size = new System.Drawing.Size(114, 34);
-            this.labelPicture.TabIndex = 12;
-            this.labelPicture.Text = "Picture";
-            this.labelPicture.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // checkBoxFits
             // 
             this.checkBoxFits.AutoSize = true;
             this.checkBoxFits.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkBoxFits.Location = new System.Drawing.Point(3, 139);
+            this.checkBoxFits.Location = new System.Drawing.Point(3, 173);
             this.checkBoxFits.Name = "checkBoxFits";
             this.checkBoxFits.Size = new System.Drawing.Size(114, 28);
             this.checkBoxFits.TabIndex = 13;
@@ -440,7 +435,7 @@ namespace Slooh.Explorer.Controls
             // checkBoxOverwritePictures
             // 
             this.checkBoxOverwritePictures.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkBoxOverwritePictures.Location = new System.Drawing.Point(659, 71);
+            this.checkBoxOverwritePictures.Location = new System.Drawing.Point(659, 105);
             this.checkBoxOverwritePictures.Name = "checkBoxOverwritePictures";
             this.checkBoxOverwritePictures.Size = new System.Drawing.Size(119, 28);
             this.checkBoxOverwritePictures.TabIndex = 14;
@@ -451,7 +446,7 @@ namespace Slooh.Explorer.Controls
             // 
             this.checkBoxOverwriteFits.Dock = System.Windows.Forms.DockStyle.Fill;
             this.checkBoxOverwriteFits.Enabled = false;
-            this.checkBoxOverwriteFits.Location = new System.Drawing.Point(659, 139);
+            this.checkBoxOverwriteFits.Location = new System.Drawing.Point(659, 173);
             this.checkBoxOverwriteFits.Name = "checkBoxOverwriteFits";
             this.checkBoxOverwriteFits.Size = new System.Drawing.Size(119, 28);
             this.checkBoxOverwriteFits.TabIndex = 15;
@@ -463,26 +458,16 @@ namespace Slooh.Explorer.Controls
             this.comboBoxInformationFormat.Dock = System.Windows.Forms.DockStyle.Fill;
             this.comboBoxInformationFormat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxInformationFormat.FormattingEnabled = true;
-            this.comboBoxInformationFormat.Location = new System.Drawing.Point(784, 37);
+            this.comboBoxInformationFormat.Location = new System.Drawing.Point(784, 71);
             this.comboBoxInformationFormat.Name = "comboBoxInformationFormat";
             this.comboBoxInformationFormat.Size = new System.Drawing.Size(119, 29);
             this.comboBoxInformationFormat.TabIndex = 16;
             this.comboBoxInformationFormat.SelectedIndexChanged += new System.EventHandler(this.ComboBoxInformationFormatSelectedIndexChanged);
             // 
-            // labelInformation
-            // 
-            this.labelInformation.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelInformation.Location = new System.Drawing.Point(659, 34);
-            this.labelInformation.Name = "labelInformation";
-            this.labelInformation.Size = new System.Drawing.Size(119, 34);
-            this.labelInformation.TabIndex = 17;
-            this.labelInformation.Text = "Information";
-            this.labelInformation.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // checkBoxJpeg
             // 
             this.checkBoxJpeg.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkBoxJpeg.Location = new System.Drawing.Point(3, 105);
+            this.checkBoxJpeg.Location = new System.Drawing.Point(3, 139);
             this.checkBoxJpeg.Name = "checkBoxJpeg";
             this.checkBoxJpeg.Size = new System.Drawing.Size(114, 28);
             this.checkBoxJpeg.TabIndex = 18;
@@ -494,11 +479,52 @@ namespace Slooh.Explorer.Controls
             // 
             this.textBoxPatternJpeg.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxPatternJpeg.Enabled = false;
-            this.textBoxPatternJpeg.Location = new System.Drawing.Point(123, 105);
+            this.textBoxPatternJpeg.Location = new System.Drawing.Point(123, 139);
             this.textBoxPatternJpeg.Name = "textBoxPatternJpeg";
             this.textBoxPatternJpeg.Size = new System.Drawing.Size(530, 29);
             this.textBoxPatternJpeg.TabIndex = 19;
             this.textBoxPatternJpeg.TextChanged += new System.EventHandler(this.TextBoxPatternJpegTextChanged);
+            // 
+            // textBoxPatternInformation
+            // 
+            this.textBoxPatternInformation.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxPatternInformation.Location = new System.Drawing.Point(123, 71);
+            this.textBoxPatternInformation.Name = "textBoxPatternInformation";
+            this.textBoxPatternInformation.Size = new System.Drawing.Size(530, 29);
+            this.textBoxPatternInformation.TabIndex = 21;
+            this.textBoxPatternInformation.TextChanged += new System.EventHandler(this.TextBoxPatternInformationTextChanged);
+            // 
+            // checkBoxOverwriteInformation
+            // 
+            this.checkBoxOverwriteInformation.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.checkBoxOverwriteInformation.Location = new System.Drawing.Point(659, 71);
+            this.checkBoxOverwriteInformation.Name = "checkBoxOverwriteInformation";
+            this.checkBoxOverwriteInformation.Size = new System.Drawing.Size(119, 28);
+            this.checkBoxOverwriteInformation.TabIndex = 22;
+            this.checkBoxOverwriteInformation.Text = "Overwrite";
+            this.checkBoxOverwriteInformation.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxInformation
+            // 
+            this.checkBoxInformation.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.checkBoxInformation.Location = new System.Drawing.Point(3, 71);
+            this.checkBoxInformation.Name = "checkBoxInformation";
+            this.checkBoxInformation.Size = new System.Drawing.Size(114, 28);
+            this.checkBoxInformation.TabIndex = 23;
+            this.checkBoxInformation.Text = "Information";
+            this.checkBoxInformation.UseVisualStyleBackColor = true;
+            this.checkBoxInformation.CheckedChanged += new System.EventHandler(this.CheckBoxInformationCheckedChanged);
+            // 
+            // checkBoxPictures
+            // 
+            this.checkBoxPictures.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.checkBoxPictures.Location = new System.Drawing.Point(3, 105);
+            this.checkBoxPictures.Name = "checkBoxPictures";
+            this.checkBoxPictures.Size = new System.Drawing.Size(114, 28);
+            this.checkBoxPictures.TabIndex = 24;
+            this.checkBoxPictures.Text = "Pictures";
+            this.checkBoxPictures.UseVisualStyleBackColor = true;
+            this.checkBoxPictures.CheckedChanged += new System.EventHandler(this.CheckBoxPicturesCheckedChanged);
             // 
             // tableLayoutPanelRight
             // 
@@ -648,12 +674,10 @@ namespace Slooh.Explorer.Controls
         private System.Windows.Forms.TextBox textBoxPatternFits;
         private System.Windows.Forms.TextBox textBoxPatternPicture;
         private SloohProgressBar progressBarDownload;
-        private System.Windows.Forms.Label labelPicture;
         private System.Windows.Forms.CheckBox checkBoxFits;
         private System.Windows.Forms.CheckBox checkBoxOverwritePictures;
         private System.Windows.Forms.CheckBox checkBoxOverwriteFits;
         private System.Windows.Forms.ComboBox comboBoxInformationFormat;
-        private System.Windows.Forms.Label labelInformation;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripMissions;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemOpenFolder;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTimestamp;
@@ -668,5 +692,9 @@ namespace Slooh.Explorer.Controls
         private System.Windows.Forms.CheckBox checkBoxJpeg;
         private System.Windows.Forms.TextBox textBoxPatternJpeg;
         private System.Windows.Forms.CheckBox checkBoxOverwriteJpeg;
+        private System.Windows.Forms.TextBox textBoxPatternInformation;
+        private System.Windows.Forms.CheckBox checkBoxOverwriteInformation;
+        private System.Windows.Forms.CheckBox checkBoxInformation;
+        private System.Windows.Forms.CheckBox checkBoxPictures;
     }
 }
