@@ -67,7 +67,6 @@ namespace Slooh.Explorer
             logonResponse.CopyTo(this);
         }
 
-        // https://www.slooh.com/api/newdashboard/getUserGravityStatus
         public async Task GetGravityStatus()
         {
             var logonInfo = new GetGravityStatusRequest();
@@ -95,6 +94,7 @@ namespace Slooh.Explorer
 
             foreach (var mission in missionsResponse.Missions)
             {
+                mission.Title = mission.Title.Trim();
                 var timestamp = DateTime.Parse(mission.DisplayDate);
                 var clock = DateTime.Parse(mission.DisplayTime.Replace(" UTC", ""));
                 timestamp = timestamp.AddHours(clock.Hour).AddMinutes(clock.Minute).AddSeconds(clock.Second);
@@ -119,6 +119,8 @@ namespace Slooh.Explorer
 
             foreach (var picture in picturesResponse.Pictures)
             {
+                picture.SloohSite = this;
+
                 var timestamp = DateTime.Parse(picture.DisplayDate);
                 var clock = DateTime.Parse(picture.DisplayTime.Replace(" UTC", ""));
                 timestamp = timestamp.AddHours(clock.Hour).AddMinutes(clock.Minute).AddSeconds(clock.Second);

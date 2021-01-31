@@ -123,7 +123,11 @@ namespace Slooh.Explorer
             this.MainMenuStrip = this.menuStrip;
             this.Name = "MainForm";
             this.Text = "Slooh Explorer";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainFormFormClosing);
+            this.Load += new System.EventHandler(this.MainFormLoad);
             this.Shown += new System.EventHandler(this.MainFromShown);
+            this.LocationChanged += new System.EventHandler(this.MainFormLocationChanged);
+            this.Resize += new System.EventHandler(this.MainFormResize);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             this.ResumeLayout(false);

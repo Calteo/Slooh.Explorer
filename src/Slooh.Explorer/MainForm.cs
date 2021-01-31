@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Drawing;
 using System.Windows.Forms;
 using Toolbox.Xml.Settings;
 
@@ -9,7 +10,7 @@ namespace Slooh.Explorer
     {
         public MainForm()
         {
-            InitializeComponent();
+            InitializeComponent();            
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -18,17 +19,26 @@ namespace Slooh.Explorer
         [EditorBrowsable(EditorBrowsableState.Never)]
         public SloohUserSetting Setting { get; set; }
 
-        private void MainFromShown(object sender, EventArgs e)
+        private void MainFormLoad(object sender, EventArgs e)
         {
 #if DEBUG
             var name = "DEBUG";
 #else
             string name = null;
 #endif
-            logonControl.Setting 
-                = dashboardControl.Setting 
-                = Setting 
+            logonControl.Setting
+                = dashboardControl.Setting
+                = Setting
                 = UserSettings.Get<SloohUserSetting>(name);
+
+            if (Setting.Location != Point.Empty)
+                Location = Setting.Location;
+            if (Setting.Size != Size.Empty)
+                Size = Setting.Size;
+        }
+
+        private void MainFromShown(object sender, EventArgs e)
+        {
         }
 
         private void LogonControlLoggedOn(object sender, EventArgs e)
@@ -53,5 +63,27 @@ namespace Slooh.Explorer
             
             menuItemLogoff.Enabled = false;
         }
+
+        private void MainFormResize(object sender, EventArgs e)
+        {
+            if (Setting != null && WindowState == FormWindowState.Normal)
+            {
+                Setting.Size = Size;
+            }
+        }
+
+        private void MainFormLocationChanged(object sender, EventArgs e)
+        {
+            if (Setting!=null && WindowState==FormWindowState.Normal)
+            {
+                Setting.Location = Location;
+            }
+        }
+
+        private void MainFormFormClosing(object sender, FormClosingEventArgs e)
+        {
+            Setting.Save();
+        }
+
     }
 }

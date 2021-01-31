@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace Slooh.Explorer
 {
@@ -19,11 +20,16 @@ namespace Slooh.Explorer
         {
             if (predicate(obj)) // needs to be executed?
             {
+                // Trace.WriteLine($"locking:   {obj}");
                 lock (obj) // lock
                 {
+                    // Trace.WriteLine($"locked:    {obj}");
                     if (predicate(obj)) // still needs to be executed?
                         action(obj);
+
+                    // Trace.WriteLine($"unlocking: {obj}");
                 }
+                // Trace.WriteLine($"unlocked:  {obj}");
             }
         }
     }

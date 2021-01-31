@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.IO;
 using System.Runtime.CompilerServices;
 using System.Text.Json.Serialization;
 
@@ -7,6 +8,9 @@ namespace Slooh.Explorer
 {
     class Picture : INotifyPropertyChanged
     {
+        public SloohSite SloohSite { get; set; }
+        public Mission Mission { get; set; }
+
         [JsonPropertyName("imageId")]
         public int Id { get; set; }
         [JsonPropertyName("imageTitle")]
@@ -36,6 +40,33 @@ namespace Slooh.Explorer
         public OverlayData Data { get; set; }
         public string Owner => Data?.Owner == "Not available" ? "" : Data?.Owner;
 
+        private MemoryStream stream;
+        public MemoryStream GetStream()
+        {
+            if (stream == null)
+            {
+                var resultStream = SloohSite.GetPicture(DownloadUrl).Result;
+
+                stream = new MemoryStream();
+                resultStream.CopyTo(stream);
+            }
+            stream.Position = 0;
+
+            return stream;
+        }
+        public void ResetStream()
+        {
+            stream = null;
+        }
+
+        public void SaveStream(string filename)
+        {
+            using (var fileStream = new FileStream(filename, FileMode.Create, FileAccess.Write))
+            {
+                GetStream().CopyTo(fileStream);
+            }
+            File.SetCreationTimeUtc(filename, Timestamp);
+        }
 
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

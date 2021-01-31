@@ -17,7 +17,5 @@ namespace Slooh.Explorer.Requests
         public string ProductId { get; set; } = "ee26fb6d-3351-11eb-83b9-0655cc43ca95";
         [JsonPropertyName("locale")]
         public string Locale { get; set; } = "en";
-
-
     }
 }

@@ -48,9 +48,9 @@ namespace Slooh.Explorer.Controls
             this.ColumnState = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStripMissions = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItemOpenFolder = new System.Windows.Forms.ToolStripMenuItem();
-            this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanelHeader = new System.Windows.Forms.TableLayoutPanel();
+            this.checkBoxOverwriteJpeg = new System.Windows.Forms.CheckBox();
             this.textBoxPatternFits = new System.Windows.Forms.TextBox();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.textBoxPatternPicture = new System.Windows.Forms.TextBox();
             this.labelFolder = new System.Windows.Forms.Label();
             this.textBoxFolder = new System.Windows.Forms.TextBox();
@@ -65,6 +65,8 @@ namespace Slooh.Explorer.Controls
             this.checkBoxOverwriteFits = new System.Windows.Forms.CheckBox();
             this.comboBoxInformationFormat = new System.Windows.Forms.ComboBox();
             this.labelInformation = new System.Windows.Forms.Label();
+            this.checkBoxJpeg = new System.Windows.Forms.CheckBox();
+            this.textBoxPatternJpeg = new System.Windows.Forms.TextBox();
             this.tableLayoutPanelRight = new System.Windows.Forms.TableLayoutPanel();
             this.labelName = new System.Windows.Forms.Label();
             this.labelMemberSince = new System.Windows.Forms.Label();
@@ -80,26 +82,27 @@ namespace Slooh.Explorer.Controls
             this.splitContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridMissions)).BeginInit();
             this.contextMenuStripMissions.SuspendLayout();
-            this.tableLayoutPanel.SuspendLayout();
+            this.tableLayoutPanelHeader.SuspendLayout();
             this.tableLayoutPanelRight.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer
             // 
             this.splitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
             this.splitContainer.Location = new System.Drawing.Point(0, 0);
             this.splitContainer.Name = "splitContainer";
             // 
             // splitContainer.Panel1
             // 
             this.splitContainer.Panel1.Controls.Add(this.gridMissions);
-            this.splitContainer.Panel1.Controls.Add(this.tableLayoutPanel);
+            this.splitContainer.Panel1.Controls.Add(this.tableLayoutPanelHeader);
             // 
             // splitContainer.Panel2
             // 
             this.splitContainer.Panel2.Controls.Add(this.tableLayoutPanelRight);
-            this.splitContainer.Size = new System.Drawing.Size(1082, 595);
-            this.splitContainer.SplitterDistance = 800;
+            this.splitContainer.Size = new System.Drawing.Size(1188, 695);
+            this.splitContainer.SplitterDistance = 906;
             this.splitContainer.TabIndex = 0;
             // 
             // gridMissions
@@ -141,7 +144,7 @@ namespace Slooh.Explorer.Controls
             this.gridMissions.DefaultCellStyle = dataGridViewCellStyle3;
             this.gridMissions.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridMissions.EnableHeadersVisualStyles = false;
-            this.gridMissions.Location = new System.Drawing.Point(0, 195);
+            this.gridMissions.Location = new System.Drawing.Point(0, 247);
             this.gridMissions.Name = "gridMissions";
             this.gridMissions.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -157,7 +160,7 @@ namespace Slooh.Explorer.Controls
             this.gridMissions.RowTemplate.Height = 25;
             this.gridMissions.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridMissions.ShowEditingIcon = false;
-            this.gridMissions.Size = new System.Drawing.Size(800, 400);
+            this.gridMissions.Size = new System.Drawing.Size(906, 448);
             this.gridMissions.TabIndex = 0;
             this.gridMissions.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GridMissionsCellFormatting);
             this.gridMissions.SelectionChanged += new System.EventHandler(this.GridMissionsSelectionChanged);
@@ -260,80 +263,74 @@ namespace Slooh.Explorer.Controls
             this.toolStripMenuItemOpenFolder.Text = "Open Folder...";
             this.toolStripMenuItemOpenFolder.Click += new System.EventHandler(this.ToolStripMenuItemOpenFolderClick);
             // 
-            // tableLayoutPanel
+            // tableLayoutPanelHeader
             // 
-            this.tableLayoutPanel.BackColor = System.Drawing.Color.Transparent;
-            this.tableLayoutPanel.ColumnCount = 4;
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 125F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 125F));
-            this.tableLayoutPanel.Controls.Add(this.textBoxPatternFits, 1, 3);
-            this.tableLayoutPanel.Controls.Add(this.tableLayoutPanel1, 3, 0);
-            this.tableLayoutPanel.Controls.Add(this.textBoxPatternPicture, 1, 2);
-            this.tableLayoutPanel.Controls.Add(this.labelFolder, 0, 0);
-            this.tableLayoutPanel.Controls.Add(this.textBoxFolder, 1, 0);
-            this.tableLayoutPanel.Controls.Add(this.buttonSelectFolder, 2, 0);
-            this.tableLayoutPanel.Controls.Add(this.labelPatternMission, 0, 1);
-            this.tableLayoutPanel.Controls.Add(this.textBoxPatternMission, 1, 1);
-            this.tableLayoutPanel.Controls.Add(this.buttonDownload, 3, 4);
-            this.tableLayoutPanel.Controls.Add(this.progressBarDownload, 0, 5);
-            this.tableLayoutPanel.Controls.Add(this.labelPicture, 0, 2);
-            this.tableLayoutPanel.Controls.Add(this.checkBoxFits, 0, 3);
-            this.tableLayoutPanel.Controls.Add(this.checkBoxOverwritePictures, 2, 2);
-            this.tableLayoutPanel.Controls.Add(this.checkBoxOverwriteFits, 2, 3);
-            this.tableLayoutPanel.Controls.Add(this.comboBoxInformationFormat, 3, 1);
-            this.tableLayoutPanel.Controls.Add(this.labelInformation, 2, 1);
-            this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel.Name = "tableLayoutPanel";
-            this.tableLayoutPanel.RowCount = 6;
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel.Size = new System.Drawing.Size(800, 195);
-            this.tableLayoutPanel.TabIndex = 1;
+            this.tableLayoutPanelHeader.BackColor = System.Drawing.Color.Transparent;
+            this.tableLayoutPanelHeader.ColumnCount = 4;
+            this.tableLayoutPanelHeader.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tableLayoutPanelHeader.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanelHeader.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 125F));
+            this.tableLayoutPanelHeader.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 125F));
+            this.tableLayoutPanelHeader.Controls.Add(this.checkBoxOverwriteJpeg, 2, 3);
+            this.tableLayoutPanelHeader.Controls.Add(this.textBoxPatternFits, 1, 4);
+            this.tableLayoutPanelHeader.Controls.Add(this.textBoxPatternPicture, 1, 2);
+            this.tableLayoutPanelHeader.Controls.Add(this.labelFolder, 0, 0);
+            this.tableLayoutPanelHeader.Controls.Add(this.textBoxFolder, 1, 0);
+            this.tableLayoutPanelHeader.Controls.Add(this.buttonSelectFolder, 2, 0);
+            this.tableLayoutPanelHeader.Controls.Add(this.labelPatternMission, 0, 1);
+            this.tableLayoutPanelHeader.Controls.Add(this.textBoxPatternMission, 1, 1);
+            this.tableLayoutPanelHeader.Controls.Add(this.buttonDownload, 3, 5);
+            this.tableLayoutPanelHeader.Controls.Add(this.progressBarDownload, 0, 6);
+            this.tableLayoutPanelHeader.Controls.Add(this.labelPicture, 0, 2);
+            this.tableLayoutPanelHeader.Controls.Add(this.checkBoxFits, 0, 4);
+            this.tableLayoutPanelHeader.Controls.Add(this.checkBoxOverwritePictures, 2, 2);
+            this.tableLayoutPanelHeader.Controls.Add(this.checkBoxOverwriteFits, 2, 4);
+            this.tableLayoutPanelHeader.Controls.Add(this.comboBoxInformationFormat, 3, 1);
+            this.tableLayoutPanelHeader.Controls.Add(this.labelInformation, 2, 1);
+            this.tableLayoutPanelHeader.Controls.Add(this.checkBoxJpeg, 0, 3);
+            this.tableLayoutPanelHeader.Controls.Add(this.textBoxPatternJpeg, 1, 3);
+            this.tableLayoutPanelHeader.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tableLayoutPanelHeader.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanelHeader.Name = "tableLayoutPanelHeader";
+            this.tableLayoutPanelHeader.RowCount = 8;
+            this.tableLayoutPanelHeader.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
+            this.tableLayoutPanelHeader.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
+            this.tableLayoutPanelHeader.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
+            this.tableLayoutPanelHeader.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
+            this.tableLayoutPanelHeader.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
+            this.tableLayoutPanelHeader.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
+            this.tableLayoutPanelHeader.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
+            this.tableLayoutPanelHeader.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanelHeader.Size = new System.Drawing.Size(906, 247);
+            this.tableLayoutPanelHeader.TabIndex = 1;
+            // 
+            // checkBoxOverwriteJpeg
+            // 
+            this.checkBoxOverwriteJpeg.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.checkBoxOverwriteJpeg.Enabled = false;
+            this.checkBoxOverwriteJpeg.Location = new System.Drawing.Point(659, 105);
+            this.checkBoxOverwriteJpeg.Name = "checkBoxOverwriteJpeg";
+            this.checkBoxOverwriteJpeg.Size = new System.Drawing.Size(119, 28);
+            this.checkBoxOverwriteJpeg.TabIndex = 20;
+            this.checkBoxOverwriteJpeg.Text = "Overwrite";
+            this.checkBoxOverwriteJpeg.UseVisualStyleBackColor = true;
             // 
             // textBoxPatternFits
             // 
             this.textBoxPatternFits.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxPatternFits.Enabled = false;
-            this.textBoxPatternFits.Location = new System.Drawing.Point(123, 105);
+            this.textBoxPatternFits.Location = new System.Drawing.Point(123, 139);
             this.textBoxPatternFits.Name = "textBoxPatternFits";
-            this.textBoxPatternFits.Size = new System.Drawing.Size(424, 29);
+            this.textBoxPatternFits.Size = new System.Drawing.Size(530, 29);
             this.textBoxPatternFits.TabIndex = 10;
             this.textBoxPatternFits.TextChanged += new System.EventHandler(this.TextBoxPatternFitsTextChanged);
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
-            this.tableLayoutPanel1.ColumnCount = 4;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 125F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 125F));
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(678, 3);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 6;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(119, 28);
-            this.tableLayoutPanel1.TabIndex = 9;
             // 
             // textBoxPatternPicture
             // 
             this.textBoxPatternPicture.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxPatternPicture.Location = new System.Drawing.Point(123, 71);
             this.textBoxPatternPicture.Name = "textBoxPatternPicture";
-            this.textBoxPatternPicture.Size = new System.Drawing.Size(424, 29);
+            this.textBoxPatternPicture.Size = new System.Drawing.Size(530, 29);
             this.textBoxPatternPicture.TabIndex = 8;
             this.textBoxPatternPicture.TextChanged += new System.EventHandler(this.TextBoxPatternPictureTextChanged);
             // 
@@ -352,7 +349,7 @@ namespace Slooh.Explorer.Controls
             this.textBoxFolder.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxFolder.Location = new System.Drawing.Point(123, 3);
             this.textBoxFolder.Name = "textBoxFolder";
-            this.textBoxFolder.Size = new System.Drawing.Size(424, 29);
+            this.textBoxFolder.Size = new System.Drawing.Size(530, 29);
             this.textBoxFolder.TabIndex = 1;
             this.textBoxFolder.TextChanged += new System.EventHandler(this.TextBoxFolderTextChanged);
             // 
@@ -364,7 +361,7 @@ namespace Slooh.Explorer.Controls
             this.buttonSelectFolder.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(160)))), ((int)(((byte)(104)))));
             this.buttonSelectFolder.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(52)))), ((int)(((byte)(70)))));
             this.buttonSelectFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonSelectFolder.Location = new System.Drawing.Point(553, 3);
+            this.buttonSelectFolder.Location = new System.Drawing.Point(659, 3);
             this.buttonSelectFolder.Name = "buttonSelectFolder";
             this.buttonSelectFolder.Size = new System.Drawing.Size(119, 28);
             this.buttonSelectFolder.TabIndex = 2;
@@ -387,7 +384,7 @@ namespace Slooh.Explorer.Controls
             this.textBoxPatternMission.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxPatternMission.Location = new System.Drawing.Point(123, 37);
             this.textBoxPatternMission.Name = "textBoxPatternMission";
-            this.textBoxPatternMission.Size = new System.Drawing.Size(424, 29);
+            this.textBoxPatternMission.Size = new System.Drawing.Size(530, 29);
             this.textBoxPatternMission.TabIndex = 4;
             this.textBoxPatternMission.TextChanged += new System.EventHandler(this.TextBoxPatternMissionTextChanged);
             // 
@@ -400,7 +397,7 @@ namespace Slooh.Explorer.Controls
             this.buttonDownload.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(160)))), ((int)(((byte)(104)))));
             this.buttonDownload.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(52)))), ((int)(((byte)(70)))));
             this.buttonDownload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonDownload.Location = new System.Drawing.Point(678, 139);
+            this.buttonDownload.Location = new System.Drawing.Point(784, 173);
             this.buttonDownload.Name = "buttonDownload";
             this.buttonDownload.Size = new System.Drawing.Size(119, 28);
             this.buttonDownload.TabIndex = 5;
@@ -410,11 +407,11 @@ namespace Slooh.Explorer.Controls
             // 
             // progressBarDownload
             // 
-            this.tableLayoutPanel.SetColumnSpan(this.progressBarDownload, 4);
+            this.tableLayoutPanelHeader.SetColumnSpan(this.progressBarDownload, 4);
             this.progressBarDownload.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.progressBarDownload.Location = new System.Drawing.Point(3, 173);
+            this.progressBarDownload.Location = new System.Drawing.Point(3, 207);
             this.progressBarDownload.Name = "progressBarDownload";
-            this.progressBarDownload.Size = new System.Drawing.Size(794, 19);
+            this.progressBarDownload.Size = new System.Drawing.Size(900, 28);
             this.progressBarDownload.TabIndex = 11;
             this.progressBarDownload.Visible = false;
             // 
@@ -432,7 +429,7 @@ namespace Slooh.Explorer.Controls
             // 
             this.checkBoxFits.AutoSize = true;
             this.checkBoxFits.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkBoxFits.Location = new System.Drawing.Point(3, 105);
+            this.checkBoxFits.Location = new System.Drawing.Point(3, 139);
             this.checkBoxFits.Name = "checkBoxFits";
             this.checkBoxFits.Size = new System.Drawing.Size(114, 28);
             this.checkBoxFits.TabIndex = 13;
@@ -443,7 +440,7 @@ namespace Slooh.Explorer.Controls
             // checkBoxOverwritePictures
             // 
             this.checkBoxOverwritePictures.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkBoxOverwritePictures.Location = new System.Drawing.Point(553, 71);
+            this.checkBoxOverwritePictures.Location = new System.Drawing.Point(659, 71);
             this.checkBoxOverwritePictures.Name = "checkBoxOverwritePictures";
             this.checkBoxOverwritePictures.Size = new System.Drawing.Size(119, 28);
             this.checkBoxOverwritePictures.TabIndex = 14;
@@ -454,7 +451,7 @@ namespace Slooh.Explorer.Controls
             // 
             this.checkBoxOverwriteFits.Dock = System.Windows.Forms.DockStyle.Fill;
             this.checkBoxOverwriteFits.Enabled = false;
-            this.checkBoxOverwriteFits.Location = new System.Drawing.Point(553, 105);
+            this.checkBoxOverwriteFits.Location = new System.Drawing.Point(659, 139);
             this.checkBoxOverwriteFits.Name = "checkBoxOverwriteFits";
             this.checkBoxOverwriteFits.Size = new System.Drawing.Size(119, 28);
             this.checkBoxOverwriteFits.TabIndex = 15;
@@ -466,20 +463,42 @@ namespace Slooh.Explorer.Controls
             this.comboBoxInformationFormat.Dock = System.Windows.Forms.DockStyle.Fill;
             this.comboBoxInformationFormat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxInformationFormat.FormattingEnabled = true;
-            this.comboBoxInformationFormat.Location = new System.Drawing.Point(678, 37);
+            this.comboBoxInformationFormat.Location = new System.Drawing.Point(784, 37);
             this.comboBoxInformationFormat.Name = "comboBoxInformationFormat";
             this.comboBoxInformationFormat.Size = new System.Drawing.Size(119, 29);
             this.comboBoxInformationFormat.TabIndex = 16;
+            this.comboBoxInformationFormat.SelectedIndexChanged += new System.EventHandler(this.ComboBoxInformationFormatSelectedIndexChanged);
             // 
             // labelInformation
             // 
             this.labelInformation.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelInformation.Location = new System.Drawing.Point(553, 34);
+            this.labelInformation.Location = new System.Drawing.Point(659, 34);
             this.labelInformation.Name = "labelInformation";
             this.labelInformation.Size = new System.Drawing.Size(119, 34);
             this.labelInformation.TabIndex = 17;
             this.labelInformation.Text = "Information";
             this.labelInformation.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // checkBoxJpeg
+            // 
+            this.checkBoxJpeg.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.checkBoxJpeg.Location = new System.Drawing.Point(3, 105);
+            this.checkBoxJpeg.Name = "checkBoxJpeg";
+            this.checkBoxJpeg.Size = new System.Drawing.Size(114, 28);
+            this.checkBoxJpeg.TabIndex = 18;
+            this.checkBoxJpeg.Text = "JPEG";
+            this.checkBoxJpeg.UseVisualStyleBackColor = true;
+            this.checkBoxJpeg.CheckedChanged += new System.EventHandler(this.CheckBoxJpegCheckedChanged);
+            // 
+            // textBoxPatternJpeg
+            // 
+            this.textBoxPatternJpeg.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxPatternJpeg.Enabled = false;
+            this.textBoxPatternJpeg.Location = new System.Drawing.Point(123, 105);
+            this.textBoxPatternJpeg.Name = "textBoxPatternJpeg";
+            this.textBoxPatternJpeg.Size = new System.Drawing.Size(530, 29);
+            this.textBoxPatternJpeg.TabIndex = 19;
+            this.textBoxPatternJpeg.TextChanged += new System.EventHandler(this.TextBoxPatternJpegTextChanged);
             // 
             // tableLayoutPanelRight
             // 
@@ -506,7 +525,7 @@ namespace Slooh.Explorer.Controls
             this.tableLayoutPanelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 15F));
             this.tableLayoutPanelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelRight.Size = new System.Drawing.Size(278, 595);
+            this.tableLayoutPanelRight.Size = new System.Drawing.Size(278, 695);
             this.tableLayoutPanelRight.TabIndex = 0;
             // 
             // labelName
@@ -592,15 +611,15 @@ namespace Slooh.Explorer.Controls
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(52)))), ((int)(((byte)(70)))));
             this.Controls.Add(this.splitContainer);
             this.Name = "DashboardControl";
-            this.Size = new System.Drawing.Size(1082, 595);
+            this.Size = new System.Drawing.Size(1188, 695);
             this.splitContainer.Panel1.ResumeLayout(false);
             this.splitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
             this.splitContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridMissions)).EndInit();
             this.contextMenuStripMissions.ResumeLayout(false);
-            this.tableLayoutPanel.ResumeLayout(false);
-            this.tableLayoutPanel.PerformLayout();
+            this.tableLayoutPanelHeader.ResumeLayout(false);
+            this.tableLayoutPanelHeader.PerformLayout();
             this.tableLayoutPanelRight.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -618,7 +637,7 @@ namespace Slooh.Explorer.Controls
         private System.Windows.Forms.Label labelNextTier;
         private SloohProgressBar sloohProgressBar;
         private System.Windows.Forms.DataGridView gridMissions;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelHeader;
         private System.Windows.Forms.Label labelFolder;
         private System.Windows.Forms.TextBox textBoxFolder;
         private SloohButton buttonSelectFolder;
@@ -627,7 +646,6 @@ namespace Slooh.Explorer.Controls
         private System.Windows.Forms.TextBox textBoxPatternMission;
         private SloohButton buttonDownload;
         private System.Windows.Forms.TextBox textBoxPatternFits;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TextBox textBoxPatternPicture;
         private SloohProgressBar progressBarDownload;
         private System.Windows.Forms.Label labelPicture;
@@ -647,5 +665,8 @@ namespace Slooh.Explorer.Controls
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnInstrument;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnOwner;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnState;
+        private System.Windows.Forms.CheckBox checkBoxJpeg;
+        private System.Windows.Forms.TextBox textBoxPatternJpeg;
+        private System.Windows.Forms.CheckBox checkBoxOverwriteJpeg;
     }
 }

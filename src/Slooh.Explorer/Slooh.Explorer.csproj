@@ -16,8 +16,8 @@
   <ItemGroup>
     <PackageReference Include="Toolbox.CommandLine" Version="1.0.31" />
     <PackageReference Include="Toolbox.Core" Version="0.2.6" />
-    <PackageReference Include="Toolbox.Xml.Serialization" Version="1.0.62" />
-    <PackageReference Include="Toolbox.Xml.Settings" Version="1.0.8" />
+    <PackageReference Include="Toolbox.Xml.Serialization" Version="1.0.63" />
+    <PackageReference Include="Toolbox.Xml.Settings" Version="1.0.11" />
   </ItemGroup>
 
   <ItemGroup>

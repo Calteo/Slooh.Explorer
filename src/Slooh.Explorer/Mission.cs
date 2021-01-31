@@ -75,6 +75,11 @@ namespace Slooh.Explorer
         public List<Picture> Pictures { get; } = new List<Picture>();
         public List<Picture> FitsPictures { get; } = new List<Picture>();
 
+        public override string ToString()
+        {
+            return $"Mission - {Title} - {Timestamp} - {ImageCount} images";
+        }
+
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
