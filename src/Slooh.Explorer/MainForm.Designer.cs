@@ -38,6 +38,10 @@ namespace Slooh.Explorer
             this.menuItemLogoff = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuItemQuit = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemHelp = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemCheckUpdate = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.menuItemVersion = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -70,7 +74,8 @@ namespace Slooh.Explorer
             // menuStrip
             // 
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuItemMain});
+            this.menuItemMain,
+            this.menuItemHelp});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Size = new System.Drawing.Size(1456, 24);
@@ -110,6 +115,35 @@ namespace Slooh.Explorer
             this.menuItemQuit.ToolTipText = "Ends this application";
             this.menuItemQuit.Click += new System.EventHandler(this.MenuItemQuitClick);
             // 
+            // menuItemHelp
+            // 
+            this.menuItemHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuItemCheckUpdate,
+            this.toolStripSeparator2,
+            this.menuItemVersion});
+            this.menuItemHelp.Name = "menuItemHelp";
+            this.menuItemHelp.Size = new System.Drawing.Size(44, 20);
+            this.menuItemHelp.Text = "Help";
+            // 
+            // menuItemCheckUpdate
+            // 
+            this.menuItemCheckUpdate.Name = "menuItemCheckUpdate";
+            this.menuItemCheckUpdate.Size = new System.Drawing.Size(170, 22);
+            this.menuItemCheckUpdate.Text = "Check for updates";
+            this.menuItemCheckUpdate.Click += new System.EventHandler(this.MenuItemCheckUpdateClick);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(167, 6);
+            // 
+            // menuItemVersion
+            // 
+            this.menuItemVersion.Name = "menuItemVersion";
+            this.menuItemVersion.Size = new System.Drawing.Size(170, 22);
+            this.menuItemVersion.Text = "Version";
+            this.menuItemVersion.Click += new System.EventHandler(this.MenuItemVersionClick);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
@@ -145,6 +179,10 @@ namespace Slooh.Explorer
         private System.Windows.Forms.ToolStripMenuItem menuItemLogoff;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem menuItemQuit;
+        private System.Windows.Forms.ToolStripMenuItem menuItemHelp;
+        private System.Windows.Forms.ToolStripMenuItem menuItemCheckUpdate;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem menuItemVersion;
     }
 }
 

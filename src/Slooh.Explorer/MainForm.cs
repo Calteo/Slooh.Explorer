@@ -1,7 +1,11 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.Reflection;
+using System.Text;
 using System.Windows.Forms;
+using Toolbox;
+using Toolbox.Update;
 using Toolbox.Xml.Settings;
 
 namespace Slooh.Explorer
@@ -85,5 +89,42 @@ namespace Slooh.Explorer
             Setting.Save();
         }
 
+        private void MenuItemVersionClick(object sender, EventArgs e)
+        {
+            var version = Assembly.GetExecutingAssembly().GetName().Version;
+            MessageBox.Show(this, $"Version - {version.Major}.{version.Minor}.{version.Build}", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void MenuItemCheckUpdateClick(object sender, EventArgs e)
+        {
+            var updater = new GitHubUpdater("Calteo", "Slooh.Explorer");
+            var latest = updater.GetLatestVersion();
+            var version = Assembly.GetExecutingAssembly().GetName().Version;
+            var latestVersion = new Version(latest.Version.Trim('v'));
+
+            if (version == latestVersion)
+            {
+                MessageBox.Show(this, "Latest version already installed.", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                var builder = new StringBuilder();
+                builder.AppendLine($"Newer version {latest.Version} available.");
+                if (latest.Name != latest.Version)
+                    builder.AppendLine($"Named {latest.Name}");
+                builder.AppendLine($"Published {latest.Published}");
+                if (latest.Description.NotEmpty())
+                    builder.AppendLine(latest.Description);
+                builder.AppendLine();
+                builder.Append("Install this version?");
+
+                var result = MessageBox.Show(this, builder.ToString(), Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    updater.Install(latest);
+                    Close();
+                }
+            }            
+        }
     }
 }
