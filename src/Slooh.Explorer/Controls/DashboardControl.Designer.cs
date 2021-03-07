@@ -42,9 +42,9 @@ namespace Slooh.Explorer.Controls
             this.ColumnPicturesState = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnImageCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnFits = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.ColumnTelescope = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnInstrument = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnOwner = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTelescope = new Slooh.Explorer.Filtering.DataGridViewFilterTextColumn();
+            this.ColumnInstrument = new Slooh.Explorer.Filtering.DataGridViewFilterTextColumn();
+            this.ColumnOwner = new Slooh.Explorer.Filtering.DataGridViewFilterTextColumn();
             this.ColumnState = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStripMissions = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItemOpenFolder = new System.Windows.Forms.ToolStripMenuItem();
@@ -226,6 +226,7 @@ namespace Slooh.Explorer.Controls
             this.ColumnTelescope.HeaderText = "Telescope";
             this.ColumnTelescope.Name = "ColumnTelescope";
             this.ColumnTelescope.ReadOnly = true;
+            this.ColumnTelescope.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // ColumnInstrument
             // 
@@ -234,6 +235,7 @@ namespace Slooh.Explorer.Controls
             this.ColumnInstrument.HeaderText = "Instrument";
             this.ColumnInstrument.Name = "ColumnInstrument";
             this.ColumnInstrument.ReadOnly = true;
+            this.ColumnInstrument.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ColumnInstrument.Width = 110;
             // 
             // ColumnOwner
@@ -243,6 +245,7 @@ namespace Slooh.Explorer.Controls
             this.ColumnOwner.HeaderText = "Owner";
             this.ColumnOwner.Name = "ColumnOwner";
             this.ColumnOwner.ReadOnly = true;
+            this.ColumnOwner.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ColumnOwner.Width = 62;
             // 
             // ColumnState
@@ -695,9 +698,9 @@ namespace Slooh.Explorer.Controls
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPicturesState;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnImageCount;
         private System.Windows.Forms.DataGridViewCheckBoxColumn ColumnFits;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTelescope;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnInstrument;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnOwner;
+        private Filtering.DataGridViewFilterTextColumn ColumnTelescope;
+        private Filtering.DataGridViewFilterTextColumn ColumnInstrument;
+        private Filtering.DataGridViewFilterTextColumn ColumnOwner;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnState;
     }
 }
