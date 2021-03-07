@@ -1,83 +1,86 @@
-﻿using Slooh.Explorer.Controls;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Slooh.Explorer.Filtering
 {
-    class DataGridViewFilterTextHeaderCell : DataGridViewFilterHeaderCell
+    class DataGridViewFilterTextHeaderCell : DataGridViewFilterEditHeaderCell
     {
-        private string FilterText => EditBox?.Text;
-        private TextBox EditBox { get; set; }
-
-        protected override void RelocateFilter(Rectangle rect)
+        public DataGridViewFilterTextHeaderCell()
         {
-            base.RelocateFilter(rect);
-
-            var editLeft = rect.Left + 2;
-            var editWidth = Button.Left - 2 - EditBox.Left;
-
-            if (EditBox.Left==editLeft && EditBox.Width==editWidth) return;
-
-            EditBox.Left = editLeft;
-            EditBox.Top = rect.Bottom - EditBox.Height - 2;
-            EditBox.Width = editWidth;
+            Expression = new Regex(@"^(?<operator>=|<=|>=|>|<)?(?<text>.*)", RegexOptions.Compiled);
         }
 
-        protected override void OnDataGridViewChanged()
+        private string Operator { get; set; } = "";
+        private string Text { get; set; } = "";
+        private Regex Pattern { get; set; }
+
+        protected override bool SetFilter(Match match)
         {
-            if (DataGridView != null)
+            if (match.Groups["operator"].Success)
+                Operator = match.Groups["operator"].Value;
+            else
+                Operator = "";
+
+            if (match.Groups["text"].Success)
             {
-                EditBox = new TextBox { Width = 100, Font = new Font(FontFamily.GenericSansSerif, 13f), Height = 20, BackColor = Color.DarkOliveGreen, HideSelection = true, ForeColor = Color.WhiteSmoke, BorderStyle = BorderStyle.None };
-                EditBox.TextChanged += EditBoxTextChanged;
-                DataGridView.Controls.Add(EditBox);
+                Text = match.Groups["text"].Value;
+                if (Operator == "")
+                {
+                    try
+                    {
+                        if (!Text.StartsWith("*") && !Text.EndsWith("*"))
+                            Text = "*" + Text + "*";
+
+                        var patternText = Text.Replace(".", "\\.").Replace("*", ".*")
+                                    .Replace("?", ".").Replace("(", "\\(").Replace(")", "\\)");
+
+                        Pattern = new Regex("^" + patternText + "$");
+                        FilterError = "";
+                    }
+                    catch (Exception exception)
+                    {
+                        FilterError = exception.Message;
+                        return false;
+                    }
+                }
+                else
+                {
+                    Pattern = null;
+                }
+            }
+            else
+            {
+                Text = "";
             }
 
-            base.OnDataGridViewChanged();
-        }
-
-        private void EditBoxTextChanged(object sender, EventArgs e)
-        {
-            if (Mode == FilterMode.None)
-            {
-                Mode = FilterMode.Contains;
-            }
-
-            FilterChanged?.Invoke(this, EventArgs.Empty);
+            return true;
         }
 
         protected override bool AcceptValue(object value)
         {
             var text = (string)value;
 
-            switch (Mode)
+            if (Text == "") return true;
+
+            switch (Operator)
             {
-                case FilterMode.Equals:
-                    return text == FilterText;
-                case FilterMode.NotEquals:
-                    return text != FilterText;
-                case FilterMode.Contains:
-                    return text.Contains(FilterText);
-                case FilterMode.Begins:
-                    return text.StartsWith(FilterText);                    
-                case FilterMode.Ends:
-                    return text.EndsWith(FilterText);                    
-                case FilterMode.Less:
-                    return text.CompareTo(FilterText) < 0;
-                case FilterMode.LessEqual:
-                    return text.CompareTo(FilterText) <= 0;
-                case FilterMode.Greater:
-                    return text.CompareTo(FilterText) > 0;                    
-                case FilterMode.GreaterEqual:
-                    return text.CompareTo(FilterText) >= 0;                    
+                case "=":
+                    return text == Text;
+                case "<":
+                    return text.CompareTo(Text) < 0;
+                case "<=":
+                    return text.CompareTo(Text) <= 0;
+                case ">":
+                    return text.CompareTo(Text) > 0;
+                case ">=":
+                    return text.CompareTo(Text) >= 0;
                 default:
-                    return false;
-            }
+                    return Pattern?.IsMatch(text) ?? false;
+            }            
         }
     }
 }

@@ -37,7 +37,7 @@ namespace Slooh.Explorer.Controls
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.gridMissions = new Slooh.Explorer.Controls.SloohDataGridView();
-            this.ColumnTimestamp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTimestamp = new Slooh.Explorer.Filtering.DataGridViewFilterDateTimeColumn();
             this.ColumnTitle = new Slooh.Explorer.Filtering.DataGridViewFilterTextColumn();
             this.ColumnPicturesState = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnImageCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -177,7 +177,8 @@ namespace Slooh.Explorer.Controls
             this.ColumnTimestamp.HeaderText = "Date";
             this.ColumnTimestamp.Name = "ColumnTimestamp";
             this.ColumnTimestamp.ReadOnly = true;
-            this.ColumnTimestamp.Width = 66;
+            this.ColumnTimestamp.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnTimestamp.Width = 150;
             // 
             // ColumnTitle
             // 
@@ -188,7 +189,7 @@ namespace Slooh.Explorer.Controls
             this.ColumnTitle.Name = "ColumnTitle";
             this.ColumnTitle.ReadOnly = true;
             this.ColumnTitle.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnTitle.Width = 63;
+            this.ColumnTitle.Width = 250;
             // 
             // ColumnPicturesState
             // 
@@ -246,7 +247,7 @@ namespace Slooh.Explorer.Controls
             this.ColumnOwner.Name = "ColumnOwner";
             this.ColumnOwner.ReadOnly = true;
             this.ColumnOwner.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnOwner.Width = 62;
+            this.ColumnOwner.Width = 150;
             // 
             // ColumnState
             // 
@@ -693,7 +694,7 @@ namespace Slooh.Explorer.Controls
         private System.Windows.Forms.CheckBox checkBoxOverwriteInformation;
         private System.Windows.Forms.CheckBox checkBoxInformation;
         private System.Windows.Forms.CheckBox checkBoxPictures;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTimestamp;
+        private Filtering.DataGridViewFilterDateTimeColumn ColumnTimestamp;
         private Filtering.DataGridViewFilterTextColumn ColumnTitle;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPicturesState;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnImageCount;

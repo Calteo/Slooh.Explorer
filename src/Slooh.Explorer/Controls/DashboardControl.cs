@@ -96,7 +96,7 @@ namespace Slooh.Explorer.Controls
                     ApplyFilter(mission);
                 }                
             }
-            gridMissions.AutoResizeColumns();
+            // gridMissions.AutoResizeColumns();
         }
 
         protected override void OnSloohSiteChanged()

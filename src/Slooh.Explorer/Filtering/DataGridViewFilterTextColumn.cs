@@ -12,8 +12,7 @@ namespace Slooh.Explorer.Filtering
     {
         public DataGridViewFilterTextColumn()
         {
-            HeaderCell = new DataGridViewFilterTextHeaderCell();
-        }
-                
+            HeaderCell = new DataGridViewFilterTextHeaderCell();           
+        }             
     }
 }
