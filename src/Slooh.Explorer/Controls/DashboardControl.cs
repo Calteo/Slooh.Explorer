@@ -1,4 +1,5 @@
-﻿using Slooh.Explorer.Formats;
+﻿using Slooh.Explorer.Filtering;
+using Slooh.Explorer.Formats;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,12 +27,38 @@ namespace Slooh.Explorer.Controls
             InitializeComponent();
 
             gridMissions.AutoGenerateColumns = false;            
-            gridMissions.DataSource = Missions;
+            gridMissions.DataSource = FilteredMissions;
 
             comboBoxInformationFormat.DataSource = Formatter;
             comboBoxInformationFormat.DisplayMember = nameof(InformationFormatter.Name);
 
             Missions.ListChanged += MissionsListChanged;
+
+            Filters = gridMissions.Columns.Cast<DataGridViewColumn>().Select(c => c.HeaderCell).OfType<DataGridViewFilterHeaderCell>().ToArray();
+            Filters.ForEach(hc => hc.FilterChanged += MissionFilterChanged);
+        }
+
+        public DataGridViewFilterHeaderCell[] Filters { get; }
+
+        private void MissionFilterChanged(object sender, EventArgs e)
+        {
+            lock (Missions)
+            {
+                Missions.ForEach(ApplyFilter);
+            }
+        }
+
+        private void ApplyFilter(Mission mission)
+        {
+            if (Filters.All(f => f.Accept(mission)))
+            {
+                if (!FilteredMissions.Contains(mission))
+                    FilteredMissions.Add(mission);
+            }
+            else
+            {
+                FilteredMissions.Remove(mission);
+            }
         }
 
         private InformationFormatter[] Formatter { get; } = new InformationFormatter[]
@@ -39,8 +66,8 @@ namespace Slooh.Explorer.Controls
                 new InformationFormatterXml()
             };
 
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public SortedBindingList<Mission> Missions { get; } = new SortedBindingList<Mission>();
+        private SortedBindingList<Mission> Missions { get; } = new SortedBindingList<Mission>();
+        private SortedBindingList<Mission> FilteredMissions { get; } = new SortedBindingList<Mission>();
 
         private CancellationTokenSource TokenSource { get; set; }
 
@@ -61,9 +88,13 @@ namespace Slooh.Explorer.Controls
         private delegate void AddMissionsDelegate(Mission[] missions);
         private void AddMissions(Mission[] missions)
         {
-            foreach (var mission in missions)
+            lock (Missions)
             {
-                Missions.Add(mission);
+                foreach (var mission in missions)
+                {
+                    Missions.Add(mission);
+                    ApplyFilter(mission);
+                }                
             }
             gridMissions.AutoResizeColumns();
         }

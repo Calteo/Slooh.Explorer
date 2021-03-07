@@ -36,9 +36,9 @@ namespace Slooh.Explorer.Controls
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
-            this.gridMissions = new System.Windows.Forms.DataGridView();
+            this.gridMissions = new Slooh.Explorer.Controls.SloohDataGridView();
             this.ColumnTimestamp = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTitle = new Slooh.Explorer.Filtering.DataGridViewFilterTextColumn();
             this.ColumnPicturesState = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnImageCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnFits = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -121,10 +121,12 @@ namespace Slooh.Explorer.Controls
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(57)))), ((int)(((byte)(68)))));
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 30);
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(70)))), ((int)(((byte)(94)))));
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.gridMissions.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.gridMissions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridMissions.ColumnHeadersHeight = 60;
+            this.gridMissions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.gridMissions.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnTimestamp,
             this.ColumnTitle,
@@ -185,6 +187,7 @@ namespace Slooh.Explorer.Controls
             this.ColumnTitle.HeaderText = "Title";
             this.ColumnTitle.Name = "ColumnTitle";
             this.ColumnTitle.ReadOnly = true;
+            this.ColumnTitle.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ColumnTitle.Width = 63;
             // 
             // ColumnPicturesState
@@ -662,7 +665,7 @@ namespace Slooh.Explorer.Controls
         private System.Windows.Forms.Label labelNextTierPoints;
         private System.Windows.Forms.Label labelNextTier;
         private SloohProgressBar sloohProgressBar;
-        private System.Windows.Forms.DataGridView gridMissions;
+        private SloohDataGridView gridMissions;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelHeader;
         private System.Windows.Forms.Label labelFolder;
         private System.Windows.Forms.TextBox textBoxFolder;
@@ -680,15 +683,6 @@ namespace Slooh.Explorer.Controls
         private System.Windows.Forms.ComboBox comboBoxInformationFormat;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripMissions;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemOpenFolder;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTimestamp;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTitle;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPicturesState;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnImageCount;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn ColumnFits;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTelescope;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnInstrument;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnOwner;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnState;
         private System.Windows.Forms.CheckBox checkBoxJpeg;
         private System.Windows.Forms.TextBox textBoxPatternJpeg;
         private System.Windows.Forms.CheckBox checkBoxOverwriteJpeg;
@@ -696,5 +690,14 @@ namespace Slooh.Explorer.Controls
         private System.Windows.Forms.CheckBox checkBoxOverwriteInformation;
         private System.Windows.Forms.CheckBox checkBoxInformation;
         private System.Windows.Forms.CheckBox checkBoxPictures;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTimestamp;
+        private Filtering.DataGridViewFilterTextColumn ColumnTitle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPicturesState;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnImageCount;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn ColumnFits;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTelescope;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnInstrument;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnOwner;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnState;
     }
 }

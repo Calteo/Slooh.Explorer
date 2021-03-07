@@ -11,7 +11,7 @@ namespace Slooh.Explorer.Controls
             FlatStyle = FlatStyle.Flat;
             FlatAppearance.BorderColor = Color.WhiteSmoke;
             FlatAppearance.MouseOverBackColor = Color.FromArgb(27, 52, 70);
-            FlatAppearance.MouseDownBackColor = Color.FromArgb(194, 160, 104);
+            FlatAppearance.MouseDownBackColor = Color.FromArgb(194, 160, 104);           
         }
     }
 }
