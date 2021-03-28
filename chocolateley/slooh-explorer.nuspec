@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>slooh-explorer</id>
+    <version>0.0.1</version>
+    <title>Slooh Explorer</title>
+    <authors>Calteo</authors>
+    <projectUrl>https://github.com/Calteo/Slooh.Explorer</projectUrl>
+    <!--<iconUrl>http://cdn.rawgit.com/__REPLACE_YOUR_REPO__/master/icons/slooh-explorer.png</iconUrl>-->
+    <copyright>2021 Calteo</copyright>
+    <licenseUrl>https://github.com/Calteo/Slooh.Explorer/blob/main/LICENSE</licenseUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <tags>Slooh Explorer Download</tags>
+    <summary>Download utility for the Slooh web site (www.slooh.com).</summary>
+    <description>Lists and downloads the images taken on the web site www.slooh.com.</description>  
+  </metadata>
+  <files>
+    <!-- this section controls what actually gets packaged into the Chocolatey package -->
+    <file src="tools\**" target="tools" />
+    <!--Building from Linux? You may need this instead: <file src="tools/**" target="tools" />-->
+  </files>
+</package>
