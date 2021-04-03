@@ -2,10 +2,9 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Reflection;
-using System.Text;
 using System.Windows.Forms;
-using Toolbox;
-using Toolbox.Update;
+using Toolbox.Help;
+using Toolbox.Help.WinForms;
 using Toolbox.Xml.Settings;
 
 namespace Slooh.Explorer
@@ -14,7 +13,7 @@ namespace Slooh.Explorer
     {
         public MainForm()
         {
-            InitializeComponent();            
+            InitializeComponent();                 
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -39,6 +38,9 @@ namespace Slooh.Explorer
                 Location = Setting.Location;
             if (Setting.Size != Size.Empty)
                 Size = Setting.Size;
+
+            SingletonHelpForm.Server = new HelpServer(GetType(), "Help");
+            SingletonHelpForm.OwnerForm = this;
         }
 
         private void MainFromShown(object sender, EventArgs e)
@@ -95,36 +97,9 @@ namespace Slooh.Explorer
             MessageBox.Show(this, $"Version - {version.Major}.{version.Minor}.{version.Build}", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void MenuItemCheckUpdateClick(object sender, EventArgs e)
+        private void MenuItemHelpMainClick(object sender, EventArgs e)
         {
-            var updater = new GitHubUpdater("Calteo", "Slooh.Explorer");
-            var latest = updater.GetLatestVersion();
-            var version = Assembly.GetExecutingAssembly().GetName().Version;
-            var latestVersion = new Version(latest.Version.Trim('v'));
-
-            if (version == latestVersion)
-            {
-                MessageBox.Show(this, "Latest version already installed.", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                var builder = new StringBuilder();
-                builder.AppendLine($"Newer version {latest.Version} available.");
-                if (latest.Name != latest.Version)
-                    builder.AppendLine($"Named {latest.Name}");
-                builder.AppendLine($"Published {latest.Published}");
-                if (latest.Description.NotEmpty())
-                    builder.AppendLine(latest.Description);
-                builder.AppendLine();
-                builder.Append("Install this version?");
-
-                var result = MessageBox.Show(this, builder.ToString(), Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (result == DialogResult.Yes)
-                {
-                    updater.Install(latest);
-                    Close();
-                }
-            }            
+            SingletonHelpForm.Navigate("index.html");
         }
     }
 }

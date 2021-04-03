@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Windows.Forms;
+using Toolbox.Help.WinForms;
 
 namespace Slooh.Explorer.Controls
 {
@@ -43,6 +44,11 @@ namespace Slooh.Explorer.Controls
 
         protected virtual void OnSettingChanged()
         {
+        }
+
+        private void HelpProviderHelpRequested(object sender, HelpRequestedEventArgs e)
+        {
+            SingletonHelpForm.Navigate(e.Url);
         }
     }
 }

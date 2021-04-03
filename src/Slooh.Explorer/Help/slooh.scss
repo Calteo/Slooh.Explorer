@@ -1,0 +1,33 @@
+﻿body {
+    background-color: rgb(50,70,94);
+    color: whitesmoke;    
+}
+
+table {
+    border: 1px solid;    
+}
+
+thead {
+    background-color: rgb(179,145,87);
+}
+
+td {  
+    padding: 10px;
+}
+
+th {
+    padding: 10px;
+    text-align: left;
+}
+
+td {
+    vertical-align: text-top;
+}
+
+a {
+    color: orange;
+}
+
+span.code {
+    font-family: 'Courier New', monospace;
+}

@@ -148,6 +148,7 @@ namespace Slooh.Explorer.Controls
             this.gridMissions.DefaultCellStyle = dataGridViewCellStyle3;
             this.gridMissions.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridMissions.EnableHeadersVisualStyles = false;
+            this.helpProvider.SetHelpUrl(this.gridMissions, "images.html");
             this.gridMissions.Location = new System.Drawing.Point(0, 298);
             this.gridMissions.Name = "gridMissions";
             this.gridMissions.ReadOnly = true;
@@ -359,6 +360,7 @@ namespace Slooh.Explorer.Controls
             // textBoxFolder
             // 
             this.textBoxFolder.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.helpProvider.SetHelpUrl(this.textBoxFolder, "options.html");
             this.textBoxFolder.Location = new System.Drawing.Point(123, 3);
             this.textBoxFolder.Name = "textBoxFolder";
             this.textBoxFolder.Size = new System.Drawing.Size(530, 29);
@@ -373,6 +375,7 @@ namespace Slooh.Explorer.Controls
             this.buttonSelectFolder.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(160)))), ((int)(((byte)(104)))));
             this.buttonSelectFolder.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(52)))), ((int)(((byte)(70)))));
             this.buttonSelectFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.helpProvider.SetHelpUrl(this.buttonSelectFolder, "options.html");
             this.buttonSelectFolder.Location = new System.Drawing.Point(659, 3);
             this.buttonSelectFolder.Name = "buttonSelectFolder";
             this.buttonSelectFolder.Size = new System.Drawing.Size(119, 28);

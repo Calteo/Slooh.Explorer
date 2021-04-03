@@ -6,6 +6,7 @@
     <title>Slooh Explorer</title>
     <authors>Calteo</authors>
     <projectUrl>https://github.com/Calteo/Slooh.Explorer</projectUrl>
+    <projectSourceUrl>https://github.com/Calteo/Slooh.Explorer</projectSourceUrl>
     <!--<iconUrl>http://cdn.rawgit.com/__REPLACE_YOUR_REPO__/master/icons/slooh-explorer.png</iconUrl>-->
     <copyright>2021 Calteo</copyright>
     <licenseUrl>https://github.com/Calteo/Slooh.Explorer/blob/main/LICENSE</licenseUrl>

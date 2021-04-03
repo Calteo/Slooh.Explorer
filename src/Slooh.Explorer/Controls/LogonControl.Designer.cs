@@ -100,6 +100,7 @@ namespace Slooh.Explorer.Controls
             // 
             this.tableLayoutPanel.SetColumnSpan(this.textBoxUser, 3);
             this.textBoxUser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.helpProvider.SetHelpUrl(this.textBoxUser, "logon.html");
             this.textBoxUser.Location = new System.Drawing.Point(311, 227);
             this.textBoxUser.Name = "textBoxUser";
             this.textBoxUser.Size = new System.Drawing.Size(650, 29);
@@ -110,6 +111,7 @@ namespace Slooh.Explorer.Controls
             // 
             this.tableLayoutPanel.SetColumnSpan(this.textBoxPassword, 3);
             this.textBoxPassword.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.helpProvider.SetHelpUrl(this.textBoxPassword, "logon.html");
             this.textBoxPassword.Location = new System.Drawing.Point(311, 267);
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.PasswordChar = '●';
@@ -121,6 +123,7 @@ namespace Slooh.Explorer.Controls
             // 
             this.tableLayoutPanel.SetColumnSpan(this.checkBoxSavePassword, 3);
             this.checkBoxSavePassword.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.helpProvider.SetHelpUrl(this.checkBoxSavePassword, "logon.html");
             this.checkBoxSavePassword.Location = new System.Drawing.Point(311, 307);
             this.checkBoxSavePassword.Name = "checkBoxSavePassword";
             this.checkBoxSavePassword.Size = new System.Drawing.Size(650, 34);
@@ -134,6 +137,7 @@ namespace Slooh.Explorer.Controls
             this.buttonLogon.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonLogon.Enabled = false;
             this.buttonLogon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.helpProvider.SetHelpUrl(this.buttonLogon, "logon.html");
             this.buttonLogon.Location = new System.Drawing.Point(311, 347);
             this.buttonLogon.Name = "buttonLogon";
             this.buttonLogon.Size = new System.Drawing.Size(312, 34);
@@ -150,6 +154,7 @@ namespace Slooh.Explorer.Controls
             this.buttonQuit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(160)))), ((int)(((byte)(104)))));
             this.buttonQuit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(52)))), ((int)(((byte)(70)))));
             this.buttonQuit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.helpProvider.SetHelpUrl(this.buttonQuit, "logon.html");
             this.buttonQuit.Location = new System.Drawing.Point(649, 347);
             this.buttonQuit.Name = "buttonQuit";
             this.buttonQuit.Size = new System.Drawing.Size(312, 34);

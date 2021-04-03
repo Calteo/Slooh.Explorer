@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="slooh.scss">
+</head>
+<body>
+    <h1>Dashboard</h1>
+    <p>This gives you the overview of your images and sets the options fro download. The list of images is populated automatically once you logged on.</p>
+    <h2>Images</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Column</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Date</td>
+                <td>The date the mission took place.</td>
+            </tr>
+            <tr>
+                <td>Title</td>
+                <td>The title of the mission.</td>
+            </tr>
+            <tr>
+                <td>P</td>
+                <td>The state of the process. Shows if you already downloaded the images or not.</td>
+            </tr>
+            <tr>
+                <td>Image</td>
+                <td>The number of images in this mission.</td>
+            </tr>
+            <tr>
+                <td>FITS</td>
+                <td>Are FITS files in this mission.</td>
+            </tr>
+            <tr>
+                <td>Telescope</td>
+                <td>Name of the telescope capturing this mission.</td>
+            </tr>
+            <tr>
+                <td>Instrument</td>
+                <td>Name of the instrument capturing this mission.</td>
+            </tr>
+            <tr>
+                <td>State</td>
+                <td>Status during the download process.</td>
+            </tr>
+        </tbody>
+    </table>
+    <p>
+        In the green fields below the captions you can enter a filter expression, so the list gets reduced to the matching items.
+        <ul>
+            <li>Entering some text will find all missions containing that text (i.e. "M105" will match the title "Elliptical Galaxy M105").</li>
+            <li>Entering "*" will match any characters and "?" will only match a single character.</li>
+            <li>On the text columns there can be an operator at the beginning of the filter expression. Possible are "=", "<=", ">=", ">", "<" and operate like they normally do.</li>
+            <li>On the Date column there are only ">=", "<=", "<" and ">". Entering just a date will match all missions on that date.</li>
+        </ul>
+    </p>
+    <hr />
+    <p>Goto the <a href="options.html">Options</a>.</p>
+</body>
+</html>

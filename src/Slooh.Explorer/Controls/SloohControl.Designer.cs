@@ -29,7 +29,13 @@ namespace Slooh.Explorer.Controls
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            this.helpProvider = new Toolbox.Help.WinForms.HelpProvider(this.components);
             this.SuspendLayout();
+            // 
+            // helpProvider
+            // 
+            this.helpProvider.HelpRequested += new System.EventHandler<Toolbox.Help.WinForms.HelpRequestedEventArgs>(this.HelpProviderHelpRequested);
             // 
             // SloohControl
             // 
@@ -38,7 +44,7 @@ namespace Slooh.Explorer.Controls
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(70)))), ((int)(((byte)(94)))));
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "SloohControl";
             this.Size = new System.Drawing.Size(1000, 490);
             this.ResumeLayout(false);
@@ -46,5 +52,7 @@ namespace Slooh.Explorer.Controls
         }
 
         #endregion
+
+        protected Toolbox.Help.WinForms.HelpProvider helpProvider;
     }
 }

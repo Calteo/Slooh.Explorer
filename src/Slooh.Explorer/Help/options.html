@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Dashboard options</title>
+    <link rel="stylesheet" href="slooh.scss">
+</head>
+<body>
+    <h1>Dashboard</h1>
+    <p>The download is controlled by the options in the upper portion.</p>
+
+    <h2>Options</h2>
+    <h3>Folder</h3>
+    <p>
+        This is the base folder where all the output is saved. Unless one of the other options contains an absolute path (i.e. "D:\Slooh\Images").
+        With the "Select" button you can pick and create a folder with a dialog.
+    </p>
+    <h3>Mission</h3>
+    <ul>
+        <li>The contains the path that is appended to the folder option.</li>
+        <li>It can contain placeholders to put every mission into a different sub folder.</li>
+        <li>It gets prepended too all of the following options.</li>
+        <li>Example: <span class="code">${title}\${date:yyyy-MM-dd}\${date:HH-mm-ss}</span></li>
+    </ul>
+    <h3>Information</h3>
+    <ul>
+        <li>An information file about the mission is saved.</li>
+        <li>It is only saved if the option is checked.</li>
+        <li>It can contain placeholders.</li>
+        <li>Checking the "overwrite" option will overwrite an existing file.</li>
+        <li>The format can be picked a the dropdown to the right.</li>
+        <li>Example: <span class="code">${telescope}-Information</span></li>
+    </ul>
+    <h3>Information</h3>
+    <h3>Picture</h3>
+    <ul>
+        <li>The images of the mission are saved.</li>
+        <li>It is only saved if the option is checked.</li>
+        <li>It can contain placeholders.</li>
+        <li>Checking the "overwrite" option will overwrite an existing file.</li>
+        <li>Example: <span class="code">${telescope}\${instrument}\${filename}</span></li>        
+    </ul>
+    <h3>JPEG</h3>
+    <ul>
+        <li>The images of the mission are saved in JPEG format.</li>
+        <li>It is only saved if the option is checked.</li>
+        <li>It can contain placeholders.</li>
+        <li>Checking the "overwrite" option will overwrite an existing file.</li>
+        <li>Example: <span class="code">D:\temp\SloohJpeg\${title}\${filename}</span>. This puts the JPEG not under the Folder option, but rather fixed in <span class="code">D:\temp\SloohJpeg</span></li>
+    </ul>
+    <h3>FITS</h3>
+    <ul>
+        <li>The FITS files of the mission are saved.</li>
+        <li>It is only saved if the option is checked.</li>
+        <li>It can contain placeholders.</li>
+        <li>Checking the "overwrite" option will overwrite an existing file.</li>
+        <li>Example: <span class="code">FITS\${telescope}\${instrument}\${filename}</span></li>
+    </ul>
+    <h2>Placeholder</h2>
+    <p>
+        Placeholders will insert attributes of the mission/image into the filename to use for saving the data. All placeholder much be in the format <span class='code'>${name}</span> 
+        or <span class='code'>${name:format}</span>.
+     </p>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>title</td>
+                <td>The title of the mission/picture.</td>
+            </tr>
+            <tr>
+                <td>date</td>
+                <td>
+                    The date of the mission/picture. You can add a format hear (i.e. <span class="code">yyyy-MM-dd</span>) to define how the date is converted into a text.
+                    The default is <span class="code">yyyy-MM-dd-HH-mm-ss</span>
+                </td>
+            </tr>
+            <tr>
+                <td>telescope</td>
+                <td>The telescope of the mission/picture.</td>
+            </tr>
+            <tr>
+                <td>instrument</td>
+                <td>The instument of the mission/picture.</td>
+            </tr>
+            <tr>
+                <td>filename</td>
+                <td>
+                    The filename of the file to save. This should be included in the Picture, JPEG and FITS options. Otherwise the files will get saved all under the same name.
+                    For the Mission option this is not available.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <hr />
+    <p>Goto the <a href="images.html">Images</a>.</p>
+</body>
+</html>
