@@ -30,17 +30,18 @@ namespace Slooh.Explorer
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.logonControl = new Slooh.Explorer.Controls.LogonControl();
             this.dashboardControl = new Slooh.Explorer.Controls.DashboardControl();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
-            this.menuItemHelp = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemHelpMain = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.menuItemVersion = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemMain = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemLogoff = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuItemQuit = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemHelp = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemHelpMain = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.menuItemVersion = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -81,35 +82,6 @@ namespace Slooh.Explorer
             this.menuStrip.TabIndex = 2;
             this.menuStrip.Text = "menuStrip";
             // 
-            // menuItemHelp
-            // 
-            this.menuItemHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuItemHelpMain,
-            this.toolStripSeparator2,
-            this.menuItemVersion});
-            this.menuItemHelp.Name = "menuItemHelp";
-            this.menuItemHelp.Size = new System.Drawing.Size(44, 20);
-            this.menuItemHelp.Text = "Help";
-            // 
-            // menuItemHelpMain
-            // 
-            this.menuItemHelpMain.Name = "menuItemHelpMain";
-            this.menuItemHelpMain.Size = new System.Drawing.Size(112, 22);
-            this.menuItemHelpMain.Text = "Help";
-            this.menuItemHelpMain.Click += new System.EventHandler(this.MenuItemHelpMainClick);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(109, 6);
-            // 
-            // menuItemVersion
-            // 
-            this.menuItemVersion.Name = "menuItemVersion";
-            this.menuItemVersion.Size = new System.Drawing.Size(112, 22);
-            this.menuItemVersion.Text = "Version";
-            this.menuItemVersion.Click += new System.EventHandler(this.MenuItemVersionClick);
-            // 
             // menuItemMain
             // 
             this.menuItemMain.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -143,6 +115,35 @@ namespace Slooh.Explorer
             this.menuItemQuit.ToolTipText = "Ends this application";
             this.menuItemQuit.Click += new System.EventHandler(this.MenuItemQuitClick);
             // 
+            // menuItemHelp
+            // 
+            this.menuItemHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuItemHelpMain,
+            this.toolStripSeparator2,
+            this.menuItemVersion});
+            this.menuItemHelp.Name = "menuItemHelp";
+            this.menuItemHelp.Size = new System.Drawing.Size(44, 20);
+            this.menuItemHelp.Text = "Help";
+            // 
+            // menuItemHelpMain
+            // 
+            this.menuItemHelpMain.Name = "menuItemHelpMain";
+            this.menuItemHelpMain.Size = new System.Drawing.Size(112, 22);
+            this.menuItemHelpMain.Text = "Help";
+            this.menuItemHelpMain.Click += new System.EventHandler(this.MenuItemHelpMainClick);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(109, 6);
+            // 
+            // menuItemVersion
+            // 
+            this.menuItemVersion.Name = "menuItemVersion";
+            this.menuItemVersion.Size = new System.Drawing.Size(112, 22);
+            this.menuItemVersion.Text = "Version";
+            this.menuItemVersion.Click += new System.EventHandler(this.MenuItemVersionClick);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
@@ -153,6 +154,7 @@ namespace Slooh.Explorer
             this.Controls.Add(this.dashboardControl);
             this.Controls.Add(this.menuStrip);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip;
             this.Name = "MainForm";
             this.Text = "Slooh Explorer";

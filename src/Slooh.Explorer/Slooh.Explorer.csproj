@@ -11,6 +11,7 @@
     <Company>Calteo</Company>
     <Product>Slooh Explorer</Product>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>app.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>

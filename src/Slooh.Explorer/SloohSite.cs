@@ -120,6 +120,7 @@ namespace Slooh.Explorer
             foreach (var picture in picturesResponse.Pictures)
             {
                 picture.SloohSite = this;
+                picture.Title = picture.Title.Trim();
 
                 var timestamp = DateTime.Parse(picture.DisplayDate);
                 var clock = DateTime.Parse(picture.DisplayTime.Replace(" UTC", ""));

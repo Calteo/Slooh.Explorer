@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Drawing;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Text.Json.Serialization;
@@ -15,7 +16,6 @@ namespace Slooh.Explorer
         public int Id { get; set; }
         [JsonPropertyName("imageTitle")]
         public string Title { get; set; }
-
 
         [JsonPropertyName("scheduledMissionId")]
         public int MissionId { get; set; }
@@ -39,6 +39,9 @@ namespace Slooh.Explorer
         [JsonPropertyName("overlayData")]
         public OverlayData Data { get; set; }
         public string Owner => Data?.Owner == "Not available" ? "" : Data?.Owner;
+
+        public Bitmap Thumbnail { get; set; }
+        public string ThumbnailFilename { get; set; }
 
         private MemoryStream stream;
         public MemoryStream GetStream()

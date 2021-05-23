@@ -1,10 +1,12 @@
-﻿using Slooh.Explorer.Filtering;
+﻿using Slooh.Explorer.Drawing;
+using Slooh.Explorer.Filtering;
 using Slooh.Explorer.Formats;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
+using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -80,6 +82,18 @@ namespace Slooh.Explorer.Controls
                         var mission = Missions[e.NewIndex];
                         Task.Run(() => FetchPictures(mission), TokenSource.Token)
                             .ContinueWith(t => CheckPictures(mission), TokenSource.Token);
+                    }
+                    break;
+                case ListChangedType.ItemChanged:
+                    {
+                        var mission = Missions[e.OldIndex];
+                        if (e.PropertyDescriptor.Name == nameof(Mission.PicturesState))
+                        {
+                            if (SelectedMissions.Contains(mission))
+                            {
+                                thumbnailsControl.ShowThumbnails(SelectedMissions);
+                            }
+                        }
                     }
                     break;
             }
@@ -230,8 +244,16 @@ namespace Slooh.Explorer.Controls
             {
                 var existing = mission.Pictures.Count(p =>
                 {
-                    var filenname = GetPictureFilename(missionFolder, p, textBoxPatternPicture.Text);
-                    return File.Exists(filenname);
+                    var filename = GetPictureFilename(missionFolder, p, textBoxPatternPicture.Text);
+                    var rc = File.Exists(filename);
+
+                    if (rc && p.Thumbnail==null && Path.GetExtension(filename) == ".png")
+                    {
+                        p.Thumbnail = ImageFactory.GetThumbnail(filename);
+                        p.ThumbnailFilename = filename;
+                    }
+
+                    return rc;
                 });
 
                 if (existing == mission.ImageCount)
@@ -346,9 +368,13 @@ namespace Slooh.Explorer.Controls
             }
         }
 
+        private IEnumerable<Mission> SelectedMissions => gridMissions.SelectedRows.Cast<DataGridViewRow>().Select(r => (Mission) r.DataBoundItem);
+
         private void GridMissionsSelectionChanged(object sender, EventArgs e)
         {
             EnableDownload();
+
+            thumbnailsControl.ShowThumbnails(SelectedMissions);
         }
 
         private void TextBoxFolderTextChanged(object sender, EventArgs e)
@@ -653,8 +679,6 @@ namespace Slooh.Explorer.Controls
                 }
             }
         }
-
-        public IEnumerable<Mission> SelectedMissions => gridMissions.SelectedRows.Cast<DataGridViewRow>().Select(r => r.DataBoundItem).Cast<Mission>();
 
         private void ToolStripMenuItemOpenFolderClick(object sender, EventArgs e)
         {            

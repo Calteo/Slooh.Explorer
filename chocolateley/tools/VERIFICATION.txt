@@ -1,3 +1,9 @@
 ﻿VERIFICATION
  
-I am the vendor of the software.
+The source of this package is located at https://github.com/Calteo/Slooh.Explorer.
+
+The included programms are available at https://github.com/Calteo/Slooh.Explorer/releases.
+
+Download the matching release and unzip it to a folder of your choice. 
+
+The included binaries in this package should match the ones in the expanded folder.

@@ -77,6 +77,7 @@ namespace Slooh.Explorer.Controls
             this.labelNextTierPoints = new System.Windows.Forms.Label();
             this.labelNextTier = new System.Windows.Forms.Label();
             this.sloohProgressBar = new Slooh.Explorer.Controls.SloohProgressBar();
+            this.thumbnailsControl = new Slooh.Explorer.Controls.ThumbnailsControl();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
@@ -550,6 +551,7 @@ namespace Slooh.Explorer.Controls
             this.tableLayoutPanelRight.Controls.Add(this.labelNextTierPoints, 0, 4);
             this.tableLayoutPanelRight.Controls.Add(this.labelNextTier, 2, 4);
             this.tableLayoutPanelRight.Controls.Add(this.sloohProgressBar, 0, 5);
+            this.tableLayoutPanelRight.Controls.Add(this.thumbnailsControl, 0, 6);
             this.tableLayoutPanelRight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanelRight.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanelRight.Name = "tableLayoutPanelRight";
@@ -636,6 +638,19 @@ namespace Slooh.Explorer.Controls
             this.sloohProgressBar.Size = new System.Drawing.Size(272, 9);
             this.sloohProgressBar.TabIndex = 7;
             // 
+            // thumbnailsControl
+            // 
+            this.thumbnailsControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(70)))), ((int)(((byte)(94)))));
+            this.tableLayoutPanelRight.SetColumnSpan(this.thumbnailsControl, 3);
+            this.thumbnailsControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.thumbnailsControl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.thumbnailsControl.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.thumbnailsControl.Location = new System.Drawing.Point(4, 169);
+            this.thumbnailsControl.Margin = new System.Windows.Forms.Padding(4);
+            this.thumbnailsControl.Name = "thumbnailsControl";
+            this.thumbnailsControl.Size = new System.Drawing.Size(270, 522);
+            this.thumbnailsControl.TabIndex = 8;
+            // 
             // folderBrowserDialog
             // 
             this.folderBrowserDialog.Description = "Select folder where downloaded images are saved.";
@@ -706,5 +721,6 @@ namespace Slooh.Explorer.Controls
         private Filtering.DataGridViewFilterTextColumn ColumnInstrument;
         private Filtering.DataGridViewFilterTextColumn ColumnOwner;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnState;
+        private ThumbnailsControl thumbnailsControl;
     }
 }
