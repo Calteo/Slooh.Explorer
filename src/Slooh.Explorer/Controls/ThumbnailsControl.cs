@@ -35,9 +35,26 @@ namespace Slooh.Explorer.Controls
                 var p = (Picture)control.Tag;
                 toolTip.SetToolTip(control, $"{p.DisplayDate} {p.DisplayTime}\r\n{p.Title}\r\n{p.Telescope}\r\n{p.Instrument}");
                 control.DoubleClick += PictureDoubleClicked;
+                control.Click += PictureClick;
             }
         
             flowLayoutPanel.Controls.AddRange(controls);                            
+        }
+
+        private void PictureClick(object sender, EventArgs e)
+        {
+            var control = (PictureBox)sender;
+
+            if (!ModifierKeys.HasFlag(Keys.Control)) return;
+
+            if (control.BorderStyle == BorderStyle.None)
+            {
+                control.BorderStyle = BorderStyle.Fixed3D;
+            }
+            else
+            {
+                control.BorderStyle = BorderStyle.None;
+            }            
         }
 
         private void PictureDoubleClicked(object sender, EventArgs e)
@@ -46,6 +63,11 @@ namespace Slooh.Explorer.Controls
             var p = (Picture)control.Tag;
 
             Process.Start("explorer", p.ThumbnailFilename);
+        }
+
+        private void ContextMenuStripOpening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            toolStripMenuItemDelete.Enabled = flowLayoutPanel.Controls.OfType<PictureBox>().Any(c => c.BorderStyle == BorderStyle.Fixed3D);
         }
     }
 }

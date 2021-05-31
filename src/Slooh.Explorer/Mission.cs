@@ -96,6 +96,7 @@ namespace Slooh.Explorer
         FindPictures,
         FindFITS,
         Downloading,
+        Deleting,
         Finished,
     }
 

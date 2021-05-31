@@ -48,6 +48,7 @@ namespace Slooh.Explorer.Controls
             this.ColumnState = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStripMissions = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItemOpenFolder = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanelHeader = new System.Windows.Forms.TableLayoutPanel();
             this.checkBoxOverwriteJpeg = new System.Windows.Forms.CheckBox();
             this.textBoxPatternFits = new System.Windows.Forms.TextBox();
@@ -262,9 +263,10 @@ namespace Slooh.Explorer.Controls
             // contextMenuStripMissions
             // 
             this.contextMenuStripMissions.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItemOpenFolder});
+            this.toolStripMenuItemOpenFolder,
+            this.toolStripMenuItemDelete});
             this.contextMenuStripMissions.Name = "contextMenuStripMissions";
-            this.contextMenuStripMissions.Size = new System.Drawing.Size(149, 26);
+            this.contextMenuStripMissions.Size = new System.Drawing.Size(149, 48);
             this.contextMenuStripMissions.Opening += new System.ComponentModel.CancelEventHandler(this.ContextMenuStripMissionsOpening);
             // 
             // toolStripMenuItemOpenFolder
@@ -273,6 +275,13 @@ namespace Slooh.Explorer.Controls
             this.toolStripMenuItemOpenFolder.Size = new System.Drawing.Size(148, 22);
             this.toolStripMenuItemOpenFolder.Text = "Open Folder...";
             this.toolStripMenuItemOpenFolder.Click += new System.EventHandler(this.ToolStripMenuItemOpenFolderClick);
+            // 
+            // toolStripMenuItemDelete
+            // 
+            this.toolStripMenuItemDelete.Name = "toolStripMenuItemDelete";
+            this.toolStripMenuItemDelete.Size = new System.Drawing.Size(148, 22);
+            this.toolStripMenuItemDelete.Text = "Delete";
+            this.toolStripMenuItemDelete.Click += new System.EventHandler(this.ToolStripMenuItemDeleteClick);
             // 
             // tableLayoutPanelHeader
             // 
@@ -722,5 +731,6 @@ namespace Slooh.Explorer.Controls
         private Filtering.DataGridViewFilterTextColumn ColumnOwner;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnState;
         private ThumbnailsControl thumbnailsControl;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDelete;
     }
 }

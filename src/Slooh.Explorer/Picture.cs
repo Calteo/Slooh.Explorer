@@ -14,6 +14,8 @@ namespace Slooh.Explorer
 
         [JsonPropertyName("imageId")]
         public int Id { get; set; }
+        [JsonPropertyName("customerImageId")]
+        public int CustomerImageId { get; set; }
         [JsonPropertyName("imageTitle")]
         public string Title { get; set; }
 

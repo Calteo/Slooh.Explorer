@@ -162,5 +162,19 @@ namespace Slooh.Explorer
         {
             return await Client.GetStreamAsync(url);
         }
+
+        internal async Task DeletePicture(Picture picture)
+        {
+            var request = new DeletePictureRequest();
+            request.FillFrom(this);
+            
+            request.CustomerImageId = picture.CustomerImageId;
+
+            var response = await Client.PostAsJsonAsync(RootUrl + "/api/images/deleteImage", request);
+            response.EnsureSuccessStatusCode();
+
+            var fitsResponse = await response.Content.ReadFromJsonAsync<DeletePictureResponse>();
+            fitsResponse.EnsureSuccess();
+        }
     }
 }

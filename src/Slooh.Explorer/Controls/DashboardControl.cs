@@ -420,21 +420,18 @@ namespace Slooh.Explorer.Controls
 
         private static Regex PatternReplacments { get; } = new Regex(@"\$\{(?<name>\w+)(:(?<format>[^}]+))?\}", RegexOptions.Compiled);
 
-        private CancellationTokenSource DownloadTokenSource { get; set; }
+        private CancellationTokenSource WorkTokenSource { get; set; }
 
-        private async void ButtonDownloadClick(object sender, EventArgs e)
+        private async void Work(IEnumerable<Mission> missions, Func<Mission, CancellationToken, Task> createTask)
         {
             tableLayoutPanelHeader.Enabled = false;
 
             Setting.Save();
 
-            DownloadTokenSource = new CancellationTokenSource();
+            WorkTokenSource = new CancellationTokenSource();
 
-            var formatter = (InformationFormatter)comboBoxInformationFormat.SelectedItem;
-
-            var missions = gridMissions.SelectedRows.Cast<DataGridViewRow>().Select(r => (Mission)r.DataBoundItem);
-            missions.ForEach(m => m.State = MissionState.Scheduled);
-            var tasks = missions.Select(m => new Task(() => Download(m, formatter), DownloadTokenSource.Token)).ToArray();
+            SelectedMissions.ForEach(m => m.State = MissionState.Scheduled);
+            var tasks = SelectedMissions.Select(m => createTask(m, WorkTokenSource.Token)).ToArray();
 
             progressBarDownload.Value = 0;
             progressBarDownload.Maximum = tasks.Length;
@@ -446,6 +443,13 @@ namespace Slooh.Explorer.Controls
 
             progressBarDownload.Visible = false;
             tableLayoutPanelHeader.Enabled = true;
+        }
+
+        private void ButtonDownloadClick(object sender, EventArgs e)
+        {
+            var formatter = (InformationFormatter)comboBoxInformationFormat.SelectedItem;
+
+            Work(SelectedMissions, (m, t) => new Task(() => Download(m, formatter), t));
         }
 
         private void Download(Mission mission, InformationFormatter formatter)
@@ -478,6 +482,8 @@ namespace Slooh.Explorer.Controls
                     Download(missionFolder, picture, textBoxPatternJpeg.Text, checkBoxOverwriteJpeg.Checked, "jpeg", SavePictureJpeg);
 
                 picture.ResetStream();
+                picture.Thumbnail = null;
+                picture.ThumbnailFilename = "";
             }
 
             if (checkBoxFits.Checked)
@@ -682,19 +688,19 @@ namespace Slooh.Explorer.Controls
 
         private void ToolStripMenuItemOpenFolderClick(object sender, EventArgs e)
         {            
-                SelectedMissions.ForEach(mission =>
+            SelectedMissions.ForEach(mission =>
+            {
+                var folder = GetMissionFolder(mission);
+                if (Directory.Exists(folder))
                 {
-                    var folder = GetMissionFolder(mission);
-                    if (Directory.Exists(folder))
+                    Process.Start(new ProcessStartInfo
                     {
-                        Process.Start(new ProcessStartInfo
-                        {
-                            FileName = folder,
-                            UseShellExecute = true,
-                            Verb = "open"
-                        });
-                    }
-                });
+                        FileName = folder,
+                        UseShellExecute = true,
+                        Verb = "open"
+                    });
+                }
+            });
         }
 
         private void ContextMenuStripMissionsOpening(object sender, CancelEventArgs e)
@@ -736,6 +742,39 @@ namespace Slooh.Explorer.Controls
                 = textBoxPatternPicture.Enabled
                 = checkBoxOverwritePictures.Enabled
                 = checkBoxPictures.Checked;
+        }
+
+        private void ToolStripMenuItemDeleteClick(object sender, EventArgs e)
+        {
+            if (DialogResult.Yes != MessageBox.Show(this, $"Do you really want to delete {gridMissions.SelectedRows.Count} missions from the slooh site?", "Delete Missions", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+                return;
+
+            Work(SelectedMissions, (m, t) => new Task(() => Delete(m), t));
+        }
+
+        private async void Delete(Mission mission)
+        {
+            FetchPictures(mission);
+            mission.State = MissionState.Deleting;
+
+            foreach (var picture in mission.Pictures)
+            {
+                try
+                {
+                    await SloohSite.DeletePicture(picture);
+                }
+                catch (Exception)
+                {
+                    return;
+                }
+            }
+
+            Invoke(new MethodInvoker(() => 
+            { 
+                Missions.Remove(mission);
+                FilteredMissions.Remove(mission);
+                DownloadTick();
+            }));
         }
     }
 }
