@@ -4,6 +4,7 @@ using System.IO;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+using System.Windows;
 using Toolbox;
 
 namespace Slooh.Explorer
@@ -14,12 +15,14 @@ namespace Slooh.Explorer
         {
             Client = new HttpClient(Handler);
             Name = "";
+            Cache = new SloohCache();
         }
 
         protected const string RootUrl = "https://www.slooh.com";
 
         private HttpClientHandler Handler { get; } = new HttpClientHandler();
         private HttpClient Client { get; }
+        private SloohCache Cache { get; }
 
         public string Username { get; set; }
         public string Passwd { get; set; }
@@ -104,18 +107,36 @@ namespace Slooh.Explorer
             return missionsResponse;
         }
 
+        internal void ClearCache()
+        {
+            Cache.Clear();
+        }
+
         public async Task<GetPicturesResponse> GetPictures(int first = 1, int missionId = 0)
         {
-            var request = new GetPicturesRequest();
-            request.FillFrom(this);
-            request.First = first;
-            request.Id = missionId;
-            
-            var response = await Client.PostAsJsonAsync(RootUrl + "/api/images/getMyPictures", request);
-            response.EnsureSuccessStatusCode();
+            GetPicturesResponse picturesResponse = null;
 
-            var picturesResponse = await response.Content.ReadFromJsonAsync<GetPicturesResponse>();
-            picturesResponse.EnsureSuccess();
+            if (missionId != 0)
+            {
+                picturesResponse = Cache.Fetch<GetPicturesResponse>(missionId);
+            }
+
+            if (picturesResponse == null)
+            {
+                var request = new GetPicturesRequest();
+                request.FillFrom(this);
+                request.First = first;
+                request.Id = missionId;
+
+                var response = await Client.PostAsJsonAsync(RootUrl + "/api/images/getMyPictures", request);
+                response.EnsureSuccessStatusCode();
+
+                picturesResponse = await response.Content.ReadFromJsonAsync<GetPicturesResponse>();
+                picturesResponse.EnsureSuccess();
+
+                if (missionId != 0)
+                    Cache.Insert(missionId, picturesResponse);
+            }
 
             foreach (var picture in picturesResponse.Pictures)
             {

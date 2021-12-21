@@ -249,8 +249,17 @@ namespace Slooh.Explorer.Controls
 
                     if (rc && p.Thumbnail==null && Path.GetExtension(filename) == ".png")
                     {
-                        p.Thumbnail = ImageFactory.GetThumbnail(filename);
-                        p.ThumbnailFilename = filename;
+                        try
+                        {
+                            p.Thumbnail = ImageFactory.GetThumbnail(filename);
+                            p.ThumbnailFilename = filename;
+                        }
+                        catch (Exception exception)
+                        {
+                            Trace.WriteLine(exception.Message, $"GetThumbnail[{filename}]");
+                            File.Delete(filename);
+                            rc = false;
+                        }
                     }
 
                     return rc;

@@ -34,7 +34,7 @@ namespace Slooh.Explorer.Requests
         [JsonPropertyName("errorMsg")]
         public string ErrorMessage { get; set; }
         [JsonPropertyName("statusCode")]
-        public int StatusCode { get; set; }        
+        public int StatusCode { get; set; }
 
         public void EnsureSuccess()
         {

@@ -42,6 +42,7 @@ namespace Slooh.Explorer
             this.menuItemHelpMain = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.menuItemVersion = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemClearCache = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -86,6 +87,7 @@ namespace Slooh.Explorer
             // 
             this.menuItemMain.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuItemLogoff,
+            this.menuItemClearCache,
             this.toolStripSeparator1,
             this.menuItemQuit});
             this.menuItemMain.Name = "menuItemMain";
@@ -144,6 +146,13 @@ namespace Slooh.Explorer
             this.menuItemVersion.Text = "Version";
             this.menuItemVersion.Click += new System.EventHandler(this.MenuItemVersionClick);
             // 
+            // menuItemClearCache
+            // 
+            this.menuItemClearCache.Name = "menuItemClearCache";
+            this.menuItemClearCache.Size = new System.Drawing.Size(139, 22);
+            this.menuItemClearCache.Text = "Clear Cache";
+            this.menuItemClearCache.Click += new System.EventHandler(this.MenuItemClearCacheClick);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
@@ -182,6 +191,7 @@ namespace Slooh.Explorer
         private System.Windows.Forms.ToolStripMenuItem menuItemVersion;
         private System.Windows.Forms.ToolStripMenuItem menuItemHelpMain;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem menuItemClearCache;
     }
 }
 

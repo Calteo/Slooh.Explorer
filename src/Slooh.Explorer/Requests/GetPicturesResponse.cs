@@ -2,6 +2,7 @@
 
 namespace Slooh.Explorer.Requests
 {
+    [Cache("GetPictures")]
     class GetPicturesResponse : SloohResponse
     {
         [JsonPropertyName("maxImageCount")]
@@ -15,6 +16,5 @@ namespace Slooh.Explorer.Requests
 
         [JsonPropertyName("imageList")]
         public Picture[] Pictures { get; set; }
-
     }
 }

@@ -52,6 +52,7 @@ namespace Slooh.Explorer
             logonControl.Visible = false;
             dashboardControl.Visible = true;
             dashboardControl.SloohSite = logonControl.SloohSite;
+            menuItemClearCache.Enabled = true;
             menuItemLogoff.Enabled = true;
         }
 
@@ -66,6 +67,7 @@ namespace Slooh.Explorer
 
             logonControl.Visible = true;
             dashboardControl.Visible = false;
+            menuItemClearCache.Enabled = false;
             
             menuItemLogoff.Enabled = false;
         }
@@ -100,6 +102,12 @@ namespace Slooh.Explorer
         private void MenuItemHelpMainClick(object sender, EventArgs e)
         {
             SingletonHelpForm.Navigate("index.html");
+        }
+
+        private void MenuItemClearCacheClick(object sender, EventArgs e)
+        {
+            dashboardControl.SloohSite.ClearCache();
+            MessageBox.Show(this, "Cache cleared.", "Slooh Explorer", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
