@@ -18,7 +18,7 @@ namespace Slooh.Explorer
             Cache = new SloohCache();
         }
 
-        protected const string RootUrl = "https://www.slooh.com";
+        protected const string RootUrl = "https://app.slooh.com";
 
         private HttpClientHandler Handler { get; } = new HttpClientHandler();
         private HttpClient Client { get; }

@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Drawing;
+using System.Runtime.Serialization;
 using Toolbox.Xml.Serialization;
 using Toolbox.Xml.Settings;
 
@@ -24,8 +25,10 @@ namespace Slooh.Explorer
 
         [DefaultValue(true)]
         public bool DownloadInformation { get; set; }
+
         [DefaultValue(@"${telescope}-mission")]
         public string PatternInformation { get; set; }
+
         [DefaultValue(null)]
         public string InformationFormatter { get; set; }
 
@@ -37,15 +40,18 @@ namespace Slooh.Explorer
 
         [DefaultValue(false)]
         public bool DownloadJpeg { get; set; }
+
         [DefaultValue(@"Jpeg\${instrument}\${filename}")]
         public string PatternJpeg { get; set; }
 
         [DefaultValue(true)]
         public bool DownloadFits { get; set; }
+
         [DefaultValue(@"FITS\${instrument}\${filename}")]
-        public string PatternFits { get; set; }
-                
+        public string PatternFits { get; set; }                       
+
         public Point Location { get; set; }
         public Size Size { get; set; }       
+        
     }
 }

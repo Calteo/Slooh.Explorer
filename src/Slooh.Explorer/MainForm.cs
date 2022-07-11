@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
 using Toolbox.Help;
@@ -29,10 +30,14 @@ namespace Slooh.Explorer
 #else
             string name = null;
 #endif
+            var setting = UserSettings.Get<SloohUserSetting>(name);
+            if (setting.Folder == null)
+                setting.Folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures), "Slooh");
+
             logonControl.Setting
                 = dashboardControl.Setting
                 = Setting
-                = UserSettings.Get<SloohUserSetting>(name);
+                = setting;
 
             if (Setting.Location != Point.Empty)
                 Location = Setting.Location;
