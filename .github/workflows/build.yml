@@ -30,13 +30,16 @@ jobs:
       with:
         dotnet-version: 6.0.x
 
-    - name: set-version-assemblyinfo
+    - name: Echo version
+      run: echo "Version = 1.0.$GITHUB_RUN_NUMBER"
+
+    - name: Set version in assemblyinfo
       uses: dannevesdantas/set-version-assemblyinfo@v.1.0.0
       with:
         # Folder location to search for AssemblyInfo.cs/.vb files
           path: src
         # Version number to set on [AssemblyVersion] and [AssemblyFileVersion] attributes of AssemblyInfo.cs/.vb files
-          version: 1.0.$GITHUB_RUN_NUMBER
+          version: "1.0.$GITHUB_RUN_NUMBER"
     
     # Compile the solution
     - name: Compile solution
