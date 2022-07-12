@@ -36,8 +36,8 @@ jobs:
       with:
         dotnet-version: 6.0.x
 
-    - name: Echo Version ${{ env.BUILD_VERSION }}
-      run: echo "$BUILD_VERSION"
+    - name: Echo Version 
+      run: echo "Version = ${{ env.BUILD_VERSION }}"
       
     - name: Set version in assemblyinfo
       uses: dannevesdantas/set-version-assemblyinfo@v.1.0.0
@@ -45,7 +45,7 @@ jobs:
         # Folder location to search for AssemblyInfo.cs/.vb files
           path: src
         # Version number to set on [AssemblyVersion] and [AssemblyFileVersion] attributes of AssemblyInfo.cs/.vb files
-          version: "$BUILD_VERSION.0"
+          version: "${{ env.BUILD_VERSION }}.0"
     
     # Compile the solution
     - name: Compile solution
