@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
 
 env:
-  VERSION: 1.1.${{ github.run_number }}
+  BUILD_VERSION: 1.1.${{ github.run_number }}
 
 jobs:
 
@@ -39,7 +39,7 @@ jobs:
         # Folder location to search for AssemblyInfo.cs/.vb files
           path: src
         # Version number to set on [AssemblyVersion] and [AssemblyFileVersion] attributes of AssemblyInfo.cs/.vb files
-          version: "$VERSION.0"
+          version: "$BUILD_VERSION.0"
     
     # Compile the solution
     - name: Compile solution
