@@ -22,8 +22,8 @@ jobs:
                              # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
 
     steps:
-    - name: List env
-      run: env
+    # - name: List env
+    #  run: env
       
     - name: Checkout
       uses: actions/checkout@v3
@@ -36,8 +36,8 @@ jobs:
       with:
         dotnet-version: 6.0.x
 
-    - name: Echo Version 
-      run: echo "Version = ${{ env.BUILD_VERSION }}"
+    # - name: Echo Version 
+    #  run: echo "Version = ${{ env.BUILD_VERSION }}"
       
     - name: Set version in assemblyinfo
       uses: dannevesdantas/set-version-assemblyinfo@v.1.0.0
@@ -67,3 +67,12 @@ jobs:
         # Tool to use for archiving
         type: 'zip'
       
+    - name: Create Release
+      uses: actions/create-release@v1
+      id: create_release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+          tag_name: ${{ github.ref }}
+          release_name: Release v${{ github.ref }}
+          
