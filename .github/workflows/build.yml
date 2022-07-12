@@ -55,7 +55,7 @@ jobs:
       uses: TheDoctor0/zip-release@0.6.2
       with:
         # Filename for archive
-        filename: 'Binary.zip'
+        filename: 'binary.zip'
         # Base path for archive files
         path: output
         # Working directory before zipping
@@ -75,4 +75,14 @@ jobs:
       with:
           tag_name: ${{ env.BUILD_VERSION }}
           release_name: Release ${{ env.BUILD_VERSION }}
-          
+
+    - name: Upload Release Asset        
+      uses: actions/upload-release-asset@v1
+      id: upload-release-asset 
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./binary.zip
+        asset_name: Slooh-Explorer-Binary-${{ env.BUILD_VERSION }}.zip
+        asset_content_type: application/zip
