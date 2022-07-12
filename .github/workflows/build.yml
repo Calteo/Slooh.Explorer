@@ -11,6 +11,9 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+env:
+  VERSION: 1.1.${{ github.run_number }}
+
 jobs:
 
   build:
@@ -30,16 +33,13 @@ jobs:
       with:
         dotnet-version: 6.0.x
 
-    - name: Echo version
-      run: echo "Version = 1.0.${{ github.run_number }}"
-
     - name: Set version in assemblyinfo
       uses: dannevesdantas/set-version-assemblyinfo@v.1.0.0
       with:
         # Folder location to search for AssemblyInfo.cs/.vb files
           path: src
         # Version number to set on [AssemblyVersion] and [AssemblyFileVersion] attributes of AssemblyInfo.cs/.vb files
-          version: "1.0.${{ github.run_number }}.0"
+          version: "$VERSION.0"
     
     # Compile the solution
     - name: Compile solution
@@ -60,9 +60,4 @@ jobs:
         # recursive_exclusions: # optional, default is 
         # Tool to use for archiving
         type: 'zip'
-
-    - name: Create release
-      uses: ncipollo/release-action@v1
-      with:
-        artifacts: "Binary.zip"
       
