@@ -54,20 +54,32 @@ jobs:
 
     - name: Remove unnecessary files
       run: del output\*.pdb,output\*.dev.json,output\*.deps.json 
+    
+    - name: Cache output
+      uses: actions/cache@v3
+      with:
+        path: output
+        key: output
+      
+  release:
+    name: Release
+    needs: build
+    runs-on: windows-latest
 
+    steps:
+    - name: Cache output
+      uses: actions/cache@v3
+      with:
+        path: output
+        key: output    
+    
     - name: Zip binaries
       uses: TheDoctor0/zip-release@0.6.2
       with:
         filename: 'binary.zip'
         path: output
         type: 'zip'
-      
-  release:
-    name: Release
-    needs: build
-    runs-on: windows-latest
     
-    steps:
     - name: Create Release
       uses: actions/create-release@v1
       id: create_release
