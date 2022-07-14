@@ -89,3 +89,11 @@ jobs:
         asset_path: ./binary.zip
         asset_name: Slooh-Explorer-Binary-${{ env.BUILD_VERSION }}.zip
         asset_content_type: application/zip
+
+    - name: Patch nuget package
+      run: |         
+        $chocoPackage = "chocolateley\slooh-explorer.nuspec"
+        $xml = [xml](Get-Content $chocoPackage)
+        $xml.DocumentElement.metadata.version = ${{ env.BUILD_VERSION }}
+        $xml.Save($chocoPackage)
+        
