@@ -13,6 +13,7 @@ on:
 
 env:
   BUILD_VERSION: "1.1.${{ github.run_number }}"
+  CHOCOLATELY_PACKAGE: "chocolateley\\slooh-explorer.nuspec"
 
 jobs:
 
@@ -83,14 +84,13 @@ jobs:
 
     - name: Patch chocolately package
       run: |         
-        $chocoPackage = "chocolateley\slooh-explorer.nuspec"
-        $xml = [xml](Get-Content $chocoPackage)
+        $xml = [xml](Get-Content ${{ env.CHOCOLATELY_PACKAGE }})
         $xml.DocumentElement.metadata.version = ${{ env.BUILD_VERSION }}
-        $xml.Save($chocoPackage)
+        $xml.Save(${{ env.CHOCOLATELY_PACKAGE }})
         copy output\* chocolateley\tools -Recurse
 
     - name: Create chocolately package
       uses: crazy-max/ghaction-chocolatey@v2
       with:
-        args: pack chocolately
+        args: pack ${{ env.CHOCOLATELY_PACKAGE }}
         
