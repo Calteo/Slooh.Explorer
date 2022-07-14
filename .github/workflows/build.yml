@@ -55,11 +55,10 @@ jobs:
     - name: Remove unnecessary files
       run: del output\*.pdb,output\*.dev.json,output\*.deps.json 
     
-    - name: Cache output
+    - name: Restore output
       uses: actions/cache@v3
       with:
-        path: output
-        key: output
+        restore-keys: output
       
   release:
     name: Release
