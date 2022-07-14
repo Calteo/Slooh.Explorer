@@ -80,7 +80,7 @@ jobs:
         path: output
         type: 'zip'
 
-    - name: Cache binary
+    - name: Cache artifacts
       uses: actions/cache@v3
       with:
         key: artifacts
@@ -115,11 +115,11 @@ jobs:
       with:
          args: pack ${{ env.CHOCOLATELY_PACKAGE }}        
 
-    - name: Cache Package
+    - name: Cache artifacts
       uses: actions/cache@v3
       with:
         key: artifacts
-        path: "*.nupkg"
+        path: slooh-explorer.${{ env.BUILD_VERSION }}.nupkg
 
   push_release:
     name: Push Release
@@ -127,11 +127,13 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - name: Cache binary
+    - name: Cache artifacts
       uses: actions/cache@v3
       with:
         key: artifacts
-        path: binary.zip,*.nupkg
+        path: |
+          binary.zip
+          slooh-explorer.${{ env.BUILD_VERSION }}.nupkg
     
     - name: Create Release
       uses: actions/create-release@v1
@@ -142,9 +144,8 @@ jobs:
           tag_name: ${{ env.BUILD_VERSION }}
           release_name: Release ${{ env.BUILD_VERSION }}
 
-    - name: Upload Release Asset        
+    - name: Upload binary asset 
       uses: actions/upload-release-asset@v1
-      id: upload-release-asset 
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
@@ -153,14 +154,24 @@ jobs:
         asset_name: Slooh-Explorer-Binary-${{ env.BUILD_VERSION }}.zip
         asset_content_type: application/zip
 
+    - name: Upload chocolately asset 
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: slooh-explorer.${{ env.BUILD_VERSION }}.nupkg
+        asset_name: Slooh-Explorer-Cocolately-${{ env.BUILD_VERSION }}.nupkg
+        asset_content_type: application/zip
+
   push_chocolately:
     name: Push Chocolately
     needs: pack_chocolately
     runs-on: windows-latest
 
     steps:
-    - name: Cache binary
+    - name: Cache artifacts
       uses: actions/cache@v3
       with:
         key: artifacts
-        path: "*.nupkg"
+        path: slooh-explorer.${{ env.BUILD_VERSION }}.nupkg
