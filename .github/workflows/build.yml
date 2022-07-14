@@ -16,7 +16,7 @@ env:
 
 jobs:
 
-  build:
+  Build:
 
     runs-on: windows-latest  # For a list of available runner types, refer to
                              # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
@@ -81,7 +81,7 @@ jobs:
         asset_name: Slooh-Explorer-Binary-${{ env.BUILD_VERSION }}.zip
         asset_content_type: application/zip
 
-    - name: Pack nuget package
+    - name: Patch chocolately package
       run: |         
         $chocoPackage = "chocolateley\slooh-explorer.nuspec"
         $xml = [xml](Get-Content $chocoPackage)
@@ -89,4 +89,8 @@ jobs:
         $xml.Save($chocoPackage)
         copy output\* chocolateley\tools -Recurse
 
+    - name: Create chocolately package
+      uses: crazy-max/ghaction-chocolatey@v2
+      with:
+        args: pack chocolately
         
