@@ -130,7 +130,7 @@ jobs:
     - name: Download artifacts
       uses: actions/download-artifact@v3
       with:
-        name: artifacts
+        name: artifact
         
     - name: Create Release
       uses: actions/create-release@v1
@@ -170,4 +170,4 @@ jobs:
     - name: Download artifacts
       uses: actions/download-artifact@v3
       with:
-        name: artifacts
+        name: artifact
