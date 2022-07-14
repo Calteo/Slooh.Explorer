@@ -57,17 +57,8 @@ jobs:
     - name: Zip binaries
       uses: TheDoctor0/zip-release@0.6.2
       with:
-        # Filename for archive
         filename: 'binary.zip'
-        # Base path for archive files
         path: output
-        # Working directory before zipping
-        # directory: # optional, default is .
-        # List of excluded files / directories
-        # exclusions: # optional, default is 
-        # List of excluded files / directories with recursive wildcards (only applies on Windows with `zip` type)
-        # recursive_exclusions: # optional, default is 
-        # Tool to use for archiving
         type: 'zip'
       
     - name: Create Release
@@ -90,10 +81,12 @@ jobs:
         asset_name: Slooh-Explorer-Binary-${{ env.BUILD_VERSION }}.zip
         asset_content_type: application/zip
 
-    - name: Patch nuget package
+    - name: Pack nuget package
       run: |         
         $chocoPackage = "chocolateley\slooh-explorer.nuspec"
         $xml = [xml](Get-Content $chocoPackage)
         $xml.DocumentElement.metadata.version = ${{ env.BUILD_VERSION }}
         $xml.Save($chocoPackage)
+        copy output\* chocolateley\tools -Recurse
+
         
