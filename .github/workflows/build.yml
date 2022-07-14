@@ -86,7 +86,7 @@ jobs:
       run: |         
         $xml = [xml](Get-Content ${{ env.CHOCOLATELY_PACKAGE }})
         $xml.DocumentElement.metadata.version = ${{ env.BUILD_VERSION }}
-        $xml.Save(${{ env.CHOCOLATELY_PACKAGE }})
+        $xml.Save("${{ env.CHOCOLATELY_PACKAGE }}")
         copy output\* chocolateley\tools -Recurse
 
     - name: Create chocolately package
