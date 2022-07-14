@@ -105,10 +105,12 @@ jobs:
 
     - name: Patch chocolately package
       run: |         
+        Out-File ${{ env.CHOCOLATELY_PACKAGE }}
         $xml = [xml](Get-Content ${{ env.CHOCOLATELY_PACKAGE }})
         $xml.DocumentElement.metadata.version = ${{ env.BUILD_VERSION }}
         $xml.Save("${{ env.CHOCOLATELY_PACKAGE }}")
         copy output\* chocolateley\tools -Recurse
+        Out-File ${{ env.CHOCOLATELY_PACKAGE }}
 
     #- name: Create chocolately package
     #  uses: crazy-max/ghaction-chocolatey@v2
@@ -116,8 +118,8 @@ jobs:
     #    args: pack ${{ env.CHOCOLATELY_PACKAGE }}
         
   
-  create_release:
-    name: Create Release
+  push_release:
+    name: Push Release
     needs: [pack_release, pack_chocolately]
     runs-on: windows-latest
 
@@ -147,3 +149,15 @@ jobs:
         asset_path: ./binary.zip
         asset_name: Slooh-Explorer-Binary-${{ env.BUILD_VERSION }}.zip
         asset_content_type: application/zip
+
+  push_chocolately:
+    name: Push Chocolately
+    needs: pack_chocolately
+    runs-on: windows-latest
+
+    steps:
+    - name: Cache binary
+      uses: actions/cache@v3
+      with:
+        key: artifacts
+        path: binary.zip           
