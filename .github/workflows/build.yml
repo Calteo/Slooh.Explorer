@@ -55,11 +55,11 @@ jobs:
     - name: Remove unnecessary files
       run: del output\*.pdb,output\*.dev.json,output\*.deps.json 
     
-    - name: Cache output
-      uses: actions/cache@v3
+    - name: Upload output
+      uses: actions/upload-artifact@v3
       with:
-        key: output
-        path: output        
+        name: output
+        path: output
       
   pack_release:
     name: Pack Release
@@ -67,24 +67,23 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - name: Cache output
-      uses: actions/cache@v3
+    - name: Download output
+      uses: actions/download-artifact@v3
       with:
-        key: output
-        path: output        
+        name: output
     
-    - name: Zip binaries
+    - name: Pack binaries
       uses: TheDoctor0/zip-release@0.6.2
       with:
         filename: 'binary.zip'
         path: output
         type: 'zip'
 
-    - name: Cache artifacts
-      uses: actions/cache@v3
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v3
       with:
-        key: artifacts
-        path: binary.zip       
+        name: artifact
+        path: binary.zip
   
   pack_chocolately:
     name: Pack Chocolateley
@@ -97,11 +96,10 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Cache output
-      uses: actions/cache@v3
+    - name: Download output
+      uses: actions/download-artifact@v3
       with:
-        key: output
-        path: output        
+        name: output   
 
     - name: Patch chocolately package
       run: |         
@@ -115,10 +113,10 @@ jobs:
       with:
          args: pack ${{ env.CHOCOLATELY_PACKAGE }}        
 
-    - name: Cache artifacts
-      uses: actions/cache@v3
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v3
       with:
-        key: artifacts
+        name: artifact
         path: slooh-explorer.${{ env.BUILD_VERSION }}.nupkg
 
   push_release:
@@ -127,14 +125,11 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - name: Cache artifacts
-      uses: actions/cache@v3
+    - name: Download artifacts
+      uses: actions/download-artifact@v3
       with:
-        key: artifacts
-        path: |
-          binary.zip
-          slooh-explorer.${{ env.BUILD_VERSION }}.nupkg
-    
+        name: artifacts
+        
     - name: Create Release
       uses: actions/create-release@v1
       id: create_release
@@ -170,8 +165,7 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - name: Cache artifacts
-      uses: actions/cache@v3
+    - name: Download artifacts
+      uses: actions/download-artifact@v3
       with:
-        key: artifacts
-        path: slooh-explorer.${{ env.BUILD_VERSION }}.nupkg
+        name: artifacts
