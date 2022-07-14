@@ -105,12 +105,14 @@ jobs:
 
     - name: Patch chocolately package
       run: |         
-        Out-File ${{ env.CHOCOLATELY_PACKAGE }}
         $xml = [xml](Get-Content ${{ env.CHOCOLATELY_PACKAGE }})
-        $xml.DocumentElement.metadata.version = ${{ env.BUILD_VERSION }}
+        echo $xml
+        echo $xml.DocumentElement
+        echo $xml.DocumentElement.metadata
+        echo $xml.DocumentElement.metadata.version
+        $xml.DocumentElement.metadata.version = "${{ env.BUILD_VERSION }}"
         $xml.Save("${{ env.CHOCOLATELY_PACKAGE }}")
-        copy output\* chocolateley\tools -Recurse
-        Out-File ${{ env.CHOCOLATELY_PACKAGE }}
+        copy output\* chocolateley\tools -Recurse        
 
     #- name: Create chocolately package
     #  uses: crazy-max/ghaction-chocolatey@v2
