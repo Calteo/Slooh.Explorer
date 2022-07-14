@@ -106,20 +106,21 @@ jobs:
     - name: Patch chocolately package
       run: |         
         $xml = [xml](Get-Content ${{ env.CHOCOLATELY_PACKAGE }})
-        echo $xml
-        echo $xml.DocumentElement
-        echo $xml.DocumentElement.metadata
-        echo $xml.DocumentElement.metadata.version
         $xml.DocumentElement.metadata.version = "${{ env.BUILD_VERSION }}"
         $xml.Save("${{ env.CHOCOLATELY_PACKAGE }}")
         copy output\* chocolateley\tools -Recurse        
 
-    #- name: Create chocolately package
-    #  uses: crazy-max/ghaction-chocolatey@v2
-    #  with:
-    #    args: pack ${{ env.CHOCOLATELY_PACKAGE }}
-        
-  
+    - name: Create chocolately package
+      uses: crazy-max/ghaction-chocolatey@v2
+      with:
+         args: pack ${{ env.CHOCOLATELY_PACKAGE }}        
+
+    - name: Cache Package
+      uses: actions/cache@v3
+      with:
+        key: artifacts
+        path: "*.nupkg"
+
   push_release:
     name: Push Release
     needs: [pack_release, pack_chocolately]
@@ -130,7 +131,7 @@ jobs:
       uses: actions/cache@v3
       with:
         key: artifacts
-        path: binary.zip           
+        path: binary.zip,*.nupkg
     
     - name: Create Release
       uses: actions/create-release@v1
@@ -162,4 +163,4 @@ jobs:
       uses: actions/cache@v3
       with:
         key: artifacts
-        path: binary.zip           
+        path: "*.nupkg"
