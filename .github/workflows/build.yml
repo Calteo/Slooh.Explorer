@@ -55,10 +55,11 @@ jobs:
     - name: Remove unnecessary files
       run: del output\*.pdb,output\*.dev.json,output\*.deps.json 
     
-    - name: Restore output
+    - name: Cache output
       uses: actions/cache@v3
       with:
-        restore-keys: output
+        path: output
+        key: output
       
   release:
     name: Release
@@ -66,11 +67,15 @@ jobs:
     runs-on: windows-latest
 
     steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    
     - name: Cache output
       uses: actions/cache@v3
       with:
-        path: output
-        key: output    
+        restore-keys: output
     
     - name: Zip binaries
       uses: TheDoctor0/zip-release@0.6.2
