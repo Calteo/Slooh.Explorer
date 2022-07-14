@@ -71,6 +71,7 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: output
+        path: output
     
     - name: Pack binaries
       uses: TheDoctor0/zip-release@0.6.2
@@ -99,7 +100,8 @@ jobs:
     - name: Download output
       uses: actions/download-artifact@v3
       with:
-        name: output   
+        name: output
+        path: output
 
     - name: Patch chocolately package
       run: |         
