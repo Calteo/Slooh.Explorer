@@ -174,4 +174,4 @@ jobs:
     - name: Push package to chocolately
       uses: crazy-max/ghaction-chocolatey@v2
       with:
-        args: push ${{ env.CHOCOLATELY_PACKAGE }} --source https://push.chocolatey.org/ --api-key ${{ secrets.CHOCOLATELY_TOKEN }}
+        args: push slooh-explorer.${{ env.BUILD_VERSION }}.nupkg --source https://push.chocolatey.org/ --api-key ${{ secrets.CHOCOLATELY_TOKEN }}
