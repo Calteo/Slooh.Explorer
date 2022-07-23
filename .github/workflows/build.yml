@@ -171,3 +171,7 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: artifact
+    - name: Push package to chocolately
+      uses: crazy-max/ghaction-chocolatey@v2
+      with:
+        args: push ${{ CHOCOLATELY_PACKAGE }} --source https://push.chocolatey.org/ --api-key ${{ secrets.CHOCOLATELY_TOKEN }}
