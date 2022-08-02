@@ -18,7 +18,7 @@ namespace Slooh.Explorer.Requests
 
     class FitsImage
     {
-        [JsonPropertyName("imageUrl")]
+        [JsonPropertyName("imageURL")]
         public string DownloadUrl { get; set; }
         [JsonPropertyName("imageTitle")]
         public string Title { get; set; }

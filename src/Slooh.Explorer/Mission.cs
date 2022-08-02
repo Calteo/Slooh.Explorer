@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Runtime.CompilerServices;
 using System.Text.Json.Serialization;
 
@@ -39,6 +40,20 @@ namespace Slooh.Explorer
                 OnPropertyChanged();
             }
         }
+
+        private bool _thumbnailArrived;
+
+        public bool ThumbnailArrived
+        {
+            get => _thumbnailArrived; 
+            set 
+            { 
+                if (_thumbnailArrived == value) return;
+                _thumbnailArrived = value;
+                OnPropertyChanged();
+            }
+        }
+
         #endregion
 
 
@@ -49,6 +64,7 @@ namespace Slooh.Explorer
 
         #region Timestamp
         private DateTime _timestamp;
+        
         public DateTime Timestamp
         {
             get => _timestamp;
@@ -61,7 +77,12 @@ namespace Slooh.Explorer
         }
         #endregion
 
+        [JsonPropertyName("imageURL")]
+        public string ImageUrl { get; set; }
+
+
         [JsonPropertyName("missionImageCount")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public int ImageCount { get; set; }
         [JsonPropertyName("missionOwner")]
         public string Owner { get; set; }
@@ -72,7 +93,7 @@ namespace Slooh.Explorer
         [JsonPropertyName("instrumentName")]
         public string Instrument { get; set; }
 
-        public List<Picture> Pictures { get; } = new List<Picture>();
+        public BindingList<Picture> Pictures { get; } = new BindingList<Picture>();
         public List<Picture> FitsPictures { get; } = new List<Picture>();
 
         public override string ToString()

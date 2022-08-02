@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -117,6 +116,8 @@ namespace Slooh.Explorer.Controls
         {
             base.OnSloohSiteChanged();
 
+            thumbnailsControl.SloohSite = SloohSite;
+
             TokenSource?.Cancel();
             Missions.Clear();
 
@@ -193,7 +194,7 @@ namespace Slooh.Explorer.Controls
                 picturesResponse.Pictures.ForEach(p => p.Mission = mission);
                 lock (mission.Pictures)
                 {
-                    mission.Pictures.AddRange(picturesResponse.Pictures);
+                    picturesResponse.Pictures.ForEach(p => mission.Pictures.Add(p));
                 }
                 first += picturesResponse.Count;
                 running = first < picturesResponse.Total;
@@ -350,7 +351,7 @@ namespace Slooh.Explorer.Controls
                     groupDate.ForEach(p => p.Mission = mission);
                     lock (mission.Pictures)
                     {
-                        mission.Pictures.AddRange(groupDate);
+                        groupDate.ForEach(p => mission.Pictures.Add(p));
                     }
                     mission.ImageCount += groupDate.Count();
 

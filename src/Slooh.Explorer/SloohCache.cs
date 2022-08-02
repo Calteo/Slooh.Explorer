@@ -1,30 +1,36 @@
-﻿using Slooh.Explorer.Requests;
-using System;
+﻿using System;
 using System.Buffers;
-using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.Json;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
+using Slooh.Explorer.Requests;
 using Toolbox;
 
 namespace Slooh.Explorer
 {
     class SloohCache
     {
-        public SloohCache()
+        public SloohCache(SloohSite site)
         {
+            Site = site;
+
             Folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Slooh.Explorer", "Cache");
             if (!Directory.Exists(Folder))
                 Directory.CreateDirectory(Folder);
+
+            MissionThumbnails = new SloohCacheStorageMissionThumbnails(this);
         }
+
+        public SloohSite Site { get; }
 
         public string Folder { get; private set; }
 
-                private string GetFilename<T>(int id) where T : SloohResponse
+        public SloohCacheStorageMissionThumbnails MissionThumbnails { get; }
+
+
+        private string GetRequestFilename<T>(int id) where T : SloohResponse
         {
             var typeFolder = typeof(T).GetCustomAttributes(typeof(CacheAttribute), false).Cast<CacheAttribute>().FirstOrDefault()?.Folder;
             if (typeFolder.IsEmpty()) return null;
@@ -36,9 +42,9 @@ namespace Slooh.Explorer
             return Path.Combine(folder, $"{id}.json");
         }
 
-        public void Insert<T>(int id, T response) where T : SloohResponse
+        public void InsertRequest<T>(int id, T response) where T : SloohResponse
         {
-            var filename = GetFilename<T>(id);
+            var filename = GetRequestFilename<T>(id);
             try
             {
                 if (filename.NotEmpty())
@@ -58,9 +64,9 @@ namespace Slooh.Explorer
             }
         }
 
-        public T Fetch<T>(int id) where T : SloohResponse
+        public T FetchRequest<T>(int id) where T : SloohResponse
         {
-            var filename = GetFilename<T>(id);
+            var filename = GetRequestFilename<T>(id);
             try
             {                
                 if (filename.NotEmpty() && File.Exists(filename))
@@ -84,7 +90,7 @@ namespace Slooh.Explorer
 
         internal void Clear()
         {
-            foreach (var file in Directory.EnumerateFiles(Folder, "*.json", new EnumerationOptions { IgnoreInaccessible = true, RecurseSubdirectories = true }))
+            foreach (var file in Directory.EnumerateFiles(Folder, "*", new EnumerationOptions { IgnoreInaccessible = true, RecurseSubdirectories = true }))
             {
                 try
                 {
@@ -95,6 +101,6 @@ namespace Slooh.Explorer
                     Trace.WriteLine(exception.Message, $"Cache.Clear[{file}]");
                 }
             }
-        }
+        }        
     }
 }

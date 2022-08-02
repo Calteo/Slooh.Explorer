@@ -1,10 +1,11 @@
 ﻿using Slooh.Explorer.Requests;
 using System;
+using System.Drawing;
 using System.IO;
 using System.Net.Http;
 using System.Net.Http.Json;
+using System.Text.Json;
 using System.Threading.Tasks;
-using System.Windows;
 using Toolbox;
 
 namespace Slooh.Explorer
@@ -15,14 +16,14 @@ namespace Slooh.Explorer
         {
             Client = new HttpClient(Handler);
             Name = "";
-            Cache = new SloohCache();
+            Cache = new SloohCache(this);
         }
 
         protected const string RootUrl = "https://app.slooh.com";
 
         private HttpClientHandler Handler { get; } = new HttpClientHandler();
         private HttpClient Client { get; }
-        private SloohCache Cache { get; }
+        internal SloohCache Cache { get; }
 
         public string Username { get; set; }
         public string Passwd { get; set; }
@@ -45,16 +46,30 @@ namespace Slooh.Explorer
         public int ProgressPoints { get; set; }
         public int NeededPoints { get; set; }
 
+        public async Task<T> GetResponseAsync<T>(HttpResponseMessage response) where T : SloohResponse
+        {
+            using (var stream = await response.Content.ReadAsStreamAsync())
+            {
+                var document = JsonDocument.Parse(stream);                
+                return JsonSerializer.Deserialize<T>(document);
+            }
+        }
+
         public async Task GetSessionToken()
         {
             var response = await Client.PostAsync(RootUrl + "/api/app/generateSessionToken", null);
             response.EnsureSuccessStatusCode();
 
-            var sessionInfo = await response.Content.ReadFromJsonAsync<SessionInfoResponse>();
-            sessionInfo.EnsureSuccess();
+            var sessionInfo = await GetResponseAsync<SessionInfoResponse>(response);
+
             sessionInfo.CopyTo(this);
 
             Handler.CookieContainer.Add(new System.Net.Cookie("_sloohsstkn", SloohSessionToken, "/", ".slooh.com"));
+        }
+
+        internal Image GetMissionThumbnail(Mission mission)
+        {
+            return Cache.MissionThumbnails.Get(mission);
         }
 
         public async Task Logon()
@@ -65,7 +80,8 @@ namespace Slooh.Explorer
             var response = await Client.PostAsJsonAsync(RootUrl + "/api/users/login", logonInfo);
             response.EnsureSuccessStatusCode();
 
-            var logonResponse = await response.Content.ReadFromJsonAsync<LogonResponse>();
+            var logonResponse = await GetResponseAsync<LogonResponse>(response);
+
             logonResponse.EnsureSuccess();
             logonResponse.CopyTo(this);
         }
@@ -78,7 +94,8 @@ namespace Slooh.Explorer
             var response = await Client.PostAsJsonAsync(RootUrl + "/api/newdashboard/getUserGravityStatus", logonInfo);
             response.EnsureSuccessStatusCode();
 
-            var gravityResponse = await response.Content.ReadFromJsonAsync<GetGravityStatusResponse>();
+            var gravityResponse = await GetResponseAsync<GetGravityStatusResponse>(response);
+
             gravityResponse.EnsureSuccess();
             gravityResponse.CopyTo(this);            
         }
@@ -92,7 +109,7 @@ namespace Slooh.Explorer
             var response = await Client.PostAsJsonAsync(RootUrl + "/api/images/getMissionImages", request);
             response.EnsureSuccessStatusCode();
 
-            var missionsResponse = await response.Content.ReadFromJsonAsync<GetMissionsResponse>();
+            var missionsResponse = await GetResponseAsync<GetMissionsResponse>(response);
             missionsResponse.EnsureSuccess();
 
             foreach (var mission in missionsResponse.Missions)
@@ -118,7 +135,7 @@ namespace Slooh.Explorer
 
             if (missionId != 0)
             {
-                picturesResponse = Cache.Fetch<GetPicturesResponse>(missionId);
+                picturesResponse = Cache.FetchRequest<GetPicturesResponse>(missionId);
             }
 
             if (picturesResponse == null)
@@ -131,11 +148,11 @@ namespace Slooh.Explorer
                 var response = await Client.PostAsJsonAsync(RootUrl + "/api/images/getMyPictures", request);
                 response.EnsureSuccessStatusCode();
 
-                picturesResponse = await response.Content.ReadFromJsonAsync<GetPicturesResponse>();
+                picturesResponse = await GetResponseAsync<GetPicturesResponse>(response);
                 picturesResponse.EnsureSuccess();
 
                 if (missionId != 0)
-                    Cache.Insert(missionId, picturesResponse);
+                    Cache.InsertRequest(missionId, picturesResponse);
             }
 
             foreach (var picture in picturesResponse.Pictures)
@@ -163,18 +180,8 @@ namespace Slooh.Explorer
             var response = await Client.PostAsJsonAsync(RootUrl + "/api/images/getMissionFITS", request);
             response.EnsureSuccessStatusCode();
 
-            var fitsResponse = await response.Content.ReadFromJsonAsync<GetMissionFitsResponse>();
+            var fitsResponse = await GetResponseAsync<GetMissionFitsResponse>(response);
             fitsResponse.EnsureSuccess();
-
-            /*
-            foreach (var picture in picturesResponse.Pictures)
-            {
-                var timestamp = DateTime.Parse(picture.DisplayDate);
-                var clock = DateTime.Parse(picture.DisplayTime.Replace(" UTC", ""));
-                timestamp = timestamp.AddHours(clock.Hour).AddMinutes(clock.Minute).AddSeconds(clock.Second);
-                picture.Timestamp = DateTime.SpecifyKind(timestamp, DateTimeKind.Utc);
-            }
-            */
 
             return fitsResponse;
         }
@@ -194,7 +201,7 @@ namespace Slooh.Explorer
             var response = await Client.PostAsJsonAsync(RootUrl + "/api/images/deleteImage", request);
             response.EnsureSuccessStatusCode();
 
-            var fitsResponse = await response.Content.ReadFromJsonAsync<DeletePictureResponse>();
+            var fitsResponse = await GetResponseAsync<DeletePictureResponse>(response);
             fitsResponse.EnsureSuccess();
         }
     }
