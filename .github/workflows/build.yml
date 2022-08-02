@@ -1,0 +1,177 @@
+#
+# Build the slooh explorer and publish as a zip
+#
+
+name: Slooh Explorer
+
+on:
+  push:
+    branches: [ "main" ]
+  
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+env:
+  BUILD_VERSION: "1.1.${{ github.run_number }}"
+  CHOCOLATELY_PACKAGE: "chocolateley\\slooh-explorer.nuspec"
+  RELEASE_CHOCOLATELY: true
+
+jobs:
+
+  build:
+    name: Build
+    runs-on: windows-latest  
+
+    steps:
+    # - name: List env
+    #  run: env
+      
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    # Install the .NET Core workload
+    - name: Install .NET Core
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 6.0.x
+
+    # - name: Echo Version 
+    #  run: echo "Version = ${{ env.BUILD_VERSION }}"
+      
+    - name: Set version in assemblyinfo
+      uses: dannevesdantas/set-version-assemblyinfo@v.1.0.0
+      with:
+        # Folder location to search for AssemblyInfo.cs/.vb files
+          path: src
+        # Version number to set on [AssemblyVersion] and [AssemblyFileVersion] attributes of AssemblyInfo.cs/.vb files
+          version: "${{ env.BUILD_VERSION }}.0"
+    
+    # Compile the solution
+    - name: Compile solution
+      run: dotnet build src\Slooh.sln -c Release -o output
+
+    - name: Remove unnecessary files
+      run: del output\*.pdb,output\*.dev.json,output\*.deps.json 
+    
+    - name: Upload output
+      uses: actions/upload-artifact@v3
+      with:
+        name: output
+        path: output
+      
+  pack_release:
+    name: Pack Release
+    needs: build
+    runs-on: windows-latest
+
+    steps:
+    - name: Download output
+      uses: actions/download-artifact@v3
+      with:
+        name: output
+        path: output
+    
+    - name: Pack binaries
+      uses: TheDoctor0/zip-release@0.6.2
+      with:
+        filename: 'binary.zip'
+        path: output
+        type: 'zip'
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: artifact
+        path: binary.zip
+  
+  pack_chocolately:
+    name: Pack Chocolateley
+    needs: build
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - name: Download output
+      uses: actions/download-artifact@v3
+      with:
+        name: output
+        path: output
+
+    - name: Patch chocolately package
+      run: |         
+        $xml = [xml](Get-Content ${{ env.CHOCOLATELY_PACKAGE }})
+        $xml.DocumentElement.metadata.version = "${{ env.BUILD_VERSION }}"
+        $xml.Save("${{ env.CHOCOLATELY_PACKAGE }}")
+        copy output\* chocolateley\tools -Recurse        
+
+    - name: Create chocolately package
+      uses: crazy-max/ghaction-chocolatey@v2
+      with:
+         args: pack ${{ env.CHOCOLATELY_PACKAGE }}        
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: artifact
+        path: slooh-explorer.${{ env.BUILD_VERSION }}.nupkg
+
+  push_release:
+    name: Push Release
+    needs: [pack_release, pack_chocolately]
+    runs-on: windows-latest
+
+    steps:
+    - name: Download artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: artifact
+        
+    - name: Create Release
+      uses: actions/create-release@v1
+      id: create_release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+          tag_name: ${{ env.BUILD_VERSION }}
+          release_name: Release ${{ env.BUILD_VERSION }}
+
+    - name: Upload binary asset 
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./binary.zip
+        asset_name: Slooh-Explorer-Binary-${{ env.BUILD_VERSION }}.zip
+        asset_content_type: application/zip
+
+    - name: Upload chocolately asset 
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: slooh-explorer.${{ env.BUILD_VERSION }}.nupkg
+        asset_name: Slooh-Explorer-Cocolately-${{ env.BUILD_VERSION }}.nupkg
+        asset_content_type: application/zip
+
+  push_chocolately:
+    name: Push Chocolately
+    needs: pack_chocolately
+    runs-on: windows-latest
+
+    steps:
+    - name: Download artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: artifact
+    - name: Push package to chocolately
+      uses: crazy-max/ghaction-chocolatey@v2
+      with:
+        args: push slooh-explorer.${{ env.BUILD_VERSION }}.nupkg --source https://push.chocolatey.org/ --api-key ${{ secrets.CHOCOLATELY_TOKEN }}
