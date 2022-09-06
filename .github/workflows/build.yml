@@ -39,14 +39,14 @@ jobs:
 
     # - name: Echo Version 
     #  run: echo "Version = ${{ env.BUILD_VERSION }}"
-      
-    - name: Set version in assemblyinfo
-      uses: dannevesdantas/set-version-assemblyinfo@v.1.0.0
+    
+    - name: Version Visual Studio SDK projects
+      uses: roryprimrose/set-vs-sdk-project-version@v1.0.3
       with:
-        # Folder location to search for AssemblyInfo.cs/.vb files
-          path: src
-        # Version number to set on [AssemblyVersion] and [AssemblyFileVersion] attributes of AssemblyInfo.cs/.vb files
-          version: "${{ env.BUILD_VERSION }}.0"
+        version: "${{ env.BUILD_VERSION }}.0"
+        assemblyVersion: "${{ env.BUILD_VERSION }}.0"
+        fileVersion: "${{ env.BUILD_VERSION }}.0"
+        informationalVersion: "${{ env.BUILD_VERSION }}.0"
     
     # Compile the solution
     - name: Compile solution
