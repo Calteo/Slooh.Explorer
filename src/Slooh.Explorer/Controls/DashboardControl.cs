@@ -432,7 +432,7 @@ namespace Slooh.Explorer.Controls
 
         private CancellationTokenSource WorkTokenSource { get; set; }
 
-        private async void Work(IEnumerable<Mission> missions, Func<Mission, CancellationToken, Task> createTask)
+        private async void Work(Func<Mission, CancellationToken, Task> createTask)
         {
             tableLayoutPanelHeader.Enabled = false;
 
@@ -459,7 +459,7 @@ namespace Slooh.Explorer.Controls
         {
             var formatter = (InformationFormatter)comboBoxInformationFormat.SelectedItem;
 
-            Work(SelectedMissions, (m, t) => new Task(() => Download(m, formatter), t));
+            Work((m, t) => new Task(() => Download(m, formatter), t));
         }
 
         private void Download(Mission mission, InformationFormatter formatter)
@@ -537,7 +537,7 @@ namespace Slooh.Explorer.Controls
             return buffer.ToString();
         }
 
-        private string GetPictureFilename(string missionFolder, Picture picture, string pattern)
+        private static string GetPictureFilename(string missionFolder, Picture picture, string pattern)
         {
             var filename = PatternReplacments.Replace(pattern, m => ReplacePatterns(m, picture));
             if (!Path.IsPathRooted(filename))
@@ -546,7 +546,7 @@ namespace Slooh.Explorer.Controls
             return filename;
         }
 
-        private void Download(string missionFolder, Picture picture, string pattern, bool overwrite, string extension = null, Action<Picture, string> saveAction = null)
+        private static void Download(string missionFolder, Picture picture, string pattern, bool overwrite, string extension = null, Action<Picture, string> saveAction = null)
         {
             var filename = GetPictureFilename(missionFolder, picture, pattern);
 
@@ -570,8 +570,10 @@ namespace Slooh.Explorer.Controls
         {
             var decoder = new PngBitmapDecoder(picture.GetStream(), BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
 
-            var encoder = new JpegBitmapEncoder();
-            encoder.QualityLevel = 100;
+            var encoder = new JpegBitmapEncoder
+            {
+                QualityLevel = 100
+            };
 
             var metadata = new BitmapMetadata("jpg")
             {
@@ -594,7 +596,7 @@ namespace Slooh.Explorer.Controls
             File.SetCreationTimeUtc(filename, picture.Timestamp);
         }
 
-        private string Normalize(string text)
+        private static string Normalize(string text)
         {
             var builder = new StringBuilder(text);
 
@@ -606,7 +608,7 @@ namespace Slooh.Explorer.Controls
             return builder.ToString();
         }
 
-        private string ReplacePatterns(Match match, Mission mission)
+        private static string ReplacePatterns(Match match, Mission mission)
         {
             var name = match.Groups["name"].Value;
 
@@ -636,7 +638,7 @@ namespace Slooh.Explorer.Controls
             }
         }
 
-        private string ReplacePatterns(Match match, Picture picture)
+        private static string ReplacePatterns(Match match, Picture picture)
         {
             var name = match.Groups["name"].Value;
 
@@ -668,11 +670,6 @@ namespace Slooh.Explorer.Controls
                         return $"Unknown-{name}";
                     }
             }
-        }
-
-        private void DownloadEnded()
-        {
-            textBoxFolder.Enabled = textBoxPatternMission.Enabled = buttonSelectFolder.Enabled = buttonDownload.Enabled = true;
         }
 
         private void CheckBoxFitsCheckedChanged(object sender, EventArgs e)
@@ -759,7 +756,7 @@ namespace Slooh.Explorer.Controls
             if (DialogResult.Yes != MessageBox.Show(this, $"Do you really want to delete {gridMissions.SelectedRows.Count} missions from the slooh site?", "Delete Missions", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
                 return;
 
-            Work(SelectedMissions, (m, t) => new Task(() => Delete(m), t));
+            Work((m, t) => new Task(() => Delete(m), t));
         }
 
         private async void Delete(Mission mission)

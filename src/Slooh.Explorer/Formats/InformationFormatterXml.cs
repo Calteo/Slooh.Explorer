@@ -19,7 +19,8 @@ namespace Slooh.Explorer.Formats
                                     new XAttribute("title", mission.Title),
                                     new XAttribute("date",mission.Timestamp),
                                     new XAttribute("telescope", mission.Telescope),
-                                    new XAttribute("instrument", mission.Instrument),                                    
+                                    new XAttribute("instrument", mission.Instrument),      
+                                    new XAttribute("owner", mission.Owner),
                                     new XElement("pictures",
                                         mission.Pictures.Select(p =>
                                             new XElement("picture",
