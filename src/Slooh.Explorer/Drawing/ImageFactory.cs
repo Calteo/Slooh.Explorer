@@ -26,42 +26,40 @@ namespace Slooh.Explorer.Drawing
             return image;
         }
 
-        internal static Bitmap GetThumbnail(string filename)
+        internal static Bitmap GetThumbnail(string filename, int size)
         {
             var directoryThumbnail = Path.Combine(Path.GetDirectoryName(filename), @"thumbs");
             var filenameThumbnail = Path.Combine(directoryThumbnail, Path.GetFileName(filename));
             if (File.Exists(filenameThumbnail))
                 return (Bitmap)Image.FromFile(filenameThumbnail);
 
-            using (var stream = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.Read))
-            {
-                var bitmap = GetThumbnail(stream);
+            using var stream = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.Read);
 
-                if (!Directory.Exists(directoryThumbnail))
-                    Directory.CreateDirectory(directoryThumbnail);
+            var bitmap = GetThumbnail(stream, size);
 
-                bitmap.Save(filenameThumbnail);
+            if (!Directory.Exists(directoryThumbnail))
+                Directory.CreateDirectory(directoryThumbnail);
 
-                return bitmap;
-            }
+            bitmap.Save(filenameThumbnail);
+
+            return bitmap;
         }
 
-        internal static Bitmap GetThumbnail(Stream stream)
+        internal static Bitmap GetThumbnail(Stream stream, int size)
         {
-            using (var image = Image.FromStream(stream))
-            {
-                var wPercentage = 200f / image.Width;
-                var hPercentage = 200f / image.Height;
-                var percentage = Math.Min(wPercentage, hPercentage);
+            using var image = Image.FromStream(stream);
 
-                var thumbnail = new Bitmap((int)(image.Width * percentage), (int)(image.Height * percentage));
-                using (var g = Graphics.FromImage(thumbnail))
-                {
-                    g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                    g.DrawImage(image, 0, 0, thumbnail.Width, thumbnail.Height);
-                    return thumbnail;
-                }
-            }
+            var wPercentage = (float)size / image.Width;
+            var hPercentage = (float)size / image.Height;
+            var percentage = Math.Min(wPercentage, hPercentage);
+
+            var thumbnail = new Bitmap((int)(image.Width * percentage), (int)(image.Height * percentage));
+
+            using var g = Graphics.FromImage(thumbnail);
+
+            g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+            g.DrawImage(image, 0, 0, thumbnail.Width, thumbnail.Height);
+            return thumbnail;
         }
     }
 }

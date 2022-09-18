@@ -49,13 +49,11 @@ namespace Slooh.Explorer
             {
                 if (filename.NotEmpty())
                 {
-                    using (var stream = new FileStream(filename, FileMode.Create, FileAccess.Write, FileShare.None))
-                    {
-                        using (var writer = new Utf8JsonWriter(stream))
-                        {
-                            JsonSerializer.Serialize(writer, response);
-                        }
-                    }
+                    using var stream = new FileStream(filename, FileMode.Create, FileAccess.Write, FileShare.None);
+
+                    using var writer = new Utf8JsonWriter(stream);
+
+                    JsonSerializer.Serialize(writer, response);
                 }
             }
             catch (Exception exception)
@@ -71,14 +69,13 @@ namespace Slooh.Explorer
             {                
                 if (filename.NotEmpty() && File.Exists(filename))
                 {
-                    using (var stream = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.Read))
-                    {
-                        var buffer = new byte[stream.Length];
-                        stream.Read(buffer, 0, (int)stream.Length);
+                    using var stream = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.Read);
 
-                        var reader = new Utf8JsonReader(new ReadOnlySequence<byte>(buffer));
-                        return JsonSerializer.Deserialize<T>(ref reader);
-                    }
+                    var buffer = new byte[stream.Length];
+                    stream.Read(buffer, 0, (int)stream.Length);
+
+                    var reader = new Utf8JsonReader(new ReadOnlySequence<byte>(buffer));
+                    return JsonSerializer.Deserialize<T>(ref reader);
                 }
             }
             catch (Exception exception)

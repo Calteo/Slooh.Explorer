@@ -12,13 +12,13 @@ namespace Slooh.Explorer
         public SloohCacheStorageMissionThumbnails(SloohCache cache) : base(cache, "MissionThumbnails")
         {
             UnknownThumbnail = new Bitmap(200, 200);
-            using (Graphics g = Graphics.FromImage(UnknownThumbnail))
-            {
-                var rect = new Rectangle(0, 0, 199, 199);
-                g.DrawRectangle(Pens.White, rect);
-                var icon = SystemIcons.Question;
-                g.DrawIcon(icon, (rect.Width-icon.Width)/2, (rect.Height-icon.Height)/2);
-            }
+
+            using Graphics g = Graphics.FromImage(UnknownThumbnail);
+
+            var rect = new Rectangle(0, 0, 199, 199);
+            g.DrawRectangle(Pens.White, rect);
+            var icon = SystemIcons.Question;
+            g.DrawIcon(icon, (rect.Width - icon.Width) / 2, (rect.Height - icon.Height) / 2);
         }
 
         private Image UnknownThumbnail { get; }
@@ -28,7 +28,7 @@ namespace Slooh.Explorer
             var picture = Site.GetPicture(mission.ImageUrl).Result;
             if (picture != null)
             {
-                var thumbnail = ImageFactory.GetThumbnail(picture);
+                var thumbnail = ImageFactory.GetThumbnail(picture, 200);
                 Set(mission, thumbnail);
                 mission.ThumbnailArrived = true;
             }

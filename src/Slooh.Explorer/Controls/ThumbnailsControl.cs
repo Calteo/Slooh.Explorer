@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using Slooh.Explorer.Drawing;
 using Toolbox;
 
 namespace Slooh.Explorer.Controls
@@ -39,7 +37,8 @@ namespace Slooh.Explorer.Controls
         }
 
         delegate void MissionsListChangedHandler(Mission mission, PropertyDescriptor property);
-        MissionsListChangedHandler missionsListChangedHandler;
+
+        readonly MissionsListChangedHandler missionsListChangedHandler;
 
         private void MissionsListChanged(Mission mission, PropertyDescriptor property)
         {

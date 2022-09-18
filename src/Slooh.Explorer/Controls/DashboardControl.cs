@@ -252,7 +252,7 @@ namespace Slooh.Explorer.Controls
                     {
                         try
                         {
-                            p.Thumbnail = ImageFactory.GetThumbnail(filename);
+                            p.Thumbnail = ImageFactory.GetThumbnail(filename, 200);
                             p.ThumbnailFilename = filename;
                         }
                         catch (Exception exception)
@@ -467,29 +467,17 @@ namespace Slooh.Explorer.Controls
             FetchPictures(mission);
             FetchFits(mission);
 
-            var missionFolder = GetMissionFolder(mission);
+            var missionFolder = mission.Folder = GetMissionFolder(mission);
             
             if (!Directory.Exists(missionFolder))
                 Directory.CreateDirectory(missionFolder);
-
-            if (checkBoxInformation.Checked)
-            {
-                var filename = PatternReplacments.Replace(textBoxPatternInformation.Text, m => ReplacePatterns(m, mission));
-                if (!Path.IsPathRooted(filename))
-                    filename = Path.Combine(missionFolder, filename);
-
-                filename = Path.ChangeExtension(filename, formatter.Extension);
-
-                if (checkBoxOverwriteInformation.Checked || !File.Exists(filename))                
-                    formatter.Save(filename, mission);
-            }
 
             mission.State = MissionState.Downloading;
             foreach (var picture in mission.Pictures)
             {
                 Download(missionFolder, picture, textBoxPatternPicture.Text, checkBoxOverwritePictures.Checked);
                 if (checkBoxJpeg.Checked)
-                    Download(missionFolder, picture, textBoxPatternJpeg.Text, checkBoxOverwriteJpeg.Checked, "jpeg", SavePictureJpeg);
+                    Download(missionFolder, picture, textBoxPatternJpeg.Text, checkBoxOverwriteJpeg.Checked, "jpeg", (p,f) => p.JpegSavedTo = f, SavePictureJpeg);
 
                 picture.ResetStream();
                 picture.Thumbnail = null;
@@ -504,6 +492,19 @@ namespace Slooh.Explorer.Controls
                     picture.ResetStream();
                 }
             }
+
+            if (checkBoxInformation.Checked)
+            {
+                var filename = PatternReplacments.Replace(textBoxPatternInformation.Text, m => ReplacePatterns(m, mission));
+                if (!Path.IsPathRooted(filename))
+                    filename = Path.Combine(missionFolder, filename);
+
+                filename = Path.ChangeExtension(filename, formatter.Extension);
+
+                if (checkBoxOverwriteInformation.Checked || !File.Exists(filename))
+                    formatter.Save(filename, mission);
+            }
+
 
             mission.State = MissionState.Finished;
 
@@ -546,7 +547,7 @@ namespace Slooh.Explorer.Controls
             return filename;
         }
 
-        private static void Download(string missionFolder, Picture picture, string pattern, bool overwrite, string extension = null, Action<Picture, string> saveAction = null)
+        private static void Download(string missionFolder, Picture picture, string pattern, bool overwrite, string extension = null, Action<Picture, string> saveToAction = null, Action<Picture, string> saveAction = null)
         {
             var filename = GetPictureFilename(missionFolder, picture, pattern);
 
@@ -558,12 +559,21 @@ namespace Slooh.Explorer.Controls
             if (!Directory.Exists(folder))
                 Directory.CreateDirectory(folder);
 
+            if (saveToAction != null)
+                saveToAction(picture, filename);
+            else
+                picture.SavedTo = filename;
+
             if (!overwrite && File.Exists(filename)) return;
 
             if (saveAction != null)
+            {
                 saveAction(picture, filename);
+            }
             else
+            {                
                 picture.SaveStream(filename);
+            }
         }
 
         private void SavePictureJpeg(Picture picture, string filename)
@@ -782,6 +792,23 @@ namespace Slooh.Explorer.Controls
                 FilteredMissions.Remove(mission);
                 DownloadTick();
             }));
+        }
+
+        private void ButtonBrowseClick(object sender, EventArgs e)
+        {
+            const string removeToken = "$remove$";
+            var folder = PatternReplacments.Replace(textBoxPatternInformation.Text, m => removeToken);
+
+            while (folder.NotEmpty() && Path.GetFileName(folder).Contains(removeToken))
+            {
+                folder = Path.GetDirectoryName(folder);
+            }
+
+            if (!Path.IsPathRooted(folder))
+                folder = Path.GetFullPath(Path.Combine(textBoxFolder.Text, folder));
+
+            var form = new LibraryForm { Folder = folder };
+            form.ShowDialog(this);
         }
     }
 }

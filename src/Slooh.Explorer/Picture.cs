@@ -42,6 +42,9 @@ namespace Slooh.Explorer
         public OverlayData Data { get; set; }
         public string Owner => Data?.Owner == "Not available" ? "" : Data?.Owner;
 
+        public string SavedTo { get; set; }
+        public string JpegSavedTo { get; set; }
+
         public Bitmap Thumbnail { get; set; }
         public string ThumbnailFilename { get; set; }
 

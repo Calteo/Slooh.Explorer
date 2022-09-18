@@ -46,13 +46,12 @@ namespace Slooh.Explorer
         public int ProgressPoints { get; set; }
         public int NeededPoints { get; set; }
 
-        public async Task<T> GetResponseAsync<T>(HttpResponseMessage response) where T : SloohResponse
+        public static async Task<T> GetResponseAsync<T>(HttpResponseMessage response) where T : SloohResponse
         {
-            using (var stream = await response.Content.ReadAsStreamAsync())
-            {
-                var document = JsonDocument.Parse(stream);                
-                return JsonSerializer.Deserialize<T>(document);
-            }
+            using var stream = await response.Content.ReadAsStreamAsync();
+
+            var document = JsonDocument.Parse(stream);
+            return JsonSerializer.Deserialize<T>(document);
         }
 
         public async Task GetSessionToken()

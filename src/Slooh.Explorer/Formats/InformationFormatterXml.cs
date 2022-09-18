@@ -1,7 +1,9 @@
-﻿using System.Linq;
+﻿using System.IO;
+using System.Linq;
 using System.Text;
 using System.Xml;
 using System.Xml.Linq;
+using Toolbox;
 
 namespace Slooh.Explorer.Formats
 {
@@ -13,6 +15,9 @@ namespace Slooh.Explorer.Formats
 
         public override void Save(string filename, Mission mission)
         {
+            var directrory = Path.GetDirectoryName(filename);
+            var relativeMissionPath = Path.GetRelativePath(directrory, mission.Folder);
+            
             var document = new XDocument(
                                 new XDeclaration("1.0", "utf-8", "true"),
                                 new XElement("mission",
@@ -21,13 +26,16 @@ namespace Slooh.Explorer.Formats
                                     new XAttribute("telescope", mission.Telescope),
                                     new XAttribute("instrument", mission.Instrument),      
                                     new XAttribute("owner", mission.Owner),
-                                    new XElement("pictures",
+                                    new XAttribute("folder", relativeMissionPath),
+                                    new XElement("pictures",                                        
                                         mission.Pictures.Select(p =>
                                             new XElement("picture",
                                                 new XAttribute("date", p.Timestamp),                                                
                                                 new XAttribute("telescope", p.Telescope),
                                                 new XAttribute("instrument", p.Instrument),
-                                                new XAttribute("filename", p.Filename)
+                                                new XAttribute("filename", p.Filename),
+                                                new XAttribute("saveTo", Path.GetRelativePath(directrory, p.SavedTo)),
+                                                p.JpegSavedTo.NotEmpty() ? new XAttribute("jpegSaveTo", Path.GetRelativePath(directrory, p.JpegSavedTo)) : null
                                             )
                                         )
                                     ),
@@ -37,7 +45,8 @@ namespace Slooh.Explorer.Formats
                                                 new XAttribute("date", p.Timestamp),
                                                 new XAttribute("telescope", p.Telescope),
                                                 new XAttribute("instrument", p.Instrument),
-                                                new XAttribute("filename", p.Filename)
+                                                new XAttribute("filename", p.Filename),
+                                                new XAttribute("saveTo", Path.GetRelativePath(directrory, p.SavedTo))
                                             )
                                         )
                                     )
@@ -51,10 +60,11 @@ namespace Slooh.Explorer.Formats
                 Indent = true,
             };
 
-            using (var writer = XmlWriter.Create(filename, settings))
-            {
-                document.WriteTo(writer);
-            }
+            if (!Directory.Exists(directrory))
+                Directory.CreateDirectory(directrory);
+
+            using var writer = XmlWriter.Create(filename, settings);
+            document.WriteTo(writer);
         }
     }
 }

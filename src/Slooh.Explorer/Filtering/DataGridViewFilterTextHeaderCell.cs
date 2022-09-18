@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Slooh.Explorer.Filtering
 {
@@ -66,21 +62,15 @@ namespace Slooh.Explorer.Filtering
 
             if (Text == "") return true;
 
-            switch (Operator)
+            return Operator switch
             {
-                case "=":
-                    return text == Text;
-                case "<":
-                    return text.CompareTo(Text) < 0;
-                case "<=":
-                    return text.CompareTo(Text) <= 0;
-                case ">":
-                    return text.CompareTo(Text) > 0;
-                case ">=":
-                    return text.CompareTo(Text) >= 0;
-                default:
-                    return Pattern?.IsMatch(text) ?? false;
-            }            
+                "=" => text == Text,
+                "<" => text.CompareTo(Text) < 0,
+                "<=" => text.CompareTo(Text) <= 0,
+                ">" => text.CompareTo(Text) > 0,
+                ">=" => text.CompareTo(Text) >= 0,
+                _ => Pattern?.IsMatch(text) ?? false,
+            };
         }
     }
 }

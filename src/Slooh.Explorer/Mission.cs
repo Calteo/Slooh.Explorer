@@ -95,6 +95,7 @@ namespace Slooh.Explorer
 
         public BindingList<Picture> Pictures { get; } = new BindingList<Picture>();
         public List<Picture> FitsPictures { get; } = new List<Picture>();
+        public string Folder { get; set; }
 
         public override string ToString()
         {
