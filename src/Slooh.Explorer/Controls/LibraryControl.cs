@@ -179,7 +179,7 @@ namespace Slooh.Explorer.Controls
             {
                 try
                 {
-                    var missionInfo = MissionInfo.Load(file);
+                    var missionInfo = new MissionInfo(file);
                     Invoke(() =>
                         {
                             Missions.Add(missionInfo);
@@ -212,8 +212,10 @@ namespace Slooh.Explorer.Controls
             foreach (var mission in missions)
             {
                 var thumbnail = new LibraryThumbnailControl { Mission = mission };
+
                 thumbnailsPanel.Controls.Add(thumbnail);
             }                       
         }
+
     }
 }

@@ -37,9 +37,6 @@
             this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.splitContainerRight = new System.Windows.Forms.SplitContainer();
             this.gridViewMissions = new Slooh.Explorer.Controls.SloohDataGridView();
-            this.thumbnailsPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.menuStrip = new System.Windows.Forms.MenuStrip();
-            this.menuItemRefresh = new System.Windows.Forms.ToolStripMenuItem();
             this.ColumnDate = new Slooh.Explorer.Filtering.DataGridViewFilterDateTimeColumn();
             this.ColumnTitle = new Slooh.Explorer.Filtering.DataGridViewFilterTextColumn();
             this.ColumnTelescope = new Slooh.Explorer.Filtering.DataGridViewFilterTextColumn();
@@ -48,6 +45,9 @@
             this.ColumnPictures = new Slooh.Explorer.Filtering.DataGridViewFilterIntegerColumn();
             this.ColumnJpeg = new Slooh.Explorer.Filtering.DataGridViewFilterIntegerColumn();
             this.ColumnFits = new Slooh.Explorer.Filtering.DataGridViewFilterIntegerColumn();
+            this.thumbnailsPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.menuStrip = new System.Windows.Forms.MenuStrip();
+            this.menuItemRefresh = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
@@ -161,32 +161,6 @@
             this.gridViewMissions.TabIndex = 0;
             this.gridViewMissions.SelectionChanged += new System.EventHandler(this.GridViewMissionsSelectionChanged);
             // 
-            // thumbnailsPanel
-            // 
-            this.thumbnailsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.thumbnailsPanel.Location = new System.Drawing.Point(0, 0);
-            this.thumbnailsPanel.Name = "thumbnailsPanel";
-            this.thumbnailsPanel.Size = new System.Drawing.Size(916, 595);
-            this.thumbnailsPanel.TabIndex = 0;
-            // 
-            // menuStrip
-            // 
-            this.menuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuItemRefresh});
-            this.menuStrip.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(1352, 28);
-            this.menuStrip.TabIndex = 0;
-            this.menuStrip.Text = "menuStrip";
-            // 
-            // menuItemRefresh
-            // 
-            this.menuItemRefresh.Name = "menuItemRefresh";
-            this.menuItemRefresh.Size = new System.Drawing.Size(72, 24);
-            this.menuItemRefresh.Text = "Refresh";
-            this.menuItemRefresh.Click += new System.EventHandler(this.MenuItemRefreshClick);
-            // 
             // ColumnDate
             // 
             this.ColumnDate.DataPropertyName = "Date";
@@ -271,6 +245,32 @@
             this.ColumnFits.ReadOnly = true;
             this.ColumnFits.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ColumnFits.Width = 76;
+            // 
+            // thumbnailsPanel
+            // 
+            this.thumbnailsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.thumbnailsPanel.Location = new System.Drawing.Point(0, 0);
+            this.thumbnailsPanel.Name = "thumbnailsPanel";
+            this.thumbnailsPanel.Size = new System.Drawing.Size(916, 595);
+            this.thumbnailsPanel.TabIndex = 0;
+            // 
+            // menuStrip
+            // 
+            this.menuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuItemRefresh});
+            this.menuStrip.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip.Name = "menuStrip";
+            this.menuStrip.Size = new System.Drawing.Size(1352, 28);
+            this.menuStrip.TabIndex = 0;
+            this.menuStrip.Text = "menuStrip";
+            // 
+            // menuItemRefresh
+            // 
+            this.menuItemRefresh.Name = "menuItemRefresh";
+            this.menuItemRefresh.Size = new System.Drawing.Size(72, 24);
+            this.menuItemRefresh.Text = "Refresh";
+            this.menuItemRefresh.Click += new System.EventHandler(this.MenuItemRefreshClick);
             // 
             // LibraryControl
             // 

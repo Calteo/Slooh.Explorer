@@ -1,7 +1,9 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Xml.Linq;
 using Slooh.Explorer.Xml;
 using Toolbox;
@@ -9,7 +11,7 @@ using Toolbox;
 namespace Slooh.Explorer.Library
 {
     [DebuggerDisplay("{Date} - {Title,nq}")]
-    internal class MissionInfo
+    internal class MissionInfo : INotifyPropertyChanged
     {
         public MissionInfo()
         {
@@ -18,34 +20,40 @@ namespace Slooh.Explorer.Library
             Telescope = "Unknown";
             Instrument = "Unknown";
             Date = DateTime.Today;
+            Filename = "";
             Folder = "";
         }
 
-        public MissionInfo(string folder, XElement element)
+        public MissionInfo(string filename)
         {
+            var document = XDocument.Load(filename, LoadOptions.SetLineInfo);
+            var element = document.RequiredElement("mission");
+
             Title = element.RequiredAttribute("title").Value;
             Owner = element.Attribute("owner")?.Value ?? "";
             Telescope = element.RequiredAttribute("telescope").Value;
             Instrument = element.RequiredAttribute("instrument").Value;
             Date = DateTime.Parse(element.RequiredAttribute("date").Value);
 
+            Filename = Path.GetFullPath(filename);
+            
             var folderAttribute = element.RequiredAttribute("folder").Value;
             if (Path.IsPathRooted(folderAttribute))
                 Folder = folderAttribute;
             else
-                Folder = Path.GetFullPath(Path.Combine(folder, folderAttribute));
+                Folder = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(Filename), folderAttribute));
 
             var picturesElement = element.Element("pictures");
             if (picturesElement != null)
-                Pictures = picturesElement.Elements("picture").Select(p => new PictureInfo(this, p)).ToArray();
+                Pictures = new BindingList<PictureInfo>(picturesElement.Elements("picture").Select(p => new PictureInfo(this, p)).ToList());
             else
-                Pictures = Array.Empty<PictureInfo>();
+                Pictures = new BindingList<PictureInfo>();
 
             var fitsElement = element.Element("fits");
             if (fitsElement != null)
-                Fits = fitsElement.Elements("picture").Select(p => new PictureInfo(this, p)).ToArray();
+                Fits = new BindingList<PictureInfo>(fitsElement.Elements("picture").Select(p => new PictureInfo(this, p)).ToList());
             else
-                Fits = Array.Empty<PictureInfo>();
+                Fits = new BindingList<PictureInfo>();
         }
 
         public string Title { get; }
@@ -53,21 +61,40 @@ namespace Slooh.Explorer.Library
         public string Telescope { get; }
         public string Instrument { get; }
         public DateTime Date { get; }
-        public string Folder { get; }
 
-        public PictureInfo[] Pictures { get; }
-        public int PicturesCount => Pictures.Length;
-        public int JpegPicturesCount => Pictures.Count(p => p.JpegSaveTo.NotEmpty());
-        public PictureInfo[] Fits { get; }
-        public int FitsCount => Fits.Length;
-
-        internal static MissionInfo Load(string file)
+        internal void Delete(PictureInfo picture)
         {
-            var document = XDocument.Load(file, LoadOptions.SetLineInfo);
-            
-            var missionInfo = new MissionInfo(Path.GetDirectoryName(file), document.RequiredElement("mission"));
+            picture.Delete();
 
-            return missionInfo;
+            var document = XDocument.Load(picture.Mission.Filename);
+
+            var pictureElement = document.Root.Element("pictures").Elements("picture").Where(p => p.Attribute("filename").Value == picture.Filename).FirstOrDefault();
+            if (pictureElement != null)
+                pictureElement.Remove();
+
+            document.Save(picture.Mission.Filename);
+
+            Pictures.Remove(picture);
+
+            OnPropertyChanged(nameof(PicturesCount));
+            OnPropertyChanged(nameof(JpegPicturesCount));
         }
+
+        public string Folder { get; }
+        public string Filename { get; }
+
+        public BindingList<PictureInfo> Pictures { get; }
+        public int PicturesCount => Pictures.Count;
+        public int JpegPicturesCount => Pictures.Count(p => p.JpegSaveTo.NotEmpty());
+        public BindingList<PictureInfo> Fits { get; }
+        public int FitsCount => Fits.Count;
+
+        #region INotifyPropertyChanged
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        #endregion
     }
 }

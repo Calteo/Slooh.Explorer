@@ -1,4 +1,6 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Diagnostics;
+using System.Windows.Forms;
 using Slooh.Explorer.Library;
 
 namespace Slooh.Explorer.Controls;
@@ -39,15 +41,38 @@ internal partial class LibraryThumbnailControl : SloohControl
                         Width = PictureSize,
                         Height = PictureSize,
                         Top = 5,
-                        Left = left
+                        Left = left,
+                        ContextMenuStrip = pictureContextMenuStrip,
+                        Tag = picture
                     };
+                    pictureBox.MouseDown += PictureBoxMouseDown;
+
                     panelThumnails.Controls.Add(pictureBox);
                     left += pictureBox.Width + 5;
                 }
             }
 
-            Width = left + 5;
+            Width = Math.Max(200, left + 5);
             Height = 10 + labelCaption.Height + PictureSize;
         }
+    }
+
+    private void PictureBoxMouseDown(object sender, MouseEventArgs e)
+    {
+        if (sender is PictureBox pictureBox)
+        {
+            pictureContextMenuStrip.Tag = pictureBox.Tag;
+        }
+    }
+
+    private void OpenMenuItemClick(object sender, System.EventArgs e)
+    {
+        Process.Start("explorer", Mission.Folder);
+    }
+
+    private void DeletePictureMenuItemClick(object sender, System.EventArgs e)
+    {
+        var picture = (PictureInfo)pictureContextMenuStrip.Tag;
+        picture.Mission.Delete(picture);
     }
 }

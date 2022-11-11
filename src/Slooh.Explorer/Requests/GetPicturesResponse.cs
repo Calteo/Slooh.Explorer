@@ -1,4 +1,6 @@
 ﻿using System.Text.Json.Serialization;
+using Toolbox;
+using Windows.Media.Core;
 
 namespace Slooh.Explorer.Requests
 {
@@ -12,7 +14,8 @@ namespace Slooh.Explorer.Requests
         [JsonPropertyName("imageCount")]
         public int Count { get; set; }
         [JsonPropertyName("totalCount")]
-        public int Total { get; set; }
+        public string TotalCount { get; set; }
+        public int Total => TotalCount.IsEmpty() ? 0 : int.Parse(TotalCount);
 
         [JsonPropertyName("imageList")]
         public Picture[] Pictures { get; set; }
