@@ -21,6 +21,5 @@ namespace Slooh.Explorer.Requests
         public int Maximum { get; set; } = 18;
         [JsonPropertyName("firstMissionNumber")]
         public int First { get; set; } = 1;
-
     }
 }

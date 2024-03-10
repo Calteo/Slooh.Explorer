@@ -27,7 +27,7 @@ namespace Slooh.Explorer.Controls
         {
             InitializeComponent();
 
-            gridMissions.AutoGenerateColumns = false;            
+            gridMissions.AutoGenerateColumns = false;
             gridMissions.DataSource = FilteredMissions;
 
             comboBoxInformationFormat.DataSource = Formatter;
@@ -98,6 +98,23 @@ namespace Slooh.Explorer.Controls
             }
         }
 
+        private int missionTotal = -1;
+        private delegate void UpdateMissionTotalDeletage(int count);
+        private void UpdateMissionTotal(int count)
+        {
+            missionTotal = count;
+            checkBoxMissions.Text = $"Missions ({missionTotal:#,##0})";
+        }
+
+        private int capturesTotal = -1;
+        private delegate void UpdateCapturesTotalDeletage(int count);
+        private void UpdateCapturesTotal(int count)
+        {
+            capturesTotal = count;
+            checkBoxCaptures.Text = $"Captures ({capturesTotal:#,##0})";
+        }
+
+
         private delegate void AddMissionsDelegate(Mission[] missions);
         private void AddMissions(Mission[] missions)
         {
@@ -107,7 +124,7 @@ namespace Slooh.Explorer.Controls
                 {
                     Missions.Add(mission);
                     ApplyFilter(mission);
-                }                
+                }
             }
             // gridMissions.AutoResizeColumns();
         }
@@ -117,9 +134,6 @@ namespace Slooh.Explorer.Controls
             base.OnSloohSiteChanged();
 
             thumbnailsControl.SloohSite = SloohSite;
-
-            TokenSource?.Cancel();
-            Missions.Clear();
 
             if (SloohSite == null)
             {
@@ -160,24 +174,39 @@ namespace Slooh.Explorer.Controls
                 textBoxPatternInformation.Text = Setting.PatternInformation;
                 var formatter = Formatter.FirstOrDefault(f => f.Name == Setting.InformationFormatter) ?? Formatter[0];
                 comboBoxInformationFormat.SelectedItem = formatter;
-                
+
                 checkBoxPictures.Checked = Setting.DownloadPictures;
                 textBoxPatternPicture.Text = Setting.PatternPicture;
-                
+
                 checkBoxJpeg.Checked = Setting.DownloadJpeg;
                 textBoxPatternJpeg.Text = Setting.PatternJpeg;
-                
+
                 checkBoxFits.Checked = Setting.DownloadFits;
                 textBoxPatternFits.Text = Setting.PatternFits;
-                                             
+
                 gridMissions.Sort(ColumnTimestamp, ListSortDirection.Descending);
 
-                TokenSource = new CancellationTokenSource();
-
-                Task.Run(GetStatus, TokenSource.Token);
-                Task.Run(GetMissions, TokenSource.Token);
-                Task.Run(GetPhotosNotInMission, TokenSource.Token);
+                RefeshMissions();
             }
+        }
+
+        public void RefeshMissions()
+        {
+            TokenSource?.Cancel();
+            Missions.Clear();
+            FilteredMissions.Clear();
+
+            TokenSource = new CancellationTokenSource();
+
+            var first = (int)upDownStart.Value;
+            var limit = (int)upDownLimit.Value;
+
+            Task.Run(GetStatus, TokenSource.Token);
+            if (checkBoxMissions.Checked)
+                Task.Run(() => GetMissions(first, limit), TokenSource.Token);
+
+            if (checkBoxCaptures.Checked)
+                Task.Run(() => GetCaptures(first, limit), TokenSource.Token);
         }
 
         private void FetchPictures(Mission mission)
@@ -185,7 +214,7 @@ namespace Slooh.Explorer.Controls
             if (mission.Pictures.Count == mission.ImageCount) return;
 
             Invoke(new MethodInvoker(() => mission.PicturesState = MissionPictures.Fetching));
-            
+
             var first = 1;
             bool running;
             do
@@ -204,7 +233,7 @@ namespace Slooh.Explorer.Controls
 
         private void FetchFits(Mission mission)
         {
-            if ((checkBoxFits.Checked||checkBoxInformation.Checked) && mission.HasFits && mission.FitsPictures.Count == 0)
+            if ((checkBoxFits.Checked || checkBoxInformation.Checked) && mission.HasFits && mission.FitsPictures.Count == 0)
             {
                 mission.State = MissionState.FindFITS;
 
@@ -248,7 +277,7 @@ namespace Slooh.Explorer.Controls
                     var filename = GetPictureFilename(missionFolder, p, textBoxPatternPicture.Text);
                     var rc = File.Exists(filename);
 
-                    if (rc && p.Thumbnail==null && Path.GetExtension(filename) == ".png")
+                    if (rc && p.Thumbnail == null && Path.GetExtension(filename) == ".png")
                     {
                         try
                         {
@@ -296,31 +325,47 @@ namespace Slooh.Explorer.Controls
 
             sloohProgressBar.Value = 0;
             sloohProgressBar.Maximum = SloohSite.NeededPoints;
-            sloohProgressBar.Value = SloohSite.ProgressPoints;            
+            sloohProgressBar.Value = SloohSite.ProgressPoints;
         }
 
-        private void GetMissions()
+        private void GetMissions(int first, int limit)
         {
-            var first = 1;
             var running = true;
             do
             {
                 var response = SloohSite.GetMissions(first).Result;
-                Invoke(new AddMissionsDelegate(AddMissions), new object[] { response.Missions });
+                if (missionTotal < 0) Invoke(new UpdateMissionTotalDeletage(UpdateMissionTotal), response.Total);
+
+                if (response.Count > limit)
+                    Invoke(new AddMissionsDelegate(AddMissions), new object[] { response.Missions.Take(limit).ToArray() });
+                else
+                    Invoke(new AddMissionsDelegate(AddMissions), new object[] { response.Missions });
+                limit -= response.Count;
+                if (limit <= 0) break;
+
                 first += response.Count;
                 running = first < response.Total;
             }
             while (running && !TokenSource.Token.IsCancellationRequested);
         }
 
-        private void GetPhotosNotInMission()
+        private void GetCaptures(int first, int limit)
         {
-            var first = 1;
             var running = true;
             do
             {
                 var response = SloohSite.GetPictures(first).Result;
-                Invoke(new AddPicturesDelegate(AddPictures), new object[] { response.Pictures });
+
+                if (capturesTotal < 0) Invoke(new UpdateCapturesTotalDeletage(UpdateCapturesTotal), response.Total);
+
+                if (limit < response.Count)
+                    Invoke(new AddPicturesDelegate(AddPictures), new object[] { response.Pictures.Take(limit).ToArray() });
+                else
+                    Invoke(new AddPicturesDelegate(AddPictures), new object[] { response.Pictures });
+
+                limit -= response.Count;
+                if (limit < 0) break;
+
                 first += response.Count;
                 running = first < response.Total;
             }
@@ -345,7 +390,7 @@ namespace Slooh.Explorer.Controls
                             Timestamp = groupDate.Select(p => p.Timestamp).Min(),
                             Owner = groupDate.First().Owner,
                         };
-                        Missions.Add(mission);
+                        AddMissions(new[] { mission });
                     }
 
                     groupDate.ForEach(p => p.Mission = mission);
@@ -378,7 +423,7 @@ namespace Slooh.Explorer.Controls
             }
         }
 
-        private IEnumerable<Mission> SelectedMissions => gridMissions.SelectedRows.Cast<DataGridViewRow>().Select(r => (Mission) r.DataBoundItem);
+        private IEnumerable<Mission> SelectedMissions => gridMissions.SelectedRows.Cast<DataGridViewRow>().Select(r => (Mission)r.DataBoundItem);
 
         private void GridMissionsSelectionChanged(object sender, EventArgs e)
         {
@@ -392,7 +437,7 @@ namespace Slooh.Explorer.Controls
             Setting.Folder = textBoxFolder.Text;
 
             EnableDownload();
-            
+
             Missions.ForEach(m => Task.Run(() => CheckPictures(m)));
         }
 
@@ -468,7 +513,7 @@ namespace Slooh.Explorer.Controls
             FetchFits(mission);
 
             var missionFolder = mission.Folder = GetMissionFolder(mission);
-            
+
             if (!Directory.Exists(missionFolder))
                 Directory.CreateDirectory(missionFolder);
 
@@ -477,7 +522,7 @@ namespace Slooh.Explorer.Controls
             {
                 Download(missionFolder, picture, textBoxPatternPicture.Text, checkBoxOverwritePictures.Checked);
                 if (checkBoxJpeg.Checked)
-                    Download(missionFolder, picture, textBoxPatternJpeg.Text, checkBoxOverwriteJpeg.Checked, "jpeg", (p,f) => p.JpegSavedTo = f, SavePictureJpeg);
+                    Download(missionFolder, picture, textBoxPatternJpeg.Text, checkBoxOverwriteJpeg.Checked, "jpeg", (p, f) => p.JpegSavedTo = f, SavePictureJpeg);
 
                 picture.ResetStream();
                 picture.Thumbnail = null;
@@ -515,7 +560,7 @@ namespace Slooh.Explorer.Controls
 
         private void DownloadTick()
         {
-            progressBarDownload.Value++;            
+            progressBarDownload.Value++;
         }
 
         private string GetMissionFolder(Mission mission)
@@ -571,7 +616,7 @@ namespace Slooh.Explorer.Controls
                 saveAction(picture, filename);
             }
             else
-            {                
+            {
                 picture.SaveStream(filename);
             }
         }
@@ -596,7 +641,7 @@ namespace Slooh.Explorer.Controls
                 CameraModel = picture.Instrument,
                 Copyright = "slooh.com",
             };
-            
+
             encoder.Frames.Add(BitmapFrame.Create(decoder.Frames[0], null, metadata, decoder.Frames[0].ColorContexts));
 
             using (var fileStream = new FileStream(filename, FileMode.Create, FileAccess.Write))
@@ -685,7 +730,7 @@ namespace Slooh.Explorer.Controls
         private void CheckBoxFitsCheckedChanged(object sender, EventArgs e)
         {
             Setting.DownloadFits
-                = textBoxPatternFits.Enabled 
+                = textBoxPatternFits.Enabled
                 = checkBoxOverwriteFits.Enabled
                 = checkBoxFits.Checked;
         }
@@ -704,7 +749,7 @@ namespace Slooh.Explorer.Controls
         }
 
         private void ToolStripMenuItemOpenFolderClick(object sender, EventArgs e)
-        {            
+        {
             SelectedMissions.ForEach(mission =>
             {
                 var folder = GetMissionFolder(mission);
@@ -786,8 +831,8 @@ namespace Slooh.Explorer.Controls
                 }
             }
 
-            Invoke(new MethodInvoker(() => 
-            { 
+            Invoke(new MethodInvoker(() =>
+            {
                 Missions.Remove(mission);
                 FilteredMissions.Remove(mission);
                 DownloadTick();
@@ -809,6 +854,11 @@ namespace Slooh.Explorer.Controls
 
             var form = new LibraryForm { Folder = folder };
             form.ShowDialog(this);
+        }
+
+        private void ButtonRefreshClick(object sender, EventArgs e)
+        {
+            RefeshMissions();
         }
     }
 }

@@ -29,724 +29,828 @@ namespace Slooh.Explorer.Controls
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.splitContainer = new System.Windows.Forms.SplitContainer();
-            this.gridMissions = new Slooh.Explorer.Controls.SloohDataGridView();
-            this.ColumnTimestamp = new Slooh.Explorer.Filtering.DataGridViewFilterDateTimeColumn();
-            this.ColumnTitle = new Slooh.Explorer.Filtering.DataGridViewFilterTextColumn();
-            this.ColumnPicturesState = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnImageCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnFits = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.ColumnTelescope = new Slooh.Explorer.Filtering.DataGridViewFilterTextColumn();
-            this.ColumnInstrument = new Slooh.Explorer.Filtering.DataGridViewFilterTextColumn();
-            this.ColumnOwner = new Slooh.Explorer.Filtering.DataGridViewFilterTextColumn();
-            this.ColumnState = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contextMenuStripMissions = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItemOpenFolder = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemDelete = new System.Windows.Forms.ToolStripMenuItem();
-            this.tableLayoutPanelHeader = new System.Windows.Forms.TableLayoutPanel();
-            this.checkBoxOverwriteJpeg = new System.Windows.Forms.CheckBox();
-            this.textBoxPatternFits = new System.Windows.Forms.TextBox();
-            this.textBoxPatternPicture = new System.Windows.Forms.TextBox();
-            this.labelFolder = new System.Windows.Forms.Label();
-            this.textBoxFolder = new System.Windows.Forms.TextBox();
-            this.buttonSelectFolder = new Slooh.Explorer.Controls.SloohButton();
-            this.labelPatternMission = new System.Windows.Forms.Label();
-            this.textBoxPatternMission = new System.Windows.Forms.TextBox();
-            this.buttonDownload = new Slooh.Explorer.Controls.SloohButton();
-            this.progressBarDownload = new Slooh.Explorer.Controls.SloohProgressBar();
-            this.checkBoxFits = new System.Windows.Forms.CheckBox();
-            this.checkBoxOverwritePictures = new System.Windows.Forms.CheckBox();
-            this.checkBoxOverwriteFits = new System.Windows.Forms.CheckBox();
-            this.comboBoxInformationFormat = new System.Windows.Forms.ComboBox();
-            this.checkBoxJpeg = new System.Windows.Forms.CheckBox();
-            this.textBoxPatternJpeg = new System.Windows.Forms.TextBox();
-            this.textBoxPatternInformation = new System.Windows.Forms.TextBox();
-            this.checkBoxOverwriteInformation = new System.Windows.Forms.CheckBox();
-            this.checkBoxInformation = new System.Windows.Forms.CheckBox();
-            this.checkBoxPictures = new System.Windows.Forms.CheckBox();
-            this.buttonBrowse = new Slooh.Explorer.Controls.SloohButton();
-            this.tableLayoutPanelRight = new System.Windows.Forms.TableLayoutPanel();
-            this.labelName = new System.Windows.Forms.Label();
-            this.labelMemberSince = new System.Windows.Forms.Label();
-            this.labelTier = new System.Windows.Forms.Label();
-            this.labelGravityPoints = new System.Windows.Forms.Label();
-            this.labelNextTierPoints = new System.Windows.Forms.Label();
-            this.labelNextTier = new System.Windows.Forms.Label();
-            this.sloohProgressBar = new Slooh.Explorer.Controls.SloohProgressBar();
-            this.thumbnailsControl = new Slooh.Explorer.Controls.ThumbnailsControl();
-            this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
-            this.splitContainer.Panel1.SuspendLayout();
-            this.splitContainer.Panel2.SuspendLayout();
-            this.splitContainer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridMissions)).BeginInit();
-            this.contextMenuStripMissions.SuspendLayout();
-            this.tableLayoutPanelHeader.SuspendLayout();
-            this.tableLayoutPanelRight.SuspendLayout();
-            this.SuspendLayout();
+            components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            splitContainer = new System.Windows.Forms.SplitContainer();
+            tableLayoutPanelHeader = new System.Windows.Forms.TableLayoutPanel();
+            gridMissions = new SloohDataGridView();
+            ColumnTimestamp = new Filtering.DataGridViewFilterDateTimeColumn();
+            ColumnTitle = new Filtering.DataGridViewFilterTextColumn();
+            ColumnPicturesState = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ColumnImageCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ColumnFits = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            ColumnTelescope = new Filtering.DataGridViewFilterTextColumn();
+            ColumnInstrument = new Filtering.DataGridViewFilterTextColumn();
+            ColumnOwner = new Filtering.DataGridViewFilterTextColumn();
+            ColumnState = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            contextMenuStripMissions = new System.Windows.Forms.ContextMenuStrip(components);
+            toolStripMenuItemOpenFolder = new System.Windows.Forms.ToolStripMenuItem();
+            toolStripMenuItemDelete = new System.Windows.Forms.ToolStripMenuItem();
+            checkBoxOverwriteJpeg = new System.Windows.Forms.CheckBox();
+            textBoxPatternFits = new System.Windows.Forms.TextBox();
+            textBoxPatternPicture = new System.Windows.Forms.TextBox();
+            labelFolder = new System.Windows.Forms.Label();
+            textBoxFolder = new System.Windows.Forms.TextBox();
+            buttonSelectFolder = new SloohButton();
+            labelPatternMission = new System.Windows.Forms.Label();
+            textBoxPatternMission = new System.Windows.Forms.TextBox();
+            buttonDownload = new SloohButton();
+            progressBarDownload = new SloohProgressBar();
+            checkBoxFits = new System.Windows.Forms.CheckBox();
+            checkBoxOverwritePictures = new System.Windows.Forms.CheckBox();
+            checkBoxOverwriteFits = new System.Windows.Forms.CheckBox();
+            comboBoxInformationFormat = new System.Windows.Forms.ComboBox();
+            checkBoxJpeg = new System.Windows.Forms.CheckBox();
+            textBoxPatternJpeg = new System.Windows.Forms.TextBox();
+            textBoxPatternInformation = new System.Windows.Forms.TextBox();
+            checkBoxOverwriteInformation = new System.Windows.Forms.CheckBox();
+            checkBoxInformation = new System.Windows.Forms.CheckBox();
+            checkBoxPictures = new System.Windows.Forms.CheckBox();
+            buttonBrowse = new SloohButton();
+            buttonFetch = new SloohButton();
+            upDownStart = new System.Windows.Forms.NumericUpDown();
+            labelStart = new System.Windows.Forms.Label();
+            labelLimit = new System.Windows.Forms.Label();
+            upDownLimit = new System.Windows.Forms.NumericUpDown();
+            checkBoxCaptures = new System.Windows.Forms.CheckBox();
+            checkBoxMissions = new System.Windows.Forms.CheckBox();
+            tableLayoutPanelRight = new System.Windows.Forms.TableLayoutPanel();
+            labelName = new System.Windows.Forms.Label();
+            labelMemberSince = new System.Windows.Forms.Label();
+            labelTier = new System.Windows.Forms.Label();
+            labelGravityPoints = new System.Windows.Forms.Label();
+            labelNextTierPoints = new System.Windows.Forms.Label();
+            labelNextTier = new System.Windows.Forms.Label();
+            sloohProgressBar = new SloohProgressBar();
+            thumbnailsControl = new ThumbnailsControl();
+            folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+            ((System.ComponentModel.ISupportInitialize)splitContainer).BeginInit();
+            splitContainer.Panel1.SuspendLayout();
+            splitContainer.Panel2.SuspendLayout();
+            splitContainer.SuspendLayout();
+            tableLayoutPanelHeader.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)gridMissions).BeginInit();
+            contextMenuStripMissions.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)upDownStart).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)upDownLimit).BeginInit();
+            tableLayoutPanelRight.SuspendLayout();
+            SuspendLayout();
             // 
             // splitContainer
             // 
-            this.splitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
-            this.splitContainer.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer.Margin = new System.Windows.Forms.Padding(4);
-            this.splitContainer.Name = "splitContainer";
+            splitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            splitContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+            splitContainer.Location = new System.Drawing.Point(0, 0);
+            splitContainer.Margin = new System.Windows.Forms.Padding(4);
+            splitContainer.Name = "splitContainer";
             // 
             // splitContainer.Panel1
             // 
-            this.splitContainer.Panel1.Controls.Add(this.gridMissions);
-            this.splitContainer.Panel1.Controls.Add(this.tableLayoutPanelHeader);
+            splitContainer.Panel1.Controls.Add(tableLayoutPanelHeader);
             // 
             // splitContainer.Panel2
             // 
-            this.splitContainer.Panel2.Controls.Add(this.tableLayoutPanelRight);
-            this.splitContainer.Size = new System.Drawing.Size(1452, 927);
-            this.splitContainer.SplitterDistance = 1153;
-            this.splitContainer.SplitterWidth = 5;
-            this.splitContainer.TabIndex = 0;
-            // 
-            // gridMissions
-            // 
-            this.gridMissions.AllowUserToAddRows = false;
-            this.gridMissions.AllowUserToDeleteRows = false;
-            this.gridMissions.AllowUserToResizeRows = false;
-            this.gridMissions.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.gridMissions.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
-            this.gridMissions.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(57)))), ((int)(((byte)(68)))));
-            this.gridMissions.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.gridMissions.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(57)))), ((int)(((byte)(68)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 30);
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(70)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridMissions.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.gridMissions.ColumnHeadersHeight = 60;
-            this.gridMissions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.gridMissions.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ColumnTimestamp,
-            this.ColumnTitle,
-            this.ColumnPicturesState,
-            this.ColumnImageCount,
-            this.ColumnFits,
-            this.ColumnTelescope,
-            this.ColumnInstrument,
-            this.ColumnOwner,
-            this.ColumnState});
-            this.gridMissions.ContextMenuStrip = this.contextMenuStripMissions;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridMissions.DefaultCellStyle = dataGridViewCellStyle3;
-            this.gridMissions.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridMissions.EnableHeadersVisualStyles = false;
-            this.helpProvider.SetHelpUrl(this.gridMissions, "images.html");
-            this.gridMissions.Location = new System.Drawing.Point(0, 397);
-            this.gridMissions.Margin = new System.Windows.Forms.Padding(4);
-            this.gridMissions.Name = "gridMissions";
-            this.gridMissions.ReadOnly = true;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridMissions.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.gridMissions.RowHeadersVisible = false;
-            this.gridMissions.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(70)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(145)))), ((int)(((byte)(87)))));
-            this.gridMissions.RowsDefaultCellStyle = dataGridViewCellStyle5;
-            this.gridMissions.RowTemplate.Height = 25;
-            this.gridMissions.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridMissions.ShowEditingIcon = false;
-            this.gridMissions.Size = new System.Drawing.Size(1153, 530);
-            this.gridMissions.TabIndex = 0;
-            this.gridMissions.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GridMissionsCellFormatting);
-            this.gridMissions.SelectionChanged += new System.EventHandler(this.GridMissionsSelectionChanged);
-            // 
-            // ColumnTimestamp
-            // 
-            this.ColumnTimestamp.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.ColumnTimestamp.DataPropertyName = "Timestamp";
-            this.ColumnTimestamp.Frozen = true;
-            this.ColumnTimestamp.HeaderText = "Date";
-            this.ColumnTimestamp.MinimumWidth = 6;
-            this.ColumnTimestamp.Name = "ColumnTimestamp";
-            this.ColumnTimestamp.ReadOnly = true;
-            this.ColumnTimestamp.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnTimestamp.Width = 150;
-            // 
-            // ColumnTitle
-            // 
-            this.ColumnTitle.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.ColumnTitle.DataPropertyName = "Title";
-            this.ColumnTitle.Frozen = true;
-            this.ColumnTitle.HeaderText = "Title";
-            this.ColumnTitle.MinimumWidth = 6;
-            this.ColumnTitle.Name = "ColumnTitle";
-            this.ColumnTitle.ReadOnly = true;
-            this.ColumnTitle.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnTitle.Width = 250;
-            // 
-            // ColumnPicturesState
-            // 
-            this.ColumnPicturesState.DataPropertyName = "PicturesState";
-            this.ColumnPicturesState.Frozen = true;
-            this.ColumnPicturesState.HeaderText = "P";
-            this.ColumnPicturesState.MinimumWidth = 6;
-            this.ColumnPicturesState.Name = "ColumnPicturesState";
-            this.ColumnPicturesState.ReadOnly = true;
-            this.ColumnPicturesState.Width = 51;
-            // 
-            // ColumnImageCount
-            // 
-            this.ColumnImageCount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.ColumnImageCount.DataPropertyName = "ImageCount";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.ColumnImageCount.DefaultCellStyle = dataGridViewCellStyle2;
-            this.ColumnImageCount.Frozen = true;
-            this.ColumnImageCount.HeaderText = "Images";
-            this.ColumnImageCount.MinimumWidth = 6;
-            this.ColumnImageCount.Name = "ColumnImageCount";
-            this.ColumnImageCount.ReadOnly = true;
-            this.ColumnImageCount.Width = 84;
-            // 
-            // ColumnFits
-            // 
-            this.ColumnFits.DataPropertyName = "HasFits";
-            this.ColumnFits.HeaderText = "FITS";
-            this.ColumnFits.MinimumWidth = 6;
-            this.ColumnFits.Name = "ColumnFits";
-            this.ColumnFits.ReadOnly = true;
-            this.ColumnFits.Width = 53;
-            // 
-            // ColumnTelescope
-            // 
-            this.ColumnTelescope.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.ColumnTelescope.DataPropertyName = "Telescope";
-            this.ColumnTelescope.HeaderText = "Telescope";
-            this.ColumnTelescope.MinimumWidth = 6;
-            this.ColumnTelescope.Name = "ColumnTelescope";
-            this.ColumnTelescope.ReadOnly = true;
-            this.ColumnTelescope.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnTelescope.Width = 125;
-            // 
-            // ColumnInstrument
-            // 
-            this.ColumnInstrument.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.ColumnInstrument.DataPropertyName = "Instrument";
-            this.ColumnInstrument.HeaderText = "Instrument";
-            this.ColumnInstrument.MinimumWidth = 6;
-            this.ColumnInstrument.Name = "ColumnInstrument";
-            this.ColumnInstrument.ReadOnly = true;
-            this.ColumnInstrument.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnInstrument.Width = 110;
-            // 
-            // ColumnOwner
-            // 
-            this.ColumnOwner.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.ColumnOwner.DataPropertyName = "Owner";
-            this.ColumnOwner.HeaderText = "Owner";
-            this.ColumnOwner.MinimumWidth = 6;
-            this.ColumnOwner.Name = "ColumnOwner";
-            this.ColumnOwner.ReadOnly = true;
-            this.ColumnOwner.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnOwner.Width = 150;
-            // 
-            // ColumnState
-            // 
-            this.ColumnState.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.ColumnState.DataPropertyName = "State";
-            this.ColumnState.HeaderText = "State";
-            this.ColumnState.MinimumWidth = 6;
-            this.ColumnState.Name = "ColumnState";
-            this.ColumnState.ReadOnly = true;
-            this.ColumnState.Width = 125;
-            // 
-            // contextMenuStripMissions
-            // 
-            this.contextMenuStripMissions.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.contextMenuStripMissions.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItemOpenFolder,
-            this.toolStripMenuItemDelete});
-            this.contextMenuStripMissions.Name = "contextMenuStripMissions";
-            this.contextMenuStripMissions.Size = new System.Drawing.Size(170, 52);
-            this.contextMenuStripMissions.Opening += new System.ComponentModel.CancelEventHandler(this.ContextMenuStripMissionsOpening);
-            // 
-            // toolStripMenuItemOpenFolder
-            // 
-            this.toolStripMenuItemOpenFolder.Name = "toolStripMenuItemOpenFolder";
-            this.toolStripMenuItemOpenFolder.Size = new System.Drawing.Size(169, 24);
-            this.toolStripMenuItemOpenFolder.Text = "Open Folder...";
-            this.toolStripMenuItemOpenFolder.Click += new System.EventHandler(this.ToolStripMenuItemOpenFolderClick);
-            // 
-            // toolStripMenuItemDelete
-            // 
-            this.toolStripMenuItemDelete.Name = "toolStripMenuItemDelete";
-            this.toolStripMenuItemDelete.Size = new System.Drawing.Size(169, 24);
-            this.toolStripMenuItemDelete.Text = "Delete";
-            this.toolStripMenuItemDelete.Click += new System.EventHandler(this.ToolStripMenuItemDeleteClick);
+            splitContainer.Panel2.Controls.Add(tableLayoutPanelRight);
+            splitContainer.Size = new System.Drawing.Size(1621, 927);
+            splitContainer.SplitterDistance = 1285;
+            splitContainer.SplitterWidth = 5;
+            splitContainer.TabIndex = 0;
             // 
             // tableLayoutPanelHeader
             // 
-            this.tableLayoutPanelHeader.BackColor = System.Drawing.Color.Transparent;
-            this.tableLayoutPanelHeader.ColumnCount = 4;
-            this.tableLayoutPanelHeader.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 147F));
-            this.tableLayoutPanelHeader.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelHeader.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 153F));
-            this.tableLayoutPanelHeader.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 153F));
-            this.tableLayoutPanelHeader.Controls.Add(this.checkBoxOverwriteJpeg, 2, 4);
-            this.tableLayoutPanelHeader.Controls.Add(this.textBoxPatternFits, 1, 5);
-            this.tableLayoutPanelHeader.Controls.Add(this.textBoxPatternPicture, 1, 3);
-            this.tableLayoutPanelHeader.Controls.Add(this.labelFolder, 0, 0);
-            this.tableLayoutPanelHeader.Controls.Add(this.textBoxFolder, 1, 0);
-            this.tableLayoutPanelHeader.Controls.Add(this.buttonSelectFolder, 2, 0);
-            this.tableLayoutPanelHeader.Controls.Add(this.labelPatternMission, 0, 1);
-            this.tableLayoutPanelHeader.Controls.Add(this.textBoxPatternMission, 1, 1);
-            this.tableLayoutPanelHeader.Controls.Add(this.buttonDownload, 3, 6);
-            this.tableLayoutPanelHeader.Controls.Add(this.progressBarDownload, 0, 7);
-            this.tableLayoutPanelHeader.Controls.Add(this.checkBoxFits, 0, 5);
-            this.tableLayoutPanelHeader.Controls.Add(this.checkBoxOverwritePictures, 2, 3);
-            this.tableLayoutPanelHeader.Controls.Add(this.checkBoxOverwriteFits, 2, 5);
-            this.tableLayoutPanelHeader.Controls.Add(this.comboBoxInformationFormat, 3, 2);
-            this.tableLayoutPanelHeader.Controls.Add(this.checkBoxJpeg, 0, 4);
-            this.tableLayoutPanelHeader.Controls.Add(this.textBoxPatternJpeg, 1, 4);
-            this.tableLayoutPanelHeader.Controls.Add(this.textBoxPatternInformation, 1, 2);
-            this.tableLayoutPanelHeader.Controls.Add(this.checkBoxOverwriteInformation, 2, 2);
-            this.tableLayoutPanelHeader.Controls.Add(this.checkBoxInformation, 0, 2);
-            this.tableLayoutPanelHeader.Controls.Add(this.checkBoxPictures, 0, 3);
-            this.tableLayoutPanelHeader.Controls.Add(this.buttonBrowse, 3, 0);
-            this.tableLayoutPanelHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanelHeader.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanelHeader.Margin = new System.Windows.Forms.Padding(4);
-            this.tableLayoutPanelHeader.Name = "tableLayoutPanelHeader";
-            this.tableLayoutPanelHeader.RowCount = 9;
-            this.tableLayoutPanelHeader.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tableLayoutPanelHeader.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tableLayoutPanelHeader.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tableLayoutPanelHeader.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tableLayoutPanelHeader.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tableLayoutPanelHeader.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tableLayoutPanelHeader.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tableLayoutPanelHeader.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tableLayoutPanelHeader.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelHeader.Size = new System.Drawing.Size(1153, 397);
-            this.tableLayoutPanelHeader.TabIndex = 1;
+            tableLayoutPanelHeader.BackColor = System.Drawing.Color.Transparent;
+            tableLayoutPanelHeader.ColumnCount = 9;
+            tableLayoutPanelHeader.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 147F));
+            tableLayoutPanelHeader.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 153F));
+            tableLayoutPanelHeader.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 153F));
+            tableLayoutPanelHeader.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 153F));
+            tableLayoutPanelHeader.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            tableLayoutPanelHeader.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 170F));
+            tableLayoutPanelHeader.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 170F));
+            tableLayoutPanelHeader.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 153F));
+            tableLayoutPanelHeader.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 153F));
+            tableLayoutPanelHeader.Controls.Add(gridMissions, 0, 9);
+            tableLayoutPanelHeader.Controls.Add(checkBoxOverwriteJpeg, 7, 4);
+            tableLayoutPanelHeader.Controls.Add(textBoxPatternFits, 1, 5);
+            tableLayoutPanelHeader.Controls.Add(textBoxPatternPicture, 1, 3);
+            tableLayoutPanelHeader.Controls.Add(labelFolder, 0, 0);
+            tableLayoutPanelHeader.Controls.Add(textBoxFolder, 1, 0);
+            tableLayoutPanelHeader.Controls.Add(buttonSelectFolder, 7, 0);
+            tableLayoutPanelHeader.Controls.Add(labelPatternMission, 0, 1);
+            tableLayoutPanelHeader.Controls.Add(textBoxPatternMission, 1, 1);
+            tableLayoutPanelHeader.Controls.Add(buttonDownload, 8, 6);
+            tableLayoutPanelHeader.Controls.Add(progressBarDownload, 0, 7);
+            tableLayoutPanelHeader.Controls.Add(checkBoxFits, 0, 5);
+            tableLayoutPanelHeader.Controls.Add(checkBoxOverwritePictures, 7, 3);
+            tableLayoutPanelHeader.Controls.Add(checkBoxOverwriteFits, 7, 5);
+            tableLayoutPanelHeader.Controls.Add(comboBoxInformationFormat, 8, 2);
+            tableLayoutPanelHeader.Controls.Add(checkBoxJpeg, 0, 4);
+            tableLayoutPanelHeader.Controls.Add(textBoxPatternJpeg, 1, 4);
+            tableLayoutPanelHeader.Controls.Add(textBoxPatternInformation, 1, 2);
+            tableLayoutPanelHeader.Controls.Add(checkBoxOverwriteInformation, 7, 2);
+            tableLayoutPanelHeader.Controls.Add(checkBoxInformation, 0, 2);
+            tableLayoutPanelHeader.Controls.Add(checkBoxPictures, 0, 3);
+            tableLayoutPanelHeader.Controls.Add(buttonBrowse, 8, 0);
+            tableLayoutPanelHeader.Controls.Add(buttonFetch, 8, 8);
+            tableLayoutPanelHeader.Controls.Add(upDownStart, 1, 8);
+            tableLayoutPanelHeader.Controls.Add(labelStart, 0, 8);
+            tableLayoutPanelHeader.Controls.Add(labelLimit, 2, 8);
+            tableLayoutPanelHeader.Controls.Add(upDownLimit, 3, 8);
+            tableLayoutPanelHeader.Controls.Add(checkBoxCaptures, 6, 8);
+            tableLayoutPanelHeader.Controls.Add(checkBoxMissions, 5, 8);
+            tableLayoutPanelHeader.Dock = System.Windows.Forms.DockStyle.Fill;
+            tableLayoutPanelHeader.Location = new System.Drawing.Point(0, 0);
+            tableLayoutPanelHeader.Margin = new System.Windows.Forms.Padding(4);
+            tableLayoutPanelHeader.Name = "tableLayoutPanelHeader";
+            tableLayoutPanelHeader.RowCount = 9;
+            tableLayoutPanelHeader.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+            tableLayoutPanelHeader.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+            tableLayoutPanelHeader.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+            tableLayoutPanelHeader.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+            tableLayoutPanelHeader.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+            tableLayoutPanelHeader.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+            tableLayoutPanelHeader.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+            tableLayoutPanelHeader.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+            tableLayoutPanelHeader.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+            tableLayoutPanelHeader.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+            tableLayoutPanelHeader.Size = new System.Drawing.Size(1285, 927);
+            tableLayoutPanelHeader.TabIndex = 1;
+            // 
+            // gridMissions
+            // 
+            gridMissions.AllowUserToAddRows = false;
+            gridMissions.AllowUserToDeleteRows = false;
+            gridMissions.AllowUserToResizeRows = false;
+            gridMissions.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            gridMissions.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
+            gridMissions.BackgroundColor = System.Drawing.Color.FromArgb(44, 57, 68);
+            gridMissions.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            gridMissions.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(44, 57, 68);
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(0, 0, 0, 30);
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(50, 70, 94);
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            gridMissions.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            gridMissions.ColumnHeadersHeight = 60;
+            gridMissions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            gridMissions.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { ColumnTimestamp, ColumnTitle, ColumnPicturesState, ColumnImageCount, ColumnFits, ColumnTelescope, ColumnInstrument, ColumnOwner, ColumnState });
+            tableLayoutPanelHeader.SetColumnSpan(gridMissions, 9);
+            gridMissions.ContextMenuStrip = contextMenuStripMissions;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            gridMissions.DefaultCellStyle = dataGridViewCellStyle8;
+            gridMissions.Dock = System.Windows.Forms.DockStyle.Fill;
+            gridMissions.EnableHeadersVisualStyles = false;
+            helpProvider.SetHelpUrl(gridMissions, "images.html");
+            gridMissions.Location = new System.Drawing.Point(4, 409);
+            gridMissions.Margin = new System.Windows.Forms.Padding(4);
+            gridMissions.Name = "gridMissions";
+            gridMissions.ReadOnly = true;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            gridMissions.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            gridMissions.RowHeadersVisible = false;
+            gridMissions.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(50, 70, 94);
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(179, 145, 87);
+            gridMissions.RowsDefaultCellStyle = dataGridViewCellStyle10;
+            gridMissions.RowTemplate.Height = 25;
+            gridMissions.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            gridMissions.ShowEditingIcon = false;
+            gridMissions.Size = new System.Drawing.Size(1277, 514);
+            gridMissions.TabIndex = 0;
+            gridMissions.CellFormatting += GridMissionsCellFormatting;
+            gridMissions.SelectionChanged += GridMissionsSelectionChanged;
+            // 
+            // ColumnTimestamp
+            // 
+            ColumnTimestamp.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            ColumnTimestamp.DataPropertyName = "Timestamp";
+            ColumnTimestamp.Frozen = true;
+            ColumnTimestamp.HeaderText = "Date";
+            ColumnTimestamp.MinimumWidth = 6;
+            ColumnTimestamp.Name = "ColumnTimestamp";
+            ColumnTimestamp.ReadOnly = true;
+            ColumnTimestamp.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            ColumnTimestamp.Width = 150;
+            // 
+            // ColumnTitle
+            // 
+            ColumnTitle.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            ColumnTitle.DataPropertyName = "Title";
+            ColumnTitle.Frozen = true;
+            ColumnTitle.HeaderText = "Title";
+            ColumnTitle.MinimumWidth = 6;
+            ColumnTitle.Name = "ColumnTitle";
+            ColumnTitle.ReadOnly = true;
+            ColumnTitle.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            ColumnTitle.Width = 250;
+            // 
+            // ColumnPicturesState
+            // 
+            ColumnPicturesState.DataPropertyName = "PicturesState";
+            ColumnPicturesState.Frozen = true;
+            ColumnPicturesState.HeaderText = "P";
+            ColumnPicturesState.MinimumWidth = 6;
+            ColumnPicturesState.Name = "ColumnPicturesState";
+            ColumnPicturesState.ReadOnly = true;
+            ColumnPicturesState.Width = 51;
+            // 
+            // ColumnImageCount
+            // 
+            ColumnImageCount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            ColumnImageCount.DataPropertyName = "ImageCount";
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            ColumnImageCount.DefaultCellStyle = dataGridViewCellStyle7;
+            ColumnImageCount.Frozen = true;
+            ColumnImageCount.HeaderText = "Images";
+            ColumnImageCount.MinimumWidth = 6;
+            ColumnImageCount.Name = "ColumnImageCount";
+            ColumnImageCount.ReadOnly = true;
+            ColumnImageCount.Width = 84;
+            // 
+            // ColumnFits
+            // 
+            ColumnFits.DataPropertyName = "HasFits";
+            ColumnFits.HeaderText = "FITS";
+            ColumnFits.MinimumWidth = 6;
+            ColumnFits.Name = "ColumnFits";
+            ColumnFits.ReadOnly = true;
+            ColumnFits.Width = 53;
+            // 
+            // ColumnTelescope
+            // 
+            ColumnTelescope.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            ColumnTelescope.DataPropertyName = "Telescope";
+            ColumnTelescope.HeaderText = "Telescope";
+            ColumnTelescope.MinimumWidth = 6;
+            ColumnTelescope.Name = "ColumnTelescope";
+            ColumnTelescope.ReadOnly = true;
+            ColumnTelescope.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            ColumnTelescope.Width = 125;
+            // 
+            // ColumnInstrument
+            // 
+            ColumnInstrument.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            ColumnInstrument.DataPropertyName = "Instrument";
+            ColumnInstrument.HeaderText = "Instrument";
+            ColumnInstrument.MinimumWidth = 6;
+            ColumnInstrument.Name = "ColumnInstrument";
+            ColumnInstrument.ReadOnly = true;
+            ColumnInstrument.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            ColumnInstrument.Width = 110;
+            // 
+            // ColumnOwner
+            // 
+            ColumnOwner.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            ColumnOwner.DataPropertyName = "Owner";
+            ColumnOwner.HeaderText = "Owner";
+            ColumnOwner.MinimumWidth = 6;
+            ColumnOwner.Name = "ColumnOwner";
+            ColumnOwner.ReadOnly = true;
+            ColumnOwner.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            ColumnOwner.Width = 150;
+            // 
+            // ColumnState
+            // 
+            ColumnState.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            ColumnState.DataPropertyName = "State";
+            ColumnState.HeaderText = "State";
+            ColumnState.MinimumWidth = 6;
+            ColumnState.Name = "ColumnState";
+            ColumnState.ReadOnly = true;
+            ColumnState.Width = 125;
+            // 
+            // contextMenuStripMissions
+            // 
+            contextMenuStripMissions.ImageScalingSize = new System.Drawing.Size(20, 20);
+            contextMenuStripMissions.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { toolStripMenuItemOpenFolder, toolStripMenuItemDelete });
+            contextMenuStripMissions.Name = "contextMenuStripMissions";
+            contextMenuStripMissions.Size = new System.Drawing.Size(170, 52);
+            contextMenuStripMissions.Opening += ContextMenuStripMissionsOpening;
+            // 
+            // toolStripMenuItemOpenFolder
+            // 
+            toolStripMenuItemOpenFolder.Name = "toolStripMenuItemOpenFolder";
+            toolStripMenuItemOpenFolder.Size = new System.Drawing.Size(169, 24);
+            toolStripMenuItemOpenFolder.Text = "Open Folder...";
+            toolStripMenuItemOpenFolder.Click += ToolStripMenuItemOpenFolderClick;
+            // 
+            // toolStripMenuItemDelete
+            // 
+            toolStripMenuItemDelete.Name = "toolStripMenuItemDelete";
+            toolStripMenuItemDelete.Size = new System.Drawing.Size(169, 24);
+            toolStripMenuItemDelete.Text = "Delete";
+            toolStripMenuItemDelete.Click += ToolStripMenuItemDeleteClick;
             // 
             // checkBoxOverwriteJpeg
             // 
-            this.checkBoxOverwriteJpeg.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkBoxOverwriteJpeg.Enabled = false;
-            this.checkBoxOverwriteJpeg.Location = new System.Drawing.Point(851, 184);
-            this.checkBoxOverwriteJpeg.Margin = new System.Windows.Forms.Padding(4);
-            this.checkBoxOverwriteJpeg.Name = "checkBoxOverwriteJpeg";
-            this.checkBoxOverwriteJpeg.Size = new System.Drawing.Size(145, 37);
-            this.checkBoxOverwriteJpeg.TabIndex = 20;
-            this.checkBoxOverwriteJpeg.Text = "Overwrite";
-            this.checkBoxOverwriteJpeg.UseVisualStyleBackColor = true;
+            checkBoxOverwriteJpeg.Dock = System.Windows.Forms.DockStyle.Fill;
+            checkBoxOverwriteJpeg.Enabled = false;
+            checkBoxOverwriteJpeg.Location = new System.Drawing.Point(983, 184);
+            checkBoxOverwriteJpeg.Margin = new System.Windows.Forms.Padding(4);
+            checkBoxOverwriteJpeg.Name = "checkBoxOverwriteJpeg";
+            checkBoxOverwriteJpeg.Size = new System.Drawing.Size(145, 37);
+            checkBoxOverwriteJpeg.TabIndex = 20;
+            checkBoxOverwriteJpeg.Text = "Overwrite";
+            checkBoxOverwriteJpeg.UseVisualStyleBackColor = true;
             // 
             // textBoxPatternFits
             // 
-            this.textBoxPatternFits.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxPatternFits.Enabled = false;
-            this.textBoxPatternFits.Location = new System.Drawing.Point(152, 230);
-            this.textBoxPatternFits.Margin = new System.Windows.Forms.Padding(5);
-            this.textBoxPatternFits.Name = "textBoxPatternFits";
-            this.textBoxPatternFits.Size = new System.Drawing.Size(690, 34);
-            this.textBoxPatternFits.TabIndex = 10;
-            this.textBoxPatternFits.TextChanged += new System.EventHandler(this.TextBoxPatternFitsTextChanged);
+            tableLayoutPanelHeader.SetColumnSpan(textBoxPatternFits, 6);
+            textBoxPatternFits.Dock = System.Windows.Forms.DockStyle.Fill;
+            textBoxPatternFits.Enabled = false;
+            textBoxPatternFits.Location = new System.Drawing.Point(152, 230);
+            textBoxPatternFits.Margin = new System.Windows.Forms.Padding(5);
+            textBoxPatternFits.Name = "textBoxPatternFits";
+            textBoxPatternFits.Size = new System.Drawing.Size(822, 34);
+            textBoxPatternFits.TabIndex = 10;
+            textBoxPatternFits.TextChanged += TextBoxPatternFitsTextChanged;
             // 
             // textBoxPatternPicture
             // 
-            this.textBoxPatternPicture.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxPatternPicture.Location = new System.Drawing.Point(152, 140);
-            this.textBoxPatternPicture.Margin = new System.Windows.Forms.Padding(5);
-            this.textBoxPatternPicture.Name = "textBoxPatternPicture";
-            this.textBoxPatternPicture.Size = new System.Drawing.Size(690, 34);
-            this.textBoxPatternPicture.TabIndex = 8;
-            this.textBoxPatternPicture.TextChanged += new System.EventHandler(this.TextBoxPatternPictureTextChanged);
+            tableLayoutPanelHeader.SetColumnSpan(textBoxPatternPicture, 6);
+            textBoxPatternPicture.Dock = System.Windows.Forms.DockStyle.Fill;
+            textBoxPatternPicture.Location = new System.Drawing.Point(152, 140);
+            textBoxPatternPicture.Margin = new System.Windows.Forms.Padding(5);
+            textBoxPatternPicture.Name = "textBoxPatternPicture";
+            textBoxPatternPicture.Size = new System.Drawing.Size(822, 34);
+            textBoxPatternPicture.TabIndex = 8;
+            textBoxPatternPicture.TextChanged += TextBoxPatternPictureTextChanged;
             // 
             // labelFolder
             // 
-            this.labelFolder.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelFolder.Location = new System.Drawing.Point(5, 0);
-            this.labelFolder.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.labelFolder.Name = "labelFolder";
-            this.labelFolder.Size = new System.Drawing.Size(137, 45);
-            this.labelFolder.TabIndex = 0;
-            this.labelFolder.Text = "Folder";
-            this.labelFolder.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            labelFolder.Dock = System.Windows.Forms.DockStyle.Fill;
+            labelFolder.Location = new System.Drawing.Point(5, 0);
+            labelFolder.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            labelFolder.Name = "labelFolder";
+            labelFolder.Size = new System.Drawing.Size(137, 45);
+            labelFolder.TabIndex = 0;
+            labelFolder.Text = "Folder";
+            labelFolder.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // textBoxFolder
             // 
-            this.textBoxFolder.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.helpProvider.SetHelpUrl(this.textBoxFolder, "options.html");
-            this.textBoxFolder.Location = new System.Drawing.Point(152, 5);
-            this.textBoxFolder.Margin = new System.Windows.Forms.Padding(5);
-            this.textBoxFolder.Name = "textBoxFolder";
-            this.textBoxFolder.Size = new System.Drawing.Size(690, 34);
-            this.textBoxFolder.TabIndex = 1;
-            this.textBoxFolder.TextChanged += new System.EventHandler(this.TextBoxFolderTextChanged);
+            tableLayoutPanelHeader.SetColumnSpan(textBoxFolder, 6);
+            textBoxFolder.Dock = System.Windows.Forms.DockStyle.Fill;
+            helpProvider.SetHelpUrl(textBoxFolder, "options.html");
+            textBoxFolder.Location = new System.Drawing.Point(152, 5);
+            textBoxFolder.Margin = new System.Windows.Forms.Padding(5);
+            textBoxFolder.Name = "textBoxFolder";
+            textBoxFolder.Size = new System.Drawing.Size(822, 34);
+            textBoxFolder.TabIndex = 1;
+            textBoxFolder.TextChanged += TextBoxFolderTextChanged;
             // 
             // buttonSelectFolder
             // 
-            this.buttonSelectFolder.BackColor = System.Drawing.Color.Transparent;
-            this.buttonSelectFolder.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonSelectFolder.FlatAppearance.BorderColor = System.Drawing.Color.WhiteSmoke;
-            this.buttonSelectFolder.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(160)))), ((int)(((byte)(104)))));
-            this.buttonSelectFolder.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(52)))), ((int)(((byte)(70)))));
-            this.buttonSelectFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.helpProvider.SetHelpUrl(this.buttonSelectFolder, "options.html");
-            this.buttonSelectFolder.Location = new System.Drawing.Point(851, 4);
-            this.buttonSelectFolder.Margin = new System.Windows.Forms.Padding(4);
-            this.buttonSelectFolder.Name = "buttonSelectFolder";
-            this.buttonSelectFolder.Size = new System.Drawing.Size(145, 37);
-            this.buttonSelectFolder.TabIndex = 2;
-            this.buttonSelectFolder.Text = "Select";
-            this.buttonSelectFolder.UseVisualStyleBackColor = false;
-            this.buttonSelectFolder.Click += new System.EventHandler(this.ButtonSelectFolderClick);
+            buttonSelectFolder.BackColor = System.Drawing.Color.Transparent;
+            buttonSelectFolder.Dock = System.Windows.Forms.DockStyle.Fill;
+            buttonSelectFolder.FlatAppearance.BorderColor = System.Drawing.Color.WhiteSmoke;
+            buttonSelectFolder.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(194, 160, 104);
+            buttonSelectFolder.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(27, 52, 70);
+            buttonSelectFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            helpProvider.SetHelpUrl(buttonSelectFolder, "options.html");
+            buttonSelectFolder.Location = new System.Drawing.Point(983, 4);
+            buttonSelectFolder.Margin = new System.Windows.Forms.Padding(4);
+            buttonSelectFolder.Name = "buttonSelectFolder";
+            buttonSelectFolder.Size = new System.Drawing.Size(145, 37);
+            buttonSelectFolder.TabIndex = 2;
+            buttonSelectFolder.Text = "Select";
+            buttonSelectFolder.UseVisualStyleBackColor = false;
+            buttonSelectFolder.Click += ButtonSelectFolderClick;
             // 
             // labelPatternMission
             // 
-            this.labelPatternMission.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelPatternMission.Location = new System.Drawing.Point(5, 45);
-            this.labelPatternMission.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.labelPatternMission.Name = "labelPatternMission";
-            this.labelPatternMission.Size = new System.Drawing.Size(137, 45);
-            this.labelPatternMission.TabIndex = 3;
-            this.labelPatternMission.Text = "Mission";
-            this.labelPatternMission.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            labelPatternMission.Dock = System.Windows.Forms.DockStyle.Fill;
+            labelPatternMission.Location = new System.Drawing.Point(5, 45);
+            labelPatternMission.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            labelPatternMission.Name = "labelPatternMission";
+            labelPatternMission.Size = new System.Drawing.Size(137, 45);
+            labelPatternMission.TabIndex = 3;
+            labelPatternMission.Text = "Mission";
+            labelPatternMission.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // textBoxPatternMission
             // 
-            this.textBoxPatternMission.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxPatternMission.Location = new System.Drawing.Point(152, 50);
-            this.textBoxPatternMission.Margin = new System.Windows.Forms.Padding(5);
-            this.textBoxPatternMission.Name = "textBoxPatternMission";
-            this.textBoxPatternMission.Size = new System.Drawing.Size(690, 34);
-            this.textBoxPatternMission.TabIndex = 4;
-            this.textBoxPatternMission.TextChanged += new System.EventHandler(this.TextBoxPatternMissionTextChanged);
+            tableLayoutPanelHeader.SetColumnSpan(textBoxPatternMission, 6);
+            textBoxPatternMission.Dock = System.Windows.Forms.DockStyle.Fill;
+            textBoxPatternMission.Location = new System.Drawing.Point(152, 50);
+            textBoxPatternMission.Margin = new System.Windows.Forms.Padding(5);
+            textBoxPatternMission.Name = "textBoxPatternMission";
+            textBoxPatternMission.Size = new System.Drawing.Size(822, 34);
+            textBoxPatternMission.TabIndex = 4;
+            textBoxPatternMission.TextChanged += TextBoxPatternMissionTextChanged;
             // 
             // buttonDownload
             // 
-            this.buttonDownload.BackColor = System.Drawing.Color.Transparent;
-            this.buttonDownload.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonDownload.Enabled = false;
-            this.buttonDownload.FlatAppearance.BorderColor = System.Drawing.Color.WhiteSmoke;
-            this.buttonDownload.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(160)))), ((int)(((byte)(104)))));
-            this.buttonDownload.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(52)))), ((int)(((byte)(70)))));
-            this.buttonDownload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonDownload.Location = new System.Drawing.Point(1004, 274);
-            this.buttonDownload.Margin = new System.Windows.Forms.Padding(4);
-            this.buttonDownload.Name = "buttonDownload";
-            this.buttonDownload.Size = new System.Drawing.Size(145, 37);
-            this.buttonDownload.TabIndex = 5;
-            this.buttonDownload.Text = "Download";
-            this.buttonDownload.UseVisualStyleBackColor = false;
-            this.buttonDownload.Click += new System.EventHandler(this.ButtonDownloadClick);
+            buttonDownload.BackColor = System.Drawing.Color.Transparent;
+            buttonDownload.Dock = System.Windows.Forms.DockStyle.Fill;
+            buttonDownload.Enabled = false;
+            buttonDownload.FlatAppearance.BorderColor = System.Drawing.Color.WhiteSmoke;
+            buttonDownload.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(194, 160, 104);
+            buttonDownload.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(27, 52, 70);
+            buttonDownload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            buttonDownload.Location = new System.Drawing.Point(1136, 274);
+            buttonDownload.Margin = new System.Windows.Forms.Padding(4);
+            buttonDownload.Name = "buttonDownload";
+            buttonDownload.Size = new System.Drawing.Size(145, 37);
+            buttonDownload.TabIndex = 5;
+            buttonDownload.Text = "Download";
+            buttonDownload.UseVisualStyleBackColor = false;
+            buttonDownload.Click += ButtonDownloadClick;
             // 
             // progressBarDownload
             // 
-            this.tableLayoutPanelHeader.SetColumnSpan(this.progressBarDownload, 4);
-            this.progressBarDownload.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.progressBarDownload.Location = new System.Drawing.Point(4, 319);
-            this.progressBarDownload.Margin = new System.Windows.Forms.Padding(4);
-            this.progressBarDownload.Name = "progressBarDownload";
-            this.progressBarDownload.Size = new System.Drawing.Size(1145, 37);
-            this.progressBarDownload.TabIndex = 11;
-            this.progressBarDownload.Visible = false;
+            tableLayoutPanelHeader.SetColumnSpan(progressBarDownload, 9);
+            progressBarDownload.Dock = System.Windows.Forms.DockStyle.Fill;
+            progressBarDownload.Location = new System.Drawing.Point(4, 319);
+            progressBarDownload.Margin = new System.Windows.Forms.Padding(4);
+            progressBarDownload.Name = "progressBarDownload";
+            progressBarDownload.Size = new System.Drawing.Size(1277, 37);
+            progressBarDownload.TabIndex = 11;
+            progressBarDownload.Visible = false;
             // 
             // checkBoxFits
             // 
-            this.checkBoxFits.AutoSize = true;
-            this.checkBoxFits.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkBoxFits.Location = new System.Drawing.Point(4, 229);
-            this.checkBoxFits.Margin = new System.Windows.Forms.Padding(4);
-            this.checkBoxFits.Name = "checkBoxFits";
-            this.checkBoxFits.Size = new System.Drawing.Size(139, 37);
-            this.checkBoxFits.TabIndex = 13;
-            this.checkBoxFits.Text = "FITS";
-            this.checkBoxFits.UseVisualStyleBackColor = true;
-            this.checkBoxFits.CheckedChanged += new System.EventHandler(this.CheckBoxFitsCheckedChanged);
+            checkBoxFits.AutoSize = true;
+            checkBoxFits.Dock = System.Windows.Forms.DockStyle.Fill;
+            checkBoxFits.Location = new System.Drawing.Point(4, 229);
+            checkBoxFits.Margin = new System.Windows.Forms.Padding(4);
+            checkBoxFits.Name = "checkBoxFits";
+            checkBoxFits.Size = new System.Drawing.Size(139, 37);
+            checkBoxFits.TabIndex = 13;
+            checkBoxFits.Text = "FITS";
+            checkBoxFits.UseVisualStyleBackColor = true;
+            checkBoxFits.CheckedChanged += CheckBoxFitsCheckedChanged;
             // 
             // checkBoxOverwritePictures
             // 
-            this.checkBoxOverwritePictures.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkBoxOverwritePictures.Location = new System.Drawing.Point(851, 139);
-            this.checkBoxOverwritePictures.Margin = new System.Windows.Forms.Padding(4);
-            this.checkBoxOverwritePictures.Name = "checkBoxOverwritePictures";
-            this.checkBoxOverwritePictures.Size = new System.Drawing.Size(145, 37);
-            this.checkBoxOverwritePictures.TabIndex = 14;
-            this.checkBoxOverwritePictures.Text = "Overwrite";
-            this.checkBoxOverwritePictures.UseVisualStyleBackColor = true;
+            checkBoxOverwritePictures.Dock = System.Windows.Forms.DockStyle.Fill;
+            checkBoxOverwritePictures.Location = new System.Drawing.Point(983, 139);
+            checkBoxOverwritePictures.Margin = new System.Windows.Forms.Padding(4);
+            checkBoxOverwritePictures.Name = "checkBoxOverwritePictures";
+            checkBoxOverwritePictures.Size = new System.Drawing.Size(145, 37);
+            checkBoxOverwritePictures.TabIndex = 14;
+            checkBoxOverwritePictures.Text = "Overwrite";
+            checkBoxOverwritePictures.UseVisualStyleBackColor = true;
             // 
             // checkBoxOverwriteFits
             // 
-            this.checkBoxOverwriteFits.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkBoxOverwriteFits.Enabled = false;
-            this.checkBoxOverwriteFits.Location = new System.Drawing.Point(851, 229);
-            this.checkBoxOverwriteFits.Margin = new System.Windows.Forms.Padding(4);
-            this.checkBoxOverwriteFits.Name = "checkBoxOverwriteFits";
-            this.checkBoxOverwriteFits.Size = new System.Drawing.Size(145, 37);
-            this.checkBoxOverwriteFits.TabIndex = 15;
-            this.checkBoxOverwriteFits.Text = "Overwrite";
-            this.checkBoxOverwriteFits.UseVisualStyleBackColor = true;
+            checkBoxOverwriteFits.Dock = System.Windows.Forms.DockStyle.Fill;
+            checkBoxOverwriteFits.Enabled = false;
+            checkBoxOverwriteFits.Location = new System.Drawing.Point(983, 229);
+            checkBoxOverwriteFits.Margin = new System.Windows.Forms.Padding(4);
+            checkBoxOverwriteFits.Name = "checkBoxOverwriteFits";
+            checkBoxOverwriteFits.Size = new System.Drawing.Size(145, 37);
+            checkBoxOverwriteFits.TabIndex = 15;
+            checkBoxOverwriteFits.Text = "Overwrite";
+            checkBoxOverwriteFits.UseVisualStyleBackColor = true;
             // 
             // comboBoxInformationFormat
             // 
-            this.comboBoxInformationFormat.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.comboBoxInformationFormat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxInformationFormat.FormattingEnabled = true;
-            this.comboBoxInformationFormat.Location = new System.Drawing.Point(1004, 94);
-            this.comboBoxInformationFormat.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBoxInformationFormat.Name = "comboBoxInformationFormat";
-            this.comboBoxInformationFormat.Size = new System.Drawing.Size(145, 36);
-            this.comboBoxInformationFormat.TabIndex = 16;
-            this.comboBoxInformationFormat.SelectedIndexChanged += new System.EventHandler(this.ComboBoxInformationFormatSelectedIndexChanged);
+            comboBoxInformationFormat.Dock = System.Windows.Forms.DockStyle.Fill;
+            comboBoxInformationFormat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            comboBoxInformationFormat.FormattingEnabled = true;
+            comboBoxInformationFormat.Location = new System.Drawing.Point(1136, 94);
+            comboBoxInformationFormat.Margin = new System.Windows.Forms.Padding(4);
+            comboBoxInformationFormat.Name = "comboBoxInformationFormat";
+            comboBoxInformationFormat.Size = new System.Drawing.Size(145, 36);
+            comboBoxInformationFormat.TabIndex = 16;
+            comboBoxInformationFormat.SelectedIndexChanged += ComboBoxInformationFormatSelectedIndexChanged;
             // 
             // checkBoxJpeg
             // 
-            this.checkBoxJpeg.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkBoxJpeg.Location = new System.Drawing.Point(4, 184);
-            this.checkBoxJpeg.Margin = new System.Windows.Forms.Padding(4);
-            this.checkBoxJpeg.Name = "checkBoxJpeg";
-            this.checkBoxJpeg.Size = new System.Drawing.Size(139, 37);
-            this.checkBoxJpeg.TabIndex = 18;
-            this.checkBoxJpeg.Text = "JPEG";
-            this.checkBoxJpeg.UseVisualStyleBackColor = true;
-            this.checkBoxJpeg.CheckedChanged += new System.EventHandler(this.CheckBoxJpegCheckedChanged);
+            checkBoxJpeg.Dock = System.Windows.Forms.DockStyle.Fill;
+            checkBoxJpeg.Location = new System.Drawing.Point(4, 184);
+            checkBoxJpeg.Margin = new System.Windows.Forms.Padding(4);
+            checkBoxJpeg.Name = "checkBoxJpeg";
+            checkBoxJpeg.Size = new System.Drawing.Size(139, 37);
+            checkBoxJpeg.TabIndex = 18;
+            checkBoxJpeg.Text = "JPEG";
+            checkBoxJpeg.UseVisualStyleBackColor = true;
+            checkBoxJpeg.CheckedChanged += CheckBoxJpegCheckedChanged;
             // 
             // textBoxPatternJpeg
             // 
-            this.textBoxPatternJpeg.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxPatternJpeg.Enabled = false;
-            this.textBoxPatternJpeg.Location = new System.Drawing.Point(152, 185);
-            this.textBoxPatternJpeg.Margin = new System.Windows.Forms.Padding(5);
-            this.textBoxPatternJpeg.Name = "textBoxPatternJpeg";
-            this.textBoxPatternJpeg.Size = new System.Drawing.Size(690, 34);
-            this.textBoxPatternJpeg.TabIndex = 19;
-            this.textBoxPatternJpeg.TextChanged += new System.EventHandler(this.TextBoxPatternJpegTextChanged);
+            tableLayoutPanelHeader.SetColumnSpan(textBoxPatternJpeg, 6);
+            textBoxPatternJpeg.Dock = System.Windows.Forms.DockStyle.Fill;
+            textBoxPatternJpeg.Enabled = false;
+            textBoxPatternJpeg.Location = new System.Drawing.Point(152, 185);
+            textBoxPatternJpeg.Margin = new System.Windows.Forms.Padding(5);
+            textBoxPatternJpeg.Name = "textBoxPatternJpeg";
+            textBoxPatternJpeg.Size = new System.Drawing.Size(822, 34);
+            textBoxPatternJpeg.TabIndex = 19;
+            textBoxPatternJpeg.TextChanged += TextBoxPatternJpegTextChanged;
             // 
             // textBoxPatternInformation
             // 
-            this.textBoxPatternInformation.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxPatternInformation.Location = new System.Drawing.Point(152, 95);
-            this.textBoxPatternInformation.Margin = new System.Windows.Forms.Padding(5);
-            this.textBoxPatternInformation.Name = "textBoxPatternInformation";
-            this.textBoxPatternInformation.Size = new System.Drawing.Size(690, 34);
-            this.textBoxPatternInformation.TabIndex = 21;
-            this.textBoxPatternInformation.TextChanged += new System.EventHandler(this.TextBoxPatternInformationTextChanged);
+            tableLayoutPanelHeader.SetColumnSpan(textBoxPatternInformation, 6);
+            textBoxPatternInformation.Dock = System.Windows.Forms.DockStyle.Fill;
+            textBoxPatternInformation.Location = new System.Drawing.Point(152, 95);
+            textBoxPatternInformation.Margin = new System.Windows.Forms.Padding(5);
+            textBoxPatternInformation.Name = "textBoxPatternInformation";
+            textBoxPatternInformation.Size = new System.Drawing.Size(822, 34);
+            textBoxPatternInformation.TabIndex = 21;
+            textBoxPatternInformation.TextChanged += TextBoxPatternInformationTextChanged;
             // 
             // checkBoxOverwriteInformation
             // 
-            this.checkBoxOverwriteInformation.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkBoxOverwriteInformation.Location = new System.Drawing.Point(851, 94);
-            this.checkBoxOverwriteInformation.Margin = new System.Windows.Forms.Padding(4);
-            this.checkBoxOverwriteInformation.Name = "checkBoxOverwriteInformation";
-            this.checkBoxOverwriteInformation.Size = new System.Drawing.Size(145, 37);
-            this.checkBoxOverwriteInformation.TabIndex = 22;
-            this.checkBoxOverwriteInformation.Text = "Overwrite";
-            this.checkBoxOverwriteInformation.UseVisualStyleBackColor = true;
+            checkBoxOverwriteInformation.Dock = System.Windows.Forms.DockStyle.Fill;
+            checkBoxOverwriteInformation.Location = new System.Drawing.Point(983, 94);
+            checkBoxOverwriteInformation.Margin = new System.Windows.Forms.Padding(4);
+            checkBoxOverwriteInformation.Name = "checkBoxOverwriteInformation";
+            checkBoxOverwriteInformation.Size = new System.Drawing.Size(145, 37);
+            checkBoxOverwriteInformation.TabIndex = 22;
+            checkBoxOverwriteInformation.Text = "Overwrite";
+            checkBoxOverwriteInformation.UseVisualStyleBackColor = true;
             // 
             // checkBoxInformation
             // 
-            this.checkBoxInformation.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkBoxInformation.Location = new System.Drawing.Point(4, 94);
-            this.checkBoxInformation.Margin = new System.Windows.Forms.Padding(4);
-            this.checkBoxInformation.Name = "checkBoxInformation";
-            this.checkBoxInformation.Size = new System.Drawing.Size(139, 37);
-            this.checkBoxInformation.TabIndex = 23;
-            this.checkBoxInformation.Text = "Information";
-            this.checkBoxInformation.UseVisualStyleBackColor = true;
-            this.checkBoxInformation.CheckedChanged += new System.EventHandler(this.CheckBoxInformationCheckedChanged);
+            checkBoxInformation.Dock = System.Windows.Forms.DockStyle.Fill;
+            checkBoxInformation.Location = new System.Drawing.Point(4, 94);
+            checkBoxInformation.Margin = new System.Windows.Forms.Padding(4);
+            checkBoxInformation.Name = "checkBoxInformation";
+            checkBoxInformation.Size = new System.Drawing.Size(139, 37);
+            checkBoxInformation.TabIndex = 23;
+            checkBoxInformation.Text = "Information";
+            checkBoxInformation.UseVisualStyleBackColor = true;
+            checkBoxInformation.CheckedChanged += CheckBoxInformationCheckedChanged;
             // 
             // checkBoxPictures
             // 
-            this.checkBoxPictures.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkBoxPictures.Location = new System.Drawing.Point(4, 139);
-            this.checkBoxPictures.Margin = new System.Windows.Forms.Padding(4);
-            this.checkBoxPictures.Name = "checkBoxPictures";
-            this.checkBoxPictures.Size = new System.Drawing.Size(139, 37);
-            this.checkBoxPictures.TabIndex = 24;
-            this.checkBoxPictures.Text = "Pictures";
-            this.checkBoxPictures.UseVisualStyleBackColor = true;
-            this.checkBoxPictures.CheckedChanged += new System.EventHandler(this.CheckBoxPicturesCheckedChanged);
+            checkBoxPictures.Dock = System.Windows.Forms.DockStyle.Fill;
+            checkBoxPictures.Location = new System.Drawing.Point(4, 139);
+            checkBoxPictures.Margin = new System.Windows.Forms.Padding(4);
+            checkBoxPictures.Name = "checkBoxPictures";
+            checkBoxPictures.Size = new System.Drawing.Size(139, 37);
+            checkBoxPictures.TabIndex = 24;
+            checkBoxPictures.Text = "Pictures";
+            checkBoxPictures.UseVisualStyleBackColor = true;
+            checkBoxPictures.CheckedChanged += CheckBoxPicturesCheckedChanged;
             // 
             // buttonBrowse
             // 
-            this.buttonBrowse.BackColor = System.Drawing.Color.Transparent;
-            this.buttonBrowse.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonBrowse.FlatAppearance.BorderColor = System.Drawing.Color.WhiteSmoke;
-            this.buttonBrowse.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(160)))), ((int)(((byte)(104)))));
-            this.buttonBrowse.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(52)))), ((int)(((byte)(70)))));
-            this.buttonBrowse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonBrowse.Location = new System.Drawing.Point(1004, 4);
-            this.buttonBrowse.Margin = new System.Windows.Forms.Padding(4);
-            this.buttonBrowse.Name = "buttonBrowse";
-            this.buttonBrowse.Size = new System.Drawing.Size(145, 37);
-            this.buttonBrowse.TabIndex = 25;
-            this.buttonBrowse.Text = "Browse...";
-            this.buttonBrowse.UseVisualStyleBackColor = false;
-            this.buttonBrowse.Click += new System.EventHandler(this.ButtonBrowseClick);
+            buttonBrowse.BackColor = System.Drawing.Color.Transparent;
+            buttonBrowse.Dock = System.Windows.Forms.DockStyle.Fill;
+            buttonBrowse.FlatAppearance.BorderColor = System.Drawing.Color.WhiteSmoke;
+            buttonBrowse.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(194, 160, 104);
+            buttonBrowse.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(27, 52, 70);
+            buttonBrowse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            buttonBrowse.Location = new System.Drawing.Point(1136, 4);
+            buttonBrowse.Margin = new System.Windows.Forms.Padding(4);
+            buttonBrowse.Name = "buttonBrowse";
+            buttonBrowse.Size = new System.Drawing.Size(145, 37);
+            buttonBrowse.TabIndex = 25;
+            buttonBrowse.Text = "Browse...";
+            buttonBrowse.UseVisualStyleBackColor = false;
+            buttonBrowse.Click += ButtonBrowseClick;
+            // 
+            // buttonFetch
+            // 
+            buttonFetch.BackColor = System.Drawing.Color.Transparent;
+            buttonFetch.Dock = System.Windows.Forms.DockStyle.Fill;
+            buttonFetch.FlatAppearance.BorderColor = System.Drawing.Color.WhiteSmoke;
+            buttonFetch.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(194, 160, 104);
+            buttonFetch.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(27, 52, 70);
+            buttonFetch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            buttonFetch.Location = new System.Drawing.Point(1135, 363);
+            buttonFetch.Name = "buttonFetch";
+            buttonFetch.Size = new System.Drawing.Size(147, 39);
+            buttonFetch.TabIndex = 26;
+            buttonFetch.Text = "Fetch";
+            buttonFetch.UseVisualStyleBackColor = false;
+            buttonFetch.Click += ButtonRefreshClick;
+            // 
+            // upDownStart
+            // 
+            upDownStart.Dock = System.Windows.Forms.DockStyle.Fill;
+            upDownStart.Location = new System.Drawing.Point(150, 363);
+            upDownStart.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            upDownStart.Name = "upDownStart";
+            upDownStart.Size = new System.Drawing.Size(147, 34);
+            upDownStart.TabIndex = 27;
+            upDownStart.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            upDownStart.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
+            // labelStart
+            // 
+            labelStart.Dock = System.Windows.Forms.DockStyle.Fill;
+            labelStart.Location = new System.Drawing.Point(3, 360);
+            labelStart.Name = "labelStart";
+            labelStart.Size = new System.Drawing.Size(141, 45);
+            labelStart.TabIndex = 28;
+            labelStart.Text = "Start";
+            labelStart.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // labelLimit
+            // 
+            labelLimit.Dock = System.Windows.Forms.DockStyle.Fill;
+            labelLimit.Location = new System.Drawing.Point(303, 360);
+            labelLimit.Name = "labelLimit";
+            labelLimit.Size = new System.Drawing.Size(147, 45);
+            labelLimit.TabIndex = 29;
+            labelLimit.Text = "Limit";
+            labelLimit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // upDownLimit
+            // 
+            upDownLimit.Dock = System.Windows.Forms.DockStyle.Fill;
+            upDownLimit.Location = new System.Drawing.Point(456, 363);
+            upDownLimit.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
+            upDownLimit.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            upDownLimit.Name = "upDownLimit";
+            upDownLimit.Size = new System.Drawing.Size(147, 34);
+            upDownLimit.TabIndex = 30;
+            upDownLimit.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            upDownLimit.Value = new decimal(new int[] { 20, 0, 0, 0 });
+            // 
+            // checkBoxCaptures
+            // 
+            checkBoxCaptures.AutoSize = true;
+            checkBoxCaptures.Checked = true;
+            checkBoxCaptures.CheckState = System.Windows.Forms.CheckState.Checked;
+            checkBoxCaptures.Dock = System.Windows.Forms.DockStyle.Fill;
+            checkBoxCaptures.Location = new System.Drawing.Point(812, 363);
+            checkBoxCaptures.Name = "checkBoxCaptures";
+            checkBoxCaptures.Size = new System.Drawing.Size(164, 39);
+            checkBoxCaptures.TabIndex = 32;
+            checkBoxCaptures.Text = "Captures (?)";
+            checkBoxCaptures.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxMissions
+            // 
+            checkBoxMissions.AutoSize = true;
+            checkBoxMissions.Checked = true;
+            checkBoxMissions.CheckState = System.Windows.Forms.CheckState.Checked;
+            checkBoxMissions.Dock = System.Windows.Forms.DockStyle.Fill;
+            checkBoxMissions.Location = new System.Drawing.Point(642, 363);
+            checkBoxMissions.Name = "checkBoxMissions";
+            checkBoxMissions.Size = new System.Drawing.Size(164, 39);
+            checkBoxMissions.TabIndex = 33;
+            checkBoxMissions.Text = "Missions (?)";
+            checkBoxMissions.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanelRight
             // 
-            this.tableLayoutPanelRight.BackColor = System.Drawing.Color.Transparent;
-            this.tableLayoutPanelRight.ColumnCount = 3;
-            this.tableLayoutPanelRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 61F));
-            this.tableLayoutPanelRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanelRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanelRight.Controls.Add(this.labelName, 1, 0);
-            this.tableLayoutPanelRight.Controls.Add(this.labelMemberSince, 1, 1);
-            this.tableLayoutPanelRight.Controls.Add(this.labelTier, 1, 2);
-            this.tableLayoutPanelRight.Controls.Add(this.labelGravityPoints, 1, 3);
-            this.tableLayoutPanelRight.Controls.Add(this.labelNextTierPoints, 0, 4);
-            this.tableLayoutPanelRight.Controls.Add(this.labelNextTier, 2, 4);
-            this.tableLayoutPanelRight.Controls.Add(this.sloohProgressBar, 0, 5);
-            this.tableLayoutPanelRight.Controls.Add(this.thumbnailsControl, 0, 6);
-            this.tableLayoutPanelRight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanelRight.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanelRight.Margin = new System.Windows.Forms.Padding(4);
-            this.tableLayoutPanelRight.Name = "tableLayoutPanelRight";
-            this.tableLayoutPanelRight.RowCount = 7;
-            this.tableLayoutPanelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelRight.Size = new System.Drawing.Size(294, 927);
-            this.tableLayoutPanelRight.TabIndex = 0;
+            tableLayoutPanelRight.BackColor = System.Drawing.Color.Transparent;
+            tableLayoutPanelRight.ColumnCount = 3;
+            tableLayoutPanelRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 61F));
+            tableLayoutPanelRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            tableLayoutPanelRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            tableLayoutPanelRight.Controls.Add(labelName, 1, 0);
+            tableLayoutPanelRight.Controls.Add(labelMemberSince, 1, 1);
+            tableLayoutPanelRight.Controls.Add(labelTier, 1, 2);
+            tableLayoutPanelRight.Controls.Add(labelGravityPoints, 1, 3);
+            tableLayoutPanelRight.Controls.Add(labelNextTierPoints, 0, 4);
+            tableLayoutPanelRight.Controls.Add(labelNextTier, 2, 4);
+            tableLayoutPanelRight.Controls.Add(sloohProgressBar, 0, 5);
+            tableLayoutPanelRight.Controls.Add(thumbnailsControl, 0, 6);
+            tableLayoutPanelRight.Dock = System.Windows.Forms.DockStyle.Fill;
+            tableLayoutPanelRight.Location = new System.Drawing.Point(0, 0);
+            tableLayoutPanelRight.Margin = new System.Windows.Forms.Padding(4);
+            tableLayoutPanelRight.Name = "tableLayoutPanelRight";
+            tableLayoutPanelRight.RowCount = 7;
+            tableLayoutPanelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            tableLayoutPanelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            tableLayoutPanelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            tableLayoutPanelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            tableLayoutPanelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            tableLayoutPanelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            tableLayoutPanelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            tableLayoutPanelRight.Size = new System.Drawing.Size(331, 927);
+            tableLayoutPanelRight.TabIndex = 0;
             // 
             // labelName
             // 
-            this.tableLayoutPanelRight.SetColumnSpan(this.labelName, 2);
-            this.labelName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelName.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelName.Location = new System.Drawing.Point(65, 0);
-            this.labelName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(225, 40);
-            this.labelName.TabIndex = 0;
-            this.labelName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            tableLayoutPanelRight.SetColumnSpan(labelName, 2);
+            labelName.Dock = System.Windows.Forms.DockStyle.Fill;
+            labelName.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            labelName.Location = new System.Drawing.Point(65, 0);
+            labelName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelName.Name = "labelName";
+            labelName.Size = new System.Drawing.Size(262, 40);
+            labelName.TabIndex = 0;
+            labelName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelMemberSince
             // 
-            this.tableLayoutPanelRight.SetColumnSpan(this.labelMemberSince, 2);
-            this.labelMemberSince.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelMemberSince.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelMemberSince.Location = new System.Drawing.Point(65, 40);
-            this.labelMemberSince.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelMemberSince.Name = "labelMemberSince";
-            this.labelMemberSince.Size = new System.Drawing.Size(225, 40);
-            this.labelMemberSince.TabIndex = 1;
-            this.labelMemberSince.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            tableLayoutPanelRight.SetColumnSpan(labelMemberSince, 2);
+            labelMemberSince.Dock = System.Windows.Forms.DockStyle.Fill;
+            labelMemberSince.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            labelMemberSince.Location = new System.Drawing.Point(65, 40);
+            labelMemberSince.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelMemberSince.Name = "labelMemberSince";
+            labelMemberSince.Size = new System.Drawing.Size(262, 40);
+            labelMemberSince.TabIndex = 1;
+            labelMemberSince.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
             // labelTier
             // 
-            this.tableLayoutPanelRight.SetColumnSpan(this.labelTier, 2);
-            this.labelTier.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelTier.Location = new System.Drawing.Point(66, 80);
-            this.labelTier.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.labelTier.Name = "labelTier";
-            this.labelTier.Size = new System.Drawing.Size(223, 40);
-            this.labelTier.TabIndex = 2;
-            this.labelTier.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            tableLayoutPanelRight.SetColumnSpan(labelTier, 2);
+            labelTier.Dock = System.Windows.Forms.DockStyle.Fill;
+            labelTier.Location = new System.Drawing.Point(66, 80);
+            labelTier.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            labelTier.Name = "labelTier";
+            labelTier.Size = new System.Drawing.Size(260, 40);
+            labelTier.TabIndex = 2;
+            labelTier.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelGravityPoints
             // 
-            this.tableLayoutPanelRight.SetColumnSpan(this.labelGravityPoints, 2);
-            this.labelGravityPoints.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelGravityPoints.Location = new System.Drawing.Point(66, 120);
-            this.labelGravityPoints.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.labelGravityPoints.Name = "labelGravityPoints";
-            this.labelGravityPoints.Size = new System.Drawing.Size(223, 40);
-            this.labelGravityPoints.TabIndex = 3;
-            this.labelGravityPoints.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            tableLayoutPanelRight.SetColumnSpan(labelGravityPoints, 2);
+            labelGravityPoints.Dock = System.Windows.Forms.DockStyle.Fill;
+            labelGravityPoints.Location = new System.Drawing.Point(66, 120);
+            labelGravityPoints.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            labelGravityPoints.Name = "labelGravityPoints";
+            labelGravityPoints.Size = new System.Drawing.Size(260, 40);
+            labelGravityPoints.TabIndex = 3;
+            labelGravityPoints.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelNextTierPoints
             // 
-            this.tableLayoutPanelRight.SetColumnSpan(this.labelNextTierPoints, 2);
-            this.labelNextTierPoints.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelNextTierPoints.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelNextTierPoints.Location = new System.Drawing.Point(4, 160);
-            this.labelNextTierPoints.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelNextTierPoints.Name = "labelNextTierPoints";
-            this.labelNextTierPoints.Size = new System.Drawing.Size(169, 40);
-            this.labelNextTierPoints.TabIndex = 4;
-            this.labelNextTierPoints.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            tableLayoutPanelRight.SetColumnSpan(labelNextTierPoints, 2);
+            labelNextTierPoints.Dock = System.Windows.Forms.DockStyle.Fill;
+            labelNextTierPoints.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            labelNextTierPoints.Location = new System.Drawing.Point(4, 160);
+            labelNextTierPoints.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelNextTierPoints.Name = "labelNextTierPoints";
+            labelNextTierPoints.Size = new System.Drawing.Size(188, 40);
+            labelNextTierPoints.TabIndex = 4;
+            labelNextTierPoints.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
             // labelNextTier
             // 
-            this.labelNextTier.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelNextTier.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelNextTier.Location = new System.Drawing.Point(181, 160);
-            this.labelNextTier.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelNextTier.Name = "labelNextTier";
-            this.labelNextTier.Size = new System.Drawing.Size(109, 40);
-            this.labelNextTier.TabIndex = 5;
-            this.labelNextTier.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            labelNextTier.Dock = System.Windows.Forms.DockStyle.Fill;
+            labelNextTier.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            labelNextTier.Location = new System.Drawing.Point(200, 160);
+            labelNextTier.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelNextTier.Name = "labelNextTier";
+            labelNextTier.Size = new System.Drawing.Size(127, 40);
+            labelNextTier.TabIndex = 5;
+            labelNextTier.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             // 
             // sloohProgressBar
             // 
-            this.tableLayoutPanelRight.SetColumnSpan(this.sloohProgressBar, 3);
-            this.sloohProgressBar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.sloohProgressBar.Location = new System.Drawing.Point(4, 204);
-            this.sloohProgressBar.Margin = new System.Windows.Forms.Padding(4);
-            this.sloohProgressBar.Name = "sloohProgressBar";
-            this.sloohProgressBar.Size = new System.Drawing.Size(286, 12);
-            this.sloohProgressBar.TabIndex = 7;
+            tableLayoutPanelRight.SetColumnSpan(sloohProgressBar, 3);
+            sloohProgressBar.Dock = System.Windows.Forms.DockStyle.Fill;
+            sloohProgressBar.Location = new System.Drawing.Point(4, 204);
+            sloohProgressBar.Margin = new System.Windows.Forms.Padding(4);
+            sloohProgressBar.Name = "sloohProgressBar";
+            sloohProgressBar.Size = new System.Drawing.Size(323, 12);
+            sloohProgressBar.TabIndex = 7;
             // 
             // thumbnailsControl
             // 
-            this.thumbnailsControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(70)))), ((int)(((byte)(94)))));
-            this.tableLayoutPanelRight.SetColumnSpan(this.thumbnailsControl, 3);
-            this.thumbnailsControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.thumbnailsControl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.thumbnailsControl.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.thumbnailsControl.Location = new System.Drawing.Point(5, 225);
-            this.thumbnailsControl.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.thumbnailsControl.Name = "thumbnailsControl";
-            this.thumbnailsControl.Size = new System.Drawing.Size(284, 697);
-            this.thumbnailsControl.TabIndex = 8;
+            thumbnailsControl.BackColor = System.Drawing.Color.FromArgb(50, 70, 94);
+            tableLayoutPanelRight.SetColumnSpan(thumbnailsControl, 3);
+            thumbnailsControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            thumbnailsControl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            thumbnailsControl.ForeColor = System.Drawing.Color.WhiteSmoke;
+            thumbnailsControl.Location = new System.Drawing.Point(5, 225);
+            thumbnailsControl.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            thumbnailsControl.Name = "thumbnailsControl";
+            thumbnailsControl.Size = new System.Drawing.Size(321, 697);
+            thumbnailsControl.TabIndex = 8;
             // 
             // folderBrowserDialog
             // 
-            this.folderBrowserDialog.Description = "Select folder where downloaded images are saved.";
+            folderBrowserDialog.Description = "Select folder where downloaded images are saved.";
             // 
             // DashboardControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(52)))), ((int)(((byte)(70)))));
-            this.Controls.Add(this.splitContainer);
-            this.Margin = new System.Windows.Forms.Padding(5);
-            this.Name = "DashboardControl";
-            this.Size = new System.Drawing.Size(1452, 927);
-            this.splitContainer.Panel1.ResumeLayout(false);
-            this.splitContainer.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
-            this.splitContainer.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridMissions)).EndInit();
-            this.contextMenuStripMissions.ResumeLayout(false);
-            this.tableLayoutPanelHeader.ResumeLayout(false);
-            this.tableLayoutPanelHeader.PerformLayout();
-            this.tableLayoutPanelRight.ResumeLayout(false);
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            BackColor = System.Drawing.Color.FromArgb(37, 52, 70);
+            Controls.Add(splitContainer);
+            Margin = new System.Windows.Forms.Padding(5);
+            Name = "DashboardControl";
+            Size = new System.Drawing.Size(1621, 927);
+            splitContainer.Panel1.ResumeLayout(false);
+            splitContainer.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer).EndInit();
+            splitContainer.ResumeLayout(false);
+            tableLayoutPanelHeader.ResumeLayout(false);
+            tableLayoutPanelHeader.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)gridMissions).EndInit();
+            contextMenuStripMissions.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)upDownStart).EndInit();
+            ((System.ComponentModel.ISupportInitialize)upDownLimit).EndInit();
+            tableLayoutPanelRight.ResumeLayout(false);
+            ResumeLayout(false);
         }
 
         #endregion
@@ -797,5 +901,12 @@ namespace Slooh.Explorer.Controls
         private ThumbnailsControl thumbnailsControl;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDelete;
         private SloohButton buttonBrowse;
+        private SloohButton buttonFetch;
+        private System.Windows.Forms.NumericUpDown upDownStart;
+        private System.Windows.Forms.Label labelStart;
+        private System.Windows.Forms.Label labelLimit;
+        private System.Windows.Forms.NumericUpDown upDownLimit;
+        private System.Windows.Forms.CheckBox checkBoxCaptures;
+        private System.Windows.Forms.CheckBox checkBoxMissions;
     }
 }
